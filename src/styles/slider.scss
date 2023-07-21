@@ -1,0 +1,53 @@
+.slider {
+  width: 90%;
+  height: 34vw;
+  // border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .left-arrow {
+    width: 5vw;
+  }
+  .right-arrow {
+    width: 5vw;
+  }
+
+  .slider-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .images{
+        width: 36vw;
+        height: 24vw;
+        // border: 2px solid;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        img{
+            width: 25vw;
+        }
+      }
+      .text{
+
+      }
+      .indicators {
+        display: flex;
+        gap: 1vw;
+        .slider-dot {
+          width: 2vw;
+          height: 2vw;
+          border-radius: 100%;
+          border: 0.2vw solid yellow;
+          background-color: brown;
+        }
+        .active-dot{
+            background-color: gold !important;
+        }
+      }
+  }
+
+}

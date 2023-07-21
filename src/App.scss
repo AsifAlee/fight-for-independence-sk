@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat-Regular';
+  color: white;
+}
+
+button{
+background: transparent;
+border: none;
+outline: none;
+box-shadow: none !important;
+-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+
+.App {
+  background-image: url('../src/assets/bg.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+// min-height: 325vw;
+  
+  .header{
+    background-image: url('./assets/Header.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 167vw;
+   
+    .guide-btn{
+      background-image: url('.//assets/guide-btn.png');
+      width: 21vw;
+      height: 11vw;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      position: absolute;
+      right: 0;
+      top: 56vw;
+    }
+
+    
+  }
+
+  .main-tabs{
+    // position: relative;
+    // top: -87vw;
+    display: flex;
+    justify-content: center;
+    
+    margin-top: -90vw;
+
+
+
+    .conquer-fort{
+      width: 26vw;
+      height: 18vw;
+      background-image: url('../src/assets/conquervictoryfort-btn.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+    }
+    .fan-followers{
+      width: 26vw;
+      height: 18vw;
+      background-image: url('../src/assets/fan-followers-btn.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+    }
+    .event-gifting{
+      width: 26vw;
+      height: 18vw;
+      background-image: url('../src/assets/event-gifting-btn.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+    }
+
+    .collect-soldiers{
+      width: 26vw;
+      height: 18vw;
+      background-image: url('../src/assets/collect-soldiers-btn.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+
+    }
+    
+
+  }
+
+
+ 
+}
+

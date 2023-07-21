@@ -1,0 +1,251 @@
+.conquer-fort {
+  .use-soldier-info {
+    width: 85%;
+    height: 23vw;
+    background-image: url("../assets/Conquer-tab/use-your-soilders-text-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8vw;
+    p {
+      text-align: center;
+      width: 90%;
+    }
+  }
+
+  .fort-wrapper {
+    .fort {
+      width: 100%;
+      height: 60vw;
+      background-image: url("../assets/Conquer-tab/Fort.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      margin: 0 auto;
+      position: relative;
+      .collect-soldiers {
+        width: 40vw;
+        height: 16vw;
+        background-image: url("../assets//Chance-bg.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+        top: -2vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        span {
+          margin-top: 3vw;
+          margin-left: 6vw;
+          font-size: 2.5vw;
+        }
+      }
+      .info-icon {
+        width: 5vw;
+        height: 5vw;
+        background-image: url("../assets/Conquer-tab/info-icon.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+        top: 3vw;
+        left: 5vw;
+      }
+      .levels {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 40vw;
+        position: absolute;
+        top: 16vw;
+        gap: 3vw;
+
+        .level1 {
+          width: 27vw;
+          height: 36vw;
+          background-image: url("../assets/Conquer-tab/level-1.png");
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+        }
+        .level2 {
+          width: 27vw;
+          height: 36vw;
+          background-image: url("../assets/Conquer-tab/level-2.png");
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+        }
+        .level3 {
+          width: 27vw;
+          height: 36vw;
+          background-image: url("../assets/Conquer-tab/level-3.png");
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+    }
+  }
+
+  .beans-pot {
+    width: 95%;
+    height: 55vw;
+    background-image: url("../assets/Beans-pot-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    position: relative;
+
+    .title {
+      width: 32vw;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      top: 3vw;
+    }
+
+    .beanspot-img {
+      width: 50vw;
+      position: absolute;
+      top: 14vw;
+      left: 6vw;
+    }
+    .beans-count {
+      min-width: 30vw;
+      height: 12vw;
+      background-image: url("../assets/event-gifting/beans-amount-bg.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: absolute;
+      right: 10vw;
+      top: 23vw;
+      span {
+        margin-top: 3vw;
+        font-size: 2vw;
+      }
+    }
+  }
+
+  .collect-soldiers{
+    width: 53vw;
+    height: 12vw;
+    background-image: url("../assets/Conquer-tab/soldierscollected-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span{
+        font-size: 2.5vw;
+    }
+    
+  }
+  .join-team-wrap{
+
+    .teams{
+        display: flex;
+        justify-content: center;
+        gap: 3vw;
+
+        .warriors{
+            width: 25vw;
+            height: 24vw;
+            background-image: url("../assets/Conquer-tab/Warriors.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        
+        .conquerers{
+            width: 25vw;
+            height: 24vw;
+            background-image: url("../assets/Conquer-tab/Conquerers.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        
+        .champions{
+            width: 25vw;
+            height: 24vw;
+            background-image: url("../assets/Conquer-tab/Champions.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        
+    }
+
+    .join-btn{
+        width: 25vw;
+        height: 14vw;
+        background-image: url("../assets/Conquer-tab/join-btn.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        display: block;
+        margin: 0 auto;
+    }
+
+
+    .conquer-tab-leaderboard{
+        width: 95%;
+        height: 202vw;
+        background-image: url("../assets/rewards-bg.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        position: relative;
+  
+        margin-top: 4vw;
+  
+        .title {
+          width: 31vw;
+          display: block;
+          margin: 0 auto;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: -8vw;
+        }
+        .top1 {
+        }
+        .restWinners {
+          margin-top: 16vw;
+          height: 132vw;
+          // overflow-y: hidden;
+          // border: 2px solid green;
+        }
+    
+        .see-more{
+          background-image: url('../assets/more-btn.png');
+          width: 15vw;
+          height: 8vw;
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin: 0 auto;
+          display: block;
+          // position: relative;
+          // bottom: 7vw;
+        }
+        .see-less{
+          background-image: url('../assets/less-btn.png');
+          width: 15vw;
+          height: 8vw;
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin: 0 auto;
+          display: block;
+          // position: relative;
+          // bottom: 7vw;
+        }
+    }
+
+  }
+
+}

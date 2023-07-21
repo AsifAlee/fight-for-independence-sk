@@ -1,0 +1,279 @@
+.event-gifting-tab {
+  .gifts {
+    background-image: url("../assets//event-gifting/rewards-bg.png");
+    width: 80%;
+    height: 50vw;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+
+    .gift-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      .title {
+        position: absolute;
+        width: 21vw;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: -6vw;
+      }
+    }
+
+    .single-gift {
+      display: flex;
+      flex-direction: column;
+
+      .gift-bg {
+        background-image: url("../assets/event-gifting/gift-base.png");
+        width: 20vw;
+        height: 22vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+
+      .gift-details {
+        background-image: url("../assets/event-gifting/gift-name-bg.png");
+        width: 20vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+  .beans-pot {
+    .beans-pot-tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 7vw;
+    }
+
+    .beanspot-container {
+      background-image: url("../assets//event-gifting/overall-beans-pot-bg.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      width: 96%;
+      height: 50vw;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      .beans-pot-img {
+        width: 50vw;
+      }
+      .right-div {
+        .beans-counter {
+          width: 30vw;
+          height: 12vw;
+          background-image: url("../assets//event-gifting/beans-amount-bg.png");
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .beanspot-text {
+          font-size: 3vw;
+
+          span {
+            margin-top: 3vw;
+            margin-left: 5vw;
+          }
+        }
+      }
+    }
+  }
+
+  .rewards {
+    .rewards-tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 7vw;
+    }
+
+    .rewards-container {
+      background-image: url("../assets/event-gifting/rewards-bg.png");
+      width: 90%;
+      height: 50vw;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      margin: 0 auto;
+      .rewards-tag {
+        width: 26vw;
+        position: relative;
+        bottom: 5vw;
+      }
+
+      .slider-container {
+        position: relative;
+        bottom: 6vw;
+        left: 4vw;
+      }
+    }
+  }
+  .event-gifting-leaderboard {
+    .leaderboard-tabs {
+      display: flex;
+      justify-content: space-around;
+    }
+    .main-leaderboard {
+      width: 95%;
+      height: 202vw;
+      background-image: url("../assets//rewards-bg.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      position: relative;
+
+      margin-top: 4vw;
+
+      .title {
+        width: 31vw;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -8vw;
+      }
+      .top1 {
+      }
+      .restWinners {
+        margin-top: 16vw;
+        height: 132vw;
+        // overflow-y: hidden;
+        // border: 2px solid green;
+      }
+  
+      .see-more{
+        background-image: url('../assets/more-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+        // position: relative;
+        // bottom: 7vw;
+      }
+      .see-less{
+        background-image: url('../assets/less-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+        // position: relative;
+        // bottom: 7vw;
+      }
+    }
+    .talent-daily-leaderboard{
+      width: 95%;
+      height: 237vw;
+      background-image: url("../assets//rewards-bg.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      position: relative;
+
+      margin-top: 4vw;
+
+      
+      .title {
+        width: 32vw;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -8vw;
+      }
+      .switch-btn{
+        position: relative;
+        top: 21vw;
+    
+      }
+      .restWinners {
+        margin-top: 16vw;
+        height: 132vw;
+       
+      }
+  
+      .see-more{
+        background-image: url('../assets/more-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+   
+      }
+      .see-less{
+        background-image: url('../assets/less-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+        
+      }
+    }
+
+    .talent-overall-leaderboard{
+      width: 95%;
+      height: 202vw;
+      background-image: url("../assets//rewards-bg.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      position: relative;
+
+      margin-top: 4vw;
+
+      
+      .title {
+        width: 32vw;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -8vw;
+      }
+  
+      .restWinners {
+        margin-top: 16vw;
+        height: 132vw;
+       
+      }
+  
+      .see-more{
+        background-image: url('../assets/more-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+   
+      }
+      .see-less{
+        background-image: url('../assets/less-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+        
+      }
+
+    }
+  }
+}

@@ -1,0 +1,114 @@
+.collect-soldier-tab {
+  //   position: relative;
+  //   top: -89vw;
+  .collect-soldier-game {
+    width: 90%;
+    height: 70vw;
+    background-image: url("../assets/game-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    margin: 0 auto;
+  }
+  .chances {
+    width: 100%;
+    height: 21vw;
+    background-image: url("../assets/Chance-back-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+
+    .shoot-btn {
+      background-image: url("../assets/shoot-btn.png");
+      width: 19vw;
+      height: 15vw;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      display: block;
+      margin: 0 auto;
+      position: absolute;
+      top: -6vw;
+      left: 0;
+      right: 0;
+    }
+    .my-chances {
+      width: 40vw;
+      height: 16vw;
+      background-image: url("../assets/Chance-bg.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      position: absolute;
+      top: 5vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .enter-chances {
+      width: 40vw;
+      height: 16vw;
+      background-image: url("../assets/Chance-bg.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      position: absolute;
+      top: 5vw;
+      right: 6vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .rewards {
+    width: 95%;
+    height: 202vw;
+    background-image: url("../assets//rewards-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    position: relative;
+    // overflow-y: auto;
+    // top: 8vw;
+    margin-top: 4vw;
+
+    .title {
+      width: 27vw;
+      margin: 0 auto;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -8vw;
+    }
+
+    .top1 {
+    }
+    .restWinners {
+      margin-top: 16vw;
+      height: 132vw;
+      // overflow-y: hidden;
+      // border: 2px solid green;
+    }
+
+    .see-more{
+      background-image: url('../assets/more-btn.png');
+      width: 15vw;
+      height: 8vw;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      display: block;
+      // position: relative;
+      // bottom: 7vw;
+    }
+    .see-less{
+      background-image: url('../assets/less-btn.png');
+      width: 15vw;
+      height: 8vw;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      display: block;
+      // position: relative;
+      // bottom: 7vw;
+    }
+  }
+}
