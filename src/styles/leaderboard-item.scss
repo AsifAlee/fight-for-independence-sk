@@ -70,27 +70,351 @@
     align-items: center;
     gap: 1vw;
 
-    .beans-sent{
+    .beans-sent {
       position: relative;
       display: flex;
-    left: 16vw;
-    align-items: center;
-      img{
+      left: 16vw;
+      align-items: center;
+      img {
         width: 3vw;
       }
-      span{
+      span {
         font-size: 2vw;
       }
     }
   }
-  .middle-div{
+  .middle-div {
     font-size: 1.6vw;
     position: relative;
     left: 3vw;
     width: 14vw;
     display: flex;
     flex-direction: column;
+  }
+}
 
+.conquer-victory-leaderboard-item {
+  width: 88%;
+  height: 15vw;
+  background-image: url("../assets/leaderboard-name-strip.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5vw;
+  padding-left: 3vw;
+  margin: 0 auto;
+  background-position: center;
+  // justify-content: space-around;
 
+  .left-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    margin-left: -2vw;
+
+    .greater3 {
+      margin-left: -6vw;
+    }
+    .index {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      margin-left: 2vw;
+      font-size: 2.5vw;
+    }
+    .name {
+      font-size: 2.5vw;
+      font-family: "Acme-Regular";
+      color: white;
+
+      width: 18vw;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .images {
+      width: 12vw;
+      height: 11vw;
+      position: relative;
+      top: 0;
+
+      .frame {
+        position: relative;
+        top: 0vw;
+        left: -1vw;
+        width: 12vw;
+        z-index: 1;
+      }
+
+      .avatar {
+        position: absolute;
+        top: 1vw;
+        width: 90%;
+        border-radius: 100%;
+      }
+    }
+  }
+  .right-div {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    background-color: #672c02;
+    border-radius: 2vw;
+    left: 16vw;
+    top: 1vw;
+    width: 16vw;
+    height: 6vw;
+    position: relative;
+    font-size: 2vw;
+
+    .soldier-icon {
+      width: 5vw;
+    }
+
+    .beans-sent {
+      position: relative;
+      display: flex;
+      left: 16vw;
+      align-items: center;
+      img {
+        width: 3vw;
+      }
+      span {
+        font-size: 2vw;
+      }
+    }
+  }
+  .middle-div {
+    font-size: 1.6vw;
+    position: relative;
+    left: 3vw;
+    width: 14vw;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.event-gifiting-leaderboard-item {
+  width: 88%;
+  height: 15vw;
+  background-image: url("../assets/leaderboard-name-strip.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5vw;
+  padding-left: 3vw;
+  margin: 0 auto;
+  background-position: center;
+  // justify-content: space-around;
+
+  .left-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    margin-left: -2vw;
+
+    .greater3 {
+      margin-left: -6vw;
+    }
+    .index {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      margin-left: 2vw;
+      font-size: 2.5vw;
+    }
+    .name {
+      font-size: 2.5vw;
+      font-family: "Acme-Regular";
+      color: white;
+
+      width: 18vw;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .images {
+      width: 12vw;
+      height: 11vw;
+      position: relative;
+      top: 0;
+
+      .frame {
+        position: relative;
+        top: 0vw;
+        left: -1vw;
+        width: 12vw;
+        z-index: 1;
+      }
+
+      .avatar {
+        position: absolute;
+        top: 1vw;
+        width: 90%;
+        border-radius: 100%;
+      }
+    }
+  }
+  .right-div {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    // background-color: #672c02;
+    border-radius: 2vw;
+
+    font-size: 2vw;
+    position: relative;
+    left: 6vw;
+    .bean-icon {
+      width: 3vw;
+    }
+
+    .beans-sent {
+      position: relative;
+      display: flex;
+      left: 16vw;
+      align-items: center;
+      img {
+        width: 3vw;
+      }
+      span {
+        font-size: 2vw;
+      }
+    }
+  }
+  .middle-div {
+    font-size: 1.6vw;
+    position: relative;
+    left: 3vw;
+    width: 14vw;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.fan-follower-lb-item {
+  width: 88%;
+  height: 15vw;
+  background-image: url("../assets/leaderboard-name-strip.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5vw;
+  padding-left: 3vw;
+  margin: 0 auto;
+  background-position: center;
+  // justify-content: space-around;
+
+  .left-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    margin-left: -2vw;
+
+    .greater3 {
+      margin-left: -6vw;
+    }
+    .index {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      margin-left: 2vw;
+      font-size: 2.5vw;
+    }
+    .name {
+      font-size: 2.5vw;
+      font-family: "Acme-Regular";
+      color: white;
+
+      width: 18vw;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .images {
+      width: 12vw;
+      height: 11vw;
+      position: relative;
+      top: 0;
+
+      .frame {
+        position: relative;
+        top: 0vw;
+        left: -1vw;
+        width: 12vw;
+        z-index: 1;
+      }
+
+      .avatar {
+        position: absolute;
+        top: 1vw;
+        width: 90%;
+        border-radius: 100%;
+      }
+    }
+  }
+  .right-div {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    background-color: #672c02;
+    border-radius: 1vw;
+    left: 20vw;
+    top: 1vw;
+    // width: 19vw;
+    height: 6vw;
+    position: relative;
+    font-size: 2vw;
+
+    .beans-sent {
+      position: relative;
+      display: flex;
+      left: 16vw;
+      align-items: center;
+      img {
+        width: 3vw;
+      }
+      span {
+        font-size: 2vw;
+      }
+    }
+  }
+  .middle-div {
+    font-size: 1.6vw;
+    position: relative;
+    left: 3vw;
+    // width: 14vw;
+    display: flex;
+    flex-direction: column;
+
+    .beans-won {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 3vw;
+      }
+    }
   }
 }

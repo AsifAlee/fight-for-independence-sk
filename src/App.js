@@ -3,6 +3,8 @@ import "./App.scss";
 import CollectSoldierTab from "./pages/CollectSoldierTab";
 import EventGifting from "./pages/EventGifting";
 import ConquerVictoryFortTab from "./pages/ConquerVictoryFortTab";
+import FanFollwers from "./pages/FanFollwers";
+import Guide from "./popups/Guide";
 
 function App() {
   const [mainTabs, setMainTabs] = useState({
@@ -11,6 +13,10 @@ function App() {
     fanFollower: false,
     eventGifting: false,
   });
+  const [showGuide, setShowGuide] = useState(false);
+  const toggleGuide = () => {
+    setShowGuide((prevState) => !prevState);
+  };
   const switchMainTabs = (name) => {
     switch (name) {
       case "collect-soldiers":
@@ -52,7 +58,7 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-        <button className="guide-btn" />
+        <button className="guide-btn" onClick={toggleGuide} />
       </div>
       <div className="main-tabs">
         <button
@@ -87,8 +93,9 @@ function App() {
       ) : mainTabs.conquerFort ? (
         <ConquerVictoryFortTab />
       ) : (
-        ""
+        <FanFollwers />
       )}
+      {showGuide && <Guide />}
     </div>
   );
 }

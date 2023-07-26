@@ -6,6 +6,9 @@ import SwitchButton from "../../../../components/SwitchButton";
 import { testLeaderData } from "../../../../utils/testData";
 import Topper from "../../../../components/Topper";
 import LeaderboardItem from "../../../../components/LeaderboardItem";
+import switchBg from "../../../../assets/Conquer-tab/today-yesterday-btn.png";
+import EventGiftingLeaderboardItem from "../../../../components/EventGiftingLeaderboardItem";
+import EventGiftingTopper from "../../../../components/EventGiftingTopper";
 
 const TalentDaily = () => {
   const [leaderBoardTabs, setLeaderBoardTabs] = useState({
@@ -19,22 +22,7 @@ const TalentDaily = () => {
   function handleSliderToggle(isOn) {
     setIsSliderOn(isOn);
   }
-  const switchLeaderBoardTabs = (name) => {
-    switch (name) {
-      case "today":
-        setLeaderBoardTabs({
-          today: true,
-          yest: false,
-        });
-        break;
-      case "yest":
-        setLeaderBoardTabs({
-          today: false,
-          yest: true,
-        });
-        break;
-    }
-  };
+
   return (
     <div className="event-gifting-leaderboard">
       <div className="talent-daily-leaderboard">
@@ -42,12 +30,14 @@ const TalentDaily = () => {
         <div className="switch-btn">
           <SwitchButton
             onToggle={handleSliderToggle}
-            btn={isSliderOn ? todayBtn : yestBtn}
+            btn={isSliderOn ? yestBtn : todayBtn}
+            bg={switchBg}
           />
 
           {testLeaderData[0] && (
             <div className="top1">
-              <Topper user={testLeaderData[0]} />
+              {/* <Topper user={testLeaderData[0]} /> */}
+              <EventGiftingTopper user={testLeaderData[0]} />
             </div>
           )}
 
@@ -56,7 +46,14 @@ const TalentDaily = () => {
             style={{ overflowY: !seeMore ? "auto" : "" }}
           >
             {testLeaderData?.slice(1, seeMore ? 10 : 20).map((user, index) => (
-              <LeaderboardItem
+              // <LeaderboardItem
+              //   user={user}
+              //   rewards={[]}
+              //   key={index}
+              //   index={index + 2}
+              //   showEst={true}
+              // />
+              <EventGiftingLeaderboardItem
                 user={user}
                 rewards={[]}
                 key={index}

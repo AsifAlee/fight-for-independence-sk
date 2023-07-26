@@ -14,6 +14,8 @@ import { testLeaderData } from "../utils/testData";
 import Topper from "../components/Topper";
 import titleTag from "../assets/event-gifting/leaderboard-tag.png";
 import LeaderboardItem from "../components/LeaderboardItem";
+import ConquerVictoryLeaderboardItems from "../components/ConquerVictoryLeaderboardItems";
+import ConquerTabTopper from "../components/ConquerTabTopper";
 
 const ConquerVictoryFortTab = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
@@ -112,7 +114,7 @@ const ConquerVictoryFortTab = () => {
           <SwitchButton
             bg={switchBg}
             onToggle={handleSliderToggle}
-            btn={isSliderOn ? todayBtn : yestBtn}
+            btn={isSliderOn ? yestBtn : todayBtn}
           />
 
           <div className="dynamic-tabs"></div>
@@ -120,7 +122,12 @@ const ConquerVictoryFortTab = () => {
             <img src={titleTag} className="title" />
             {testLeaderData[0] && (
               <div className="top1">
-                <Topper user={testLeaderData[0]} />
+                {/* <Topper user={testLeaderData[0]} /> */}
+
+                <ConquerTabTopper
+                  user={testLeaderData[0]}
+                  isToday={isSliderOn === false}
+                />
               </div>
             )}
 
@@ -131,12 +138,21 @@ const ConquerVictoryFortTab = () => {
               {testLeaderData
                 ?.slice(1, seeMore ? 10 : 20)
                 .map((user, index) => (
-                  <LeaderboardItem
+                  // <LeaderboardItem
+                  //   user={user}
+                  //   rewards={[]}
+                  //   key={index}
+                  //   index={index + 2}
+                  //   showEst={true}
+                  // />
+
+                  <ConquerVictoryLeaderboardItems
                     user={user}
                     rewards={[]}
                     key={index}
                     index={index + 2}
                     showEst={true}
+                    isToday={isSliderOn === false}
                   />
                 ))}
             </div>

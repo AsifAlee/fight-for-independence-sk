@@ -4,7 +4,7 @@ import RewardsSlider from "../../components/RewardsSlider";
 import overallBtn from "../../assets/event-gifting/Overall-btn.png";
 import dailyBtn from "../../assets/event-gifting/daily-btn.png";
 import rewardsTag from "../../assets/event-gifting/rewards-tag.png";
-
+import switchBg from "../../assets/event-gifting/daily-overall-bg.png";
 const TalentRewards = () => {
   const [isSliderOn, setIsSliderOn] = useState(false);
 
@@ -61,6 +61,7 @@ const TalentRewards = () => {
       <SwitchButton
         onToggle={handleSliderToggle}
         btn={isSliderOn ? overallBtn : dailyBtn}
+        bg={switchBg}
       />
 
       <div className="rewards-container">

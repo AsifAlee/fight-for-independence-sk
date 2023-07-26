@@ -39,8 +39,216 @@
     padding-bottom: 5vw;
     padding-left: 3vw;
 
-    .name{
-        font-size: 2.5vw;
+    .name {
+      font-size: 2.5vw;
+    }
+  }
+}
+
+.conquertab-topper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 15vw;
+
+  .topper-images {
+    width: 22vw;
+    position: relative;
+    top: 0;
+    left: -10vw;
+
+    .frame {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 34vw;
+      z-index: 1;
+    }
+
+    .avatar {
+      position: absolute;
+      top: 3vw;
+      left: 10vw;
+      width: 71%;
+      border-radius: 100%;
+    }
+  }
+  .topper-details {
+    width: 70%;
+    height: 17vw;
+    background-image: url("../assets//top-1-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5vw;
+    padding-left: 3vw;
+    justify-content: space-around;
+    font-size: 2vw;
+
+    .name {
+      font-size: 2.5vw;
+    }
+
+    .soldier-collected {
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1vw;
+      background-color: #672c02;
+      border-radius: 2vw;
+      width: 16vw;
+      height: 6vw;
+
+      font-size: 2vw;
+
+      .soldier-icon {
+        width: 5vw;
+      }
+    }
+  }
+}
+
+.event-gifting-topper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 15vw;
+
+  .topper-images {
+    width: 22vw;
+    position: relative;
+    top: 0;
+    left: -10vw;
+
+    .frame {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 34vw;
+      z-index: 1;
+    }
+
+    .avatar {
+      position: absolute;
+      top: 3vw;
+      left: 10vw;
+      width: 71%;
+      border-radius: 100%;
+    }
+  }
+  .topper-details {
+    width: 70%;
+    height: 17vw;
+    background-image: url("../assets//top-1-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5vw;
+    padding-left: 3vw;
+    justify-content: space-around;
+    font-size: 2vw;
+
+    .name {
+      font-size: 2.5vw;
+    }
+
+    .beans-collected {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 4vw;
+      }
+    }
+  }
+}
+
+.fan-follower-topper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 15vw;
+
+  .topper-images {
+    width: 22vw;
+    position: relative;
+    top: 0;
+    left: -10vw;
+
+    .frame {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 34vw;
+      z-index: 1;
+    }
+
+    .avatar {
+      position: absolute;
+      top: 3vw;
+      left: 10vw;
+      width: 71%;
+      border-radius: 100%;
+    }
+  }
+  .topper-details {
+    width: 70%;
+    height: 17vw;
+    background-image: url("../assets//top-1-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5vw;
+    padding-left: 3vw;
+    justify-content: space-around;
+    font-size: 2vw;
+
+    .name {
+      
+      font-size: 2.5vw;
+      font-family: "Acme-Regular";
+      color: white;
+      width: 18vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .beans-won{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        width: 5vw;
+      }
+    }
+
+    .soldier-collected {
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1vw;
+      background-color: #672c02;
+      border-radius: 2vw;
+      // width: 16vw;
+      padding: 2vw;
+      height: 6vw;
+
+      font-size: 2vw;
+
+     
     }
   }
 }

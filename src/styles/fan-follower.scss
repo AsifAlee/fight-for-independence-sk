@@ -1,0 +1,308 @@
+.fan-followers {
+  .note {
+    background-image: url("../assets//fanfollowers/note-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 80%;
+    height: 27vw;
+    margin: 0 auto;
+    .content {
+      .title {
+        text-decoration: underline;
+        font-size: 3vw;
+        color: yellow;
+        text-align: center;
+      }
+      position: relative;
+      top: 5vw;
+      left: 4vw;
+      .list-item {
+        display: flex;
+        align-items: center;
+
+        .bullet {
+          width: 5vw;
+        }
+        .text {
+          font-size: 2vw;
+        }
+      }
+    }
+  }
+  .send-wishes {
+    height: 30vw;
+    width: 100%;
+    background-image: url("../assets//fanfollowers/tab-here-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .tab-here {
+      height: 19vw;
+      width: 41%;
+      background-image: url("../assets//fanfollowers/tab-here-btn.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .remaining-cards {
+      height: 19vw;
+      width: 41%;
+      background-image: url("../assets//fanfollowers/remaining-card-text-bg.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2vw;
+    }
+  }
+
+  .pay-beans {
+    height: 30vw;
+    width: 90%;
+    background-image: url("../assets//fanfollowers/pay-beans-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .pay-cards {
+      height: 19vw;
+      // width: 41%;
+      background-image: url("../assets//fanfollowers/remaining-card-text-bg.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2vw;
+      padding: 2vw;
+      font-family: "Montserrat-SemiBold";
+    }
+    .pay-btn {
+      height: 19vw;
+      width: 41%;
+      background-image: url("../assets//fanfollowers/pay-1000-beans-btn.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .rewards{
+    .rewards-tabs {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 7vw;
+      }
+
+      .rewards-container {
+        background-image: url("../assets/event-gifting/rewards-bg.png");
+        width: 90%;
+        height: 50vw;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        margin: 0 auto;
+        .rewards-tag {
+          width: 26vw;
+          position: relative;
+          bottom: 5vw;
+        }
+  
+        .slider-container {
+          position: relative;
+          bottom: 6vw;
+          left: 4vw;
+        }
+      }
+  }
+  .cards-sent{
+    background-image: url('../assets//Conquer-tab/soldierscollected-bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 70%;
+    margin: 0 auto;
+    height: 16vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ 
+
+  .fan-follower-leaderboard {
+    .leaderboard-tabs {
+      display: flex;
+      justify-content: space-around;
+    }
+    .main-leaderboard {
+      width: 95%;
+      height: 202vw;
+      background-image: url("../assets//rewards-bg.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      position: relative;
+
+      margin-top: 4vw;
+
+      .title {
+        width: 31vw;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -8vw;
+      }
+      .top1 {
+      }
+      .restWinners {
+        margin-top: 16vw;
+        height: 132vw;
+        // overflow-y: hidden;
+        // border: 2px solid green;
+      }
+  
+      .see-more{
+        background-image: url('../assets/more-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+        // position: relative;
+        // bottom: 7vw;
+      }
+      .see-less{
+        background-image: url('../assets/less-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+        // position: relative;
+        // bottom: 7vw;
+      }
+    }
+    .talent-daily-leaderboard{
+      width: 95%;
+      height: 237vw;
+      background-image: url("../assets//rewards-bg.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      position: relative;
+
+      margin-top: 4vw;
+
+      
+      .title {
+        width: 32vw;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -8vw;
+      }
+      .switch-btn{
+        position: relative;
+        top: 21vw;
+    
+      }
+      .restWinners {
+        margin-top: 16vw;
+        height: 132vw;
+       
+      }
+  
+      .see-more{
+        background-image: url('../assets/more-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+   
+      }
+      .see-less{
+        background-image: url('../assets/less-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+        
+      }
+    }
+
+    .talent-overall-leaderboard{
+      width: 95%;
+      height: 202vw;
+      background-image: url("../assets//rewards-bg.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      position: relative;
+
+      margin-top: 4vw;
+
+      
+      .title {
+        width: 32vw;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -8vw;
+      }
+  
+      .restWinners {
+        margin-top: 16vw;
+        height: 132vw;
+       
+      }
+  
+      .see-more{
+        background-image: url('../assets/more-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+   
+      }
+      .see-less{
+        background-image: url('../assets/less-btn.png');
+        width: 15vw;
+        height: 8vw;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        display: block;
+        
+      }
+
+    }
+  }
+}
