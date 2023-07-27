@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./App.scss";
 import CollectSoldierTab from "./pages/CollectSoldierTab";
 import EventGifting from "./pages/EventGifting";
 import ConquerVictoryFortTab from "./pages/ConquerVictoryFortTab";
 import FanFollwers from "./pages/FanFollwers";
 import Guide from "./popups/Guide";
+import LanguageDropdown from "./components/LanguageDropdown";
+import { AppContext } from "./AppContext";
 
 function App() {
+  const { selectedLng, changeLanguage } = useContext(AppContext);
   const [mainTabs, setMainTabs] = useState({
     collectSoldier: true,
     conquerFort: false,
@@ -59,6 +62,10 @@ function App() {
     <div className="App">
       <div className="header">
         <button className="guide-btn" onClick={toggleGuide} />
+        <LanguageDropdown
+          selectedLanguage={selectedLng}
+          changeLanguage={changeLanguage}
+        />
       </div>
       <div className="main-tabs">
         <button
@@ -95,7 +102,7 @@ function App() {
       ) : (
         <FanFollwers />
       )}
-      {showGuide && <Guide />}
+      {showGuide && <Guide toggleGuide={toggleGuide} />}
     </div>
   );
 }

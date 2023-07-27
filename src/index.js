@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "../src/styles/global.scss";
 import App from "./App";
-import EventProvider from "./AppContext";
 import reportWebVitals from "./reportWebVitals";
+import { EventProvider } from "./AppContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

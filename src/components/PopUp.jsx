@@ -45,7 +45,7 @@ const PopUp = (props) => {
           style={{
             width: "100%",
             display: "flex",
-            marginTop: "-8vw",
+            marginTop: "-2vw",
             justifyContent: "center",
           }}
         >

@@ -4,13 +4,51 @@ import rewardsTitle from "../assets/Rewards-tag.png";
 import Topper from "../components/Topper";
 import LeaderboardItem from "../components/LeaderboardItem";
 import { testLeaderData } from "../utils/testData";
+import { baseUrl, testToken, testUserId } from "../utils/api";
+import CollectSoldierPopup from "../popups/CollectSoldierPopup";
 const CollectSoldierTab = () => {
   const [seeMore, setSeeMore] = useState(true);
+  const [inputValue, setInputValue] = useState(1);
+  const [errorCode, setErrorCode] = useState(null);
+  const [rewards, setRewards] = useState([]);
+  const [rewardsContent, setRewardsContent] = useState("");
+  const onChangeHandle = (event) => {
+    setInputValue(parseInt(event.target.value));
+  };
+  const [showGame, setShowGame] = useState(false);
+  const closeGamePopup = () => {
+    setShowGame(false);
+  };
+  const playGame = () => {
+    fetch(
+      `${baseUrl}api/activity/fightForIndependence/collectSoldiers?playCount=${inputValue}`,
+      {
+        method: "POST",
+        headers: {
+          userId: testUserId,
+          token: testToken,
+          // userId: user.uid,
+          // token: user.token,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response?.json())
+      .then((response) => {
+        setShowGame(true);
+        setErrorCode(response?.errorCode);
+        setRewardsContent(response?.data?.rewardContent);
+        setRewards(response?.data?.rewardDTOList);
+      })
+      .catch((error) => {
+        console.erro(error);
+      });
+  };
   return (
     <div className="collect-soldier-tab">
       <div className="collect-soldier-game"></div>
       <div className="chances">
-        <button className="shoot-btn" />
+        <button className="shoot-btn" onClick={playGame} />
         <div className="my-chances">
           <span
             style={{ marginTop: "3vw", marginLeft: "6vw", fontSize: "2.5vw" }}
@@ -31,6 +69,8 @@ const CollectSoldierTab = () => {
               height: "4vw",
               fontSize: "2.2vw",
             }}
+            value={inputValue}
+            onChange={onChangeHandle}
           />
         </div>
       </div>
@@ -63,6 +103,15 @@ const CollectSoldierTab = () => {
       <p style={{ textAlign: "center", fontSize: "2.5vw" }}>
         All rights reserved by StreamKar
       </p>
+
+      {showGame && (
+        <CollectSoldierPopup
+          popUpHandler={closeGamePopup}
+          errorCode={errorCode}
+          rewards={rewards}
+          rewardsContent={rewardsContent}
+        />
+      )}
     </div>
   );
 };

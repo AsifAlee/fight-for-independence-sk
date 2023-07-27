@@ -16,6 +16,7 @@ import titleTag from "../assets/event-gifting/leaderboard-tag.png";
 import LeaderboardItem from "../components/LeaderboardItem";
 import ConquerVictoryLeaderboardItems from "../components/ConquerVictoryLeaderboardItems";
 import ConquerTabTopper from "../components/ConquerTabTopper";
+import { baseUrl } from "../utils/api";
 
 const ConquerVictoryFortTab = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
@@ -46,6 +47,29 @@ const ConquerVictoryFortTab = () => {
   };
   const joinTheTeam = () => {};
 
+  // const playGame = () => {
+  //   fetch(
+  //     `${baseUrll}api/activity/fightForIndependence/collectSoldiers?playCount=${inputValue}`,
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         userId: testUserId,
+  //         token: testToken,
+  //         // userId: user.uid,
+  //         // token: user.token,
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       debugger;
+  //     })
+  //     .catch((error) => {
+  //       console.erro(error);
+  //     });
+  // };
+
   const handleTeamChange = (option) => {
     setSelectedTeam(option);
   };
@@ -69,6 +93,7 @@ const ConquerVictoryFortTab = () => {
             <div className="level2"></div>
             <div className="level3"></div>
           </div>
+          <button className="playBtn" />
         </div>
       </div>
       <div style={{ marginTop: "7vw" }}>
@@ -122,8 +147,6 @@ const ConquerVictoryFortTab = () => {
             <img src={titleTag} className="title" />
             {testLeaderData[0] && (
               <div className="top1">
-                {/* <Topper user={testLeaderData[0]} /> */}
-
                 <ConquerTabTopper
                   user={testLeaderData[0]}
                   isToday={isSliderOn === false}
@@ -138,14 +161,6 @@ const ConquerVictoryFortTab = () => {
               {testLeaderData
                 ?.slice(1, seeMore ? 10 : 20)
                 .map((user, index) => (
-                  // <LeaderboardItem
-                  //   user={user}
-                  //   rewards={[]}
-                  //   key={index}
-                  //   index={index + 2}
-                  //   showEst={true}
-                  // />
-
                   <ConquerVictoryLeaderboardItems
                     user={user}
                     rewards={[]}

@@ -105,6 +105,10 @@ export function getRewardsImage(rewDesc) {
     rewImg = baseUrl + "/streamkar/rewards/xpPoint.png";
   } else if (rewDesc?.includes("Enlightening Room Skin")) {
     rewImg = baseUrl + "/streamkar/rewards/enlighteningRoom.png";
+  } else if (rewDesc?.includes("KING Profile Frame")) {
+    rewImg = baseUrl + "/streamkar/rewards/kingshipProfileFrame.png";
+  } else if (rewDesc?.includes("King Profile Frame")) {
+    rewImg = baseUrl + "/streamkar/rewards/kingshipProfileFrame.png";
   } else {
     rewImg = baseUrl + "/streamkar/rewards/noRew.png";
   }

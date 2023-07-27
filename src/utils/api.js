@@ -1,4 +1,4 @@
-export const baseUrl = "http://test.streamkar.tv";
+export const baseUrl = "http://test.streamkar.tv/";
 // export const baseUrl = "https://www.streamkarlive.live";
-export const testUserId = 502184264;
-export const testToken = "A19511A311192A490ABB9227B2B457EB90";
+export const testUserId = 596492373;
+export const testToken = "A1738A87E6662743B7A879E2C79AB5F357";

@@ -20,7 +20,7 @@
     .fort {
       width: 100%;
       height: 60vw;
-      background-image: url("../assets/Conquer-tab/Fort.png");
+      background-image: url("../assets/Conquer-tab/Fort-game-bg.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
       margin: 0 auto;
@@ -86,6 +86,20 @@
           background-repeat: no-repeat;
           background-size: 100% 100%;
         }
+      }
+
+      .playBtn{
+        width: 19vw;
+        height: 8vw;
+        background-image: url('../assets//Conquer-tab/play-btn.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+
+        position: absolute;
+        bottom: -3vw;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
       }
     }
   }
@@ -213,8 +227,7 @@
           right: 0;
           top: -8vw;
         }
-        .top1 {
-        }
+  
         .restWinners {
           margin-top: 16vw;
           height: 132vw;

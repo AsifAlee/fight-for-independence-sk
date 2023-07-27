@@ -31,7 +31,7 @@
       }
     }
     .closeBtn {
-      // background-image: url("../assets/images/close-button.png");
+      background-image: url("../assets/popup/clos-button.png");
       width: 12vw;
       height: 12vw;
       background-repeat: no-repeat;
@@ -40,89 +40,94 @@
       border: none;
     }
   
-    .guidePopUp {
+    .guide-popup {
+      margin-top: 5vw;
+      .guide-content{
+        padding: 3vw;
+        height: 80vw;
+        overflow-y: auto;
+        .howtoplay{
+          width: 20vw;
+          display: block;
+          margin: 0 auto;
+
+        }
+        .soldier-collection{
+        padding-left: 6vw;
+
+
+          .tag{
+            width: 30vw;
+          }
+
+          .list-item{
+           font-size: 3vw;
+          }
+   }
+
+   .conquer-fort{
+    padding-left: 6vw;
+
+
+      .tag{
+        width: 30vw;
+      }
+
+      .list-item{
+       font-size: 3vw;
+
+       table{
+        border-collapse: collapse;
+
+        tr td{
+          border: 1px solid;
+          padding: 2vw;
+          font-size: 2vw;
+        }
+        th{
+          font-size: 2.5vw;
+        }
+        thead th{
+          border: 1px solid;
+          padding: 2vw;
+
+        }
+       }
+      }
+}
+
+.fan-follower{
+
+     padding-left: 6vw;
+     margin-top: 4vw;
+
+
+          .tag{
+            width: 30vw;
+          }
+
+          .list-item{
+           font-size: 3vw;
+           p{
+            margin-top: 1vw;
+           }
+          }
+}
+
+      }
     
-      // .tabs {
-      //   display: flex;
-      //   justify-content: space-between;
-      //   margin: 1vw 4vw 0 4vw;
-      //   .howToPlay {
-      //     background-image: url("../assets/images/left-button.png");
-      //     width: 30vw;
-      //     height: 7vw;
-      //     background-size: 100% 100%;
-      //     background-repeat: no-repeat;
-      //     font-family: "HiJack";
-      //     background-color: transparent;
-      //     border: none;
-      //     font-size: calcView(22);
-      //   }
-      //   .rewardInfo {
-      //     background-image: url("../assets/images/right-button.png");
-      //     width: 30vw;
-      //     height: 7vw;
-      //     background-size: 100% 100%;
-      //     background-repeat: no-repeat;
-      //     font-family: "HiJack";
-      //     background-color: transparent;
-      //     border: none;
-      //     font-size: calcView(22);
-      //   }
-      //   .unactive {
-      //     opacity: 0.5;
-      //   }
-      // }
-      // .guideContent {
-      //   // max-height: 62.33vw;
-      //   // border: 1px solid red;
-      //   height: 76vw;
-      //   width: 90%;
-      //   margin: 2vw auto 0;
-      //   overflow-y: auto;
-      //   font-family: "Helvetica";
-      //   font-size: calcView(18);
-      //   background-image: url("../assets/images/guide-reward-info-diplay-bg.png");
-      //   background-size: 100% 100%;
-      //   background-repeat: no-repeat;
-      //   padding: 2vw;
-      //   .tab1-content {
-      //     li {
-      //       margin-bottom: 3vw;
-      //     }
-  
-      //     .accTable {
-      //       table,
-      //       tr,
-      //       th,
-      //       td {
-      //         border: 1px solid;
-      //         border-collapse: collapse;
-      //         padding: 1vw;
-  
-      //       }
-  
-  
-      //       .table {
-      //         width: 90%;
-      //         margin: 0 auto;
-      //       }
-      //       td {
-      //         text-align: center;
-      //       }
-       
-      //     }
-      //   }
-  
-      //   .tab2-content {
-      //     display: flex;
-      //     flex-direction: column;
-      //     justify-content: center;
-      //   }
-  
-      //   .yellow-text{
-      //     color: yellow;
-      //   }
-      // }
+   
+    }
+
+    .collect-sold-popup{
+      padding: 5vw;
+      font-size: 3vw;
+
+      .rewards-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
     }
   
   
