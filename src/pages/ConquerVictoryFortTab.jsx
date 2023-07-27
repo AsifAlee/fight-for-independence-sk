@@ -16,7 +16,7 @@ import titleTag from "../assets/event-gifting/leaderboard-tag.png";
 import LeaderboardItem from "../components/LeaderboardItem";
 import ConquerVictoryLeaderboardItems from "../components/ConquerVictoryLeaderboardItems";
 import ConquerTabTopper from "../components/ConquerTabTopper";
-import { baseUrl } from "../utils/api";
+import { baseUrl, testToken, testUserId } from "../utils/api";
 
 const ConquerVictoryFortTab = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
@@ -47,28 +47,23 @@ const ConquerVictoryFortTab = () => {
   };
   const joinTheTeam = () => {};
 
-  // const playGame = () => {
-  //   fetch(
-  //     `${baseUrll}api/activity/fightForIndependence/collectSoldiers?playCount=${inputValue}`,
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         userId: testUserId,
-  //         token: testToken,
-  //         // userId: user.uid,
-  //         // token: user.token,
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       debugger;
-  //     })
-  //     .catch((error) => {
-  //       console.erro(error);
-  //     });
-  // };
+  const playGame = () => {
+    fetch(`${baseUrl}api/activity/fightForIndependence/conquerFort`, {
+      method: "POST",
+      headers: {
+        userId: testUserId,
+        token: testToken,
+        // userId: user.uid,
+        // token: user.token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {})
+      .catch((error) => {
+        console.erro(error);
+      });
+  };
 
   const handleTeamChange = (option) => {
     setSelectedTeam(option);
@@ -93,7 +88,7 @@ const ConquerVictoryFortTab = () => {
             <div className="level2"></div>
             <div className="level3"></div>
           </div>
-          <button className="playBtn" />
+          <button className="playBtn" onClick={playGame} />
         </div>
       </div>
       <div style={{ marginTop: "7vw" }}>

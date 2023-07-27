@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/collect-soldier.scss";
 import rewardsTitle from "../assets/Rewards-tag.png";
 import Topper from "../components/Topper";
@@ -6,12 +6,17 @@ import LeaderboardItem from "../components/LeaderboardItem";
 import { testLeaderData } from "../utils/testData";
 import { baseUrl, testToken, testUserId } from "../utils/api";
 import CollectSoldierPopup from "../popups/CollectSoldierPopup";
+import { AppContext } from "../AppContext";
+import congTag from "../assets/popup/congratulation.png";
+import tryAgain from "../assets/popup/try-again.png";
 const CollectSoldierTab = () => {
+  const { info } = useContext(AppContext);
   const [seeMore, setSeeMore] = useState(true);
   const [inputValue, setInputValue] = useState(1);
   const [errorCode, setErrorCode] = useState(null);
   const [rewards, setRewards] = useState([]);
   const [rewardsContent, setRewardsContent] = useState("");
+  const [soldiers, setSoldiers] = useState(0);
   const onChangeHandle = (event) => {
     setInputValue(parseInt(event.target.value));
   };
@@ -39,10 +44,27 @@ const CollectSoldierTab = () => {
         setErrorCode(response?.errorCode);
         setRewardsContent(response?.data?.rewardContent);
         setRewards(response?.data?.rewardDTOList);
+        setSoldiers(response?.data?.totalSoldiers);
       })
       .catch((error) => {
         console.erro(error);
       });
+  };
+  const onUpCheck = (e) => {
+    let max;
+    if (/[+-.]/.test(e.key)) {
+      setInputValue("");
+    } else {
+      if (info.gamePoints <= 99 && info.gamePoints > 0) {
+        max = info.gamePoints;
+      } else if (info.gamePoints > 99) {
+        max = 99;
+      } else if (info.gamePoints === 0) {
+        max = 1;
+      }
+      let number = inputValue > max ? max : inputValue <= 0 ? "" : inputValue;
+      setInputValue(parseInt(number));
+    }
   };
   return (
     <div className="collect-soldier-tab">
@@ -53,7 +75,7 @@ const CollectSoldierTab = () => {
           <span
             style={{ marginTop: "3vw", marginLeft: "6vw", fontSize: "2.5vw" }}
           >
-            My Chances = 00
+            My Chances = {info?.gamePoints}
           </span>
         </div>
         <div
@@ -71,6 +93,8 @@ const CollectSoldierTab = () => {
             }}
             value={inputValue}
             onChange={onChangeHandle}
+            onKeyUp={onUpCheck}
+            type="number"
           />
         </div>
       </div>
@@ -110,6 +134,9 @@ const CollectSoldierTab = () => {
           errorCode={errorCode}
           rewards={rewards}
           rewardsContent={rewardsContent}
+          soldiers={soldiers}
+          isCollSold={true}
+          title={errorCode === 10000004 ? tryAgain : congTag}
         />
       )}
     </div>

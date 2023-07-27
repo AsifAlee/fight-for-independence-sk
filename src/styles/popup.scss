@@ -1,135 +1,125 @@
 .overlay {
-    position: fixed !important;
-    width: 100% !important;
-    height: 100% !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 2;
-    cursor: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 5vw;
-    
-  
-  
-    .content {
-  
-      width: 80%;
-      min-height: 106vw;
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-  
-      .title {
-        width: 80%;
-        height: 11vw;
-        object-fit: contain;
-      }
-    }
-    .closeBtn {
-      background-image: url("../assets/popup/clos-button.png");
-      width: 12vw;
-      height: 12vw;
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      background-color: transparent;
-      border: none;
-    }
-  
-    .guide-popup {
-      margin-top: 5vw;
-      .guide-content{
-        padding: 3vw;
-        height: 80vw;
-        overflow-y: auto;
-        .howtoplay{
-          width: 20vw;
-          display: block;
-          margin: 0 auto;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  cursor: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5vw;
 
-        }
-        .soldier-collection{
+  .content {
+    width: 80%;
+    min-height: 106vw;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    .title {
+      width: 80%;
+      height: 11vw;
+      object-fit: contain;
+    }
+  }
+  .closeBtn {
+    background-image: url("../assets/popup/clos-button.png");
+    width: 12vw;
+    height: 12vw;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: transparent;
+    border: none;
+  }
+
+  .guide-popup {
+    margin-top: 5vw;
+    .guide-content {
+      padding: 3vw;
+      height: 80vw;
+      overflow-y: auto;
+      .howtoplay {
+        width: 20vw;
+        display: block;
+        margin: 0 auto;
+      }
+      .soldier-collection {
         padding-left: 6vw;
 
+        .tag {
+          width: 30vw;
+        }
 
-          .tag{
-            width: 30vw;
-          }
-
-          .list-item{
-           font-size: 3vw;
-          }
-   }
-
-   .conquer-fort{
-    padding-left: 6vw;
-
-
-      .tag{
-        width: 30vw;
+        .list-item {
+          font-size: 3vw;
+        }
       }
 
-      .list-item{
-       font-size: 3vw;
+      .conquer-fort {
+        padding-left: 6vw;
 
-       table{
-        border-collapse: collapse;
-
-        tr td{
-          border: 1px solid;
-          padding: 2vw;
-          font-size: 2vw;
+        .tag {
+          width: 30vw;
         }
-        th{
-          font-size: 2.5vw;
-        }
-        thead th{
-          border: 1px solid;
-          padding: 2vw;
 
-        }
-       }
-      }
-}
+        .list-item {
+          font-size: 3vw;
 
-.fan-follower{
+          table {
+            border-collapse: collapse;
 
-     padding-left: 6vw;
-     margin-top: 4vw;
-
-
-          .tag{
-            width: 30vw;
+            tr td {
+              border: 1px solid;
+              padding: 2vw;
+              font-size: 2vw;
+            }
+            th {
+              font-size: 2.5vw;
+            }
+            thead th {
+              border: 1px solid;
+              padding: 2vw;
+            }
           }
+        }
+      }
 
-          .list-item{
-           font-size: 3vw;
-           p{
+      .fan-follower {
+        padding-left: 6vw;
+        margin-top: 4vw;
+
+        .tag {
+          width: 30vw;
+        }
+
+        .list-item {
+          font-size: 3vw;
+          p {
             margin-top: 1vw;
-           }
           }
-}
-
-      }
-    
-   
-    }
-
-    .collect-sold-popup{
-      padding: 5vw;
-      font-size: 3vw;
-
-      .rewards-container{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+        }
       }
     }
-  
-  
   }
-  
+
+  .collect-sold-popup {
+    padding: 5vw;
+    font-size: 3vw;
+    margin-top: 6vw;
+    text-align: center;
+
+    .rewards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      max-height: 54vw;
+      overflow-y: auto;
+      margin-top: 5vw;
+    }
+  }
+}

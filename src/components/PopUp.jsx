@@ -10,6 +10,7 @@ const PopUp = (props) => {
     isRewards,
     isGame,
     isMilestone,
+    isCollSold,
   } = props;
 
   useEffect(() => {
@@ -26,8 +27,8 @@ const PopUp = (props) => {
         style={{
           backgroundImage: `url(${bg})`,
           minHeight: `${
-            isAccPopUp
-              ? "74vw"
+            isCollSold
+              ? "57vw"
               : isRewards
               ? "58vw"
               : isGame
