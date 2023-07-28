@@ -10,14 +10,17 @@ const EventGiftingTopper = ({ user }) => {
     <div className="event-gifting-topper">
       <div className="topper-images">
         <img src={top1Frame} className="frame" />
-        <img src={user?.avatar} className="avatar" />
+        <img
+          src={user?.portrait ? user?.portrait : unknownUser}
+          className="avatar"
+        />
       </div>
       <div className="topper-details">
         <p className="name">{user.nickname}</p>
         <div className="est-rews">Est rewards</div>
 
         <div className="beans-collected">
-          <span>000 beans spent</span>
+          <span>{user?.userScore} beans spent</span>
 
           <img className="soldier-icon" src={beanIcon} />
         </div>

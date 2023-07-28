@@ -1,31 +1,44 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/conquer-fort.scss";
 import title from "../assets/Conquer-tab/hero-journey.png";
 import beanspot from "../assets/event-gifting/beans-pot.png";
-import RadioSelect from "../components/RadioSelect";
-import warriors from "../assets/Conquer-tab/Warriors.png";
-import conquerers from "../assets/Conquer-tab/Conquerers.png";
-import champions from "../assets/Conquer-tab/Champions.png";
 import SwitchButton from "../components/SwitchButton";
 import todayBtn from "../assets/event-gifting/today-btn.png";
 import yestBtn from "../assets/event-gifting/yest-btn.png";
 import switchBg from "../assets/Conquer-tab/today-yesterday-btn.png";
 import { testLeaderData } from "../utils/testData";
-import Topper from "../components/Topper";
 import titleTag from "../assets/event-gifting/leaderboard-tag.png";
-import LeaderboardItem from "../components/LeaderboardItem";
 import ConquerVictoryLeaderboardItems from "../components/ConquerVictoryLeaderboardItems";
 import ConquerTabTopper from "../components/ConquerTabTopper";
 import { baseUrl, testToken, testUserId } from "../utils/api";
+import { AppContext } from "../AppContext";
+import ConquerFortPopup from "../popups/ConquerFortPopup";
+import congTag from "../assets/popup/congratulation.png";
+import oops from "../assets/popup/oops.png";
+import yay from "../assets/popup/yay.png";
 
 const ConquerVictoryFortTab = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [isSliderOn, setIsSliderOn] = useState(false);
   const [seeMore, setSeeMore] = useState(true);
+  const { info, getInfo } = useContext(AppContext);
+  const [showLevels, setShowLevels] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [showGame, setShowGame] = useState(false);
+  const [rewards, setRewards] = useState([]);
+  const [rewardsContent, setRewardsContent] = useState("");
+  const [errorCode, setErrorCode] = useState(null);
+  const [currentLevel, setCurrentLevel] = useState(1);
+  const [errMsg, setErrMsg] = useState("");
 
   function handleSliderToggle(isOn) {
     setIsSliderOn(isOn);
   }
+  const closeGamePopup = () => {
+    setShowGame(false);
+    // setCurrentLevel(info?.fortState);
+    getInfo();
+  };
   const [teamTabs, setTeamTabs] = useState({
     warriors: true,
     conquerers: false,
@@ -48,6 +61,7 @@ const ConquerVictoryFortTab = () => {
   const joinTheTeam = () => {};
 
   const playGame = () => {
+    setIsDisabled(true);
     fetch(`${baseUrl}api/activity/fightForIndependence/conquerFort`, {
       method: "POST",
       headers: {
@@ -59,7 +73,18 @@ const ConquerVictoryFortTab = () => {
       },
     })
       .then((response) => response.json())
-      .then((response) => {})
+      .then((response) => {
+        setIsDisabled(false);
+        setShowGame(true);
+        setErrorCode(response?.errorCode);
+        setRewardsContent(response?.data?.rewardContent);
+        setRewards(response?.data?.rewardDTOList);
+        if (response?.errorCode === 0 && info?.fortState !== 1) {
+          setCurrentLevel((prevState) => prevState + 1);
+        }
+        setErrMsg(response?.msg);
+        getInfo();
+      })
       .catch((error) => {
         console.erro(error);
       });
@@ -79,16 +104,28 @@ const ConquerVictoryFortTab = () => {
       <div className="fort-wrapper">
         <div className="fort">
           <div className="collect-soldiers">
-            <span>My Chances:00</span>
+            <span>Soldiers Collected:{info?.dailyTotalSoldier}</span>
           </div>
           <div className="info-icon"></div>
 
           <div className="levels">
-            <div className="level1"></div>
-            <div className="level2"></div>
-            <div className="level3"></div>
+            <div
+              className="level1"
+              style={{ visibility: info?.fortState >= 2 && "hidden" }}
+            ></div>
+            <div
+              className="level2"
+              style={{ visibility: info?.fortState >= 3 && "hidden" }}
+            ></div>
+            <div
+              className="level3"
+              // style={{ visibility: info?.fortState > 3 && "hidden" }}
+            ></div>
           </div>
-          <button className="playBtn" onClick={playGame} />
+          <button
+            className={`playBtn ${isDisabled && "blackNWhite"}`}
+            onClick={playGame}
+          />
         </div>
       </div>
       <div style={{ marginTop: "7vw" }}>
@@ -101,7 +138,7 @@ const ConquerVictoryFortTab = () => {
         </div>
       </div>
       <div className="collect-soldiers">
-        <span>Soldiers collected today:000000</span>
+        <span>Soldiers collected today:{info?.dailyCurrentSoldier}</span>
       </div>
       <div className="join-team-wrap">
         <div className="teams">
@@ -179,6 +216,19 @@ const ConquerVictoryFortTab = () => {
           All rights reserved by StreamKar
         </p>
       </div>
+
+      {showGame && (
+        <ConquerFortPopup
+          popUpHandler={closeGamePopup}
+          errorCode={errorCode}
+          rewards={rewards}
+          rewardsContent={rewardsContent}
+          isCollSold={true}
+          title={errorCode === 10000008 ? oops : congTag}
+          currentLevel={currentLevel}
+          errMsg={errMsg}
+        />
+      )}
     </div>
   );
 };

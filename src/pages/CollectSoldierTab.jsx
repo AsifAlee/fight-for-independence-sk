@@ -10,13 +10,15 @@ import { AppContext } from "../AppContext";
 import congTag from "../assets/popup/congratulation.png";
 import tryAgain from "../assets/popup/try-again.png";
 const CollectSoldierTab = () => {
-  const { info } = useContext(AppContext);
+  const { info, getInfo } = useContext(AppContext);
   const [seeMore, setSeeMore] = useState(true);
   const [inputValue, setInputValue] = useState(1);
   const [errorCode, setErrorCode] = useState(null);
   const [rewards, setRewards] = useState([]);
   const [rewardsContent, setRewardsContent] = useState("");
   const [soldiers, setSoldiers] = useState(0);
+  const [errMsg, setErrMsg] = useState("");
+
   const onChangeHandle = (event) => {
     setInputValue(parseInt(event.target.value));
   };
@@ -45,6 +47,8 @@ const CollectSoldierTab = () => {
         setRewardsContent(response?.data?.rewardContent);
         setRewards(response?.data?.rewardDTOList);
         setSoldiers(response?.data?.totalSoldiers);
+        setErrMsg(response?.msg);
+        getInfo();
       })
       .catch((error) => {
         console.erro(error);
@@ -137,6 +141,7 @@ const CollectSoldierTab = () => {
           soldiers={soldiers}
           isCollSold={true}
           title={errorCode === 10000004 ? tryAgain : congTag}
+          errMsg={errMsg}
         />
       )}
     </div>

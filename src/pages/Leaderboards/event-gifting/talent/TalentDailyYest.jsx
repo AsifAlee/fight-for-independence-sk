@@ -1,22 +1,20 @@
 import React, { useContext, useState } from "react";
+import title from "../../../../assets/event-gifting/leaderboard-tag.png";
 import { testLeaderData } from "../../../../utils/testData";
-import LeaderboardItem from "../../../../components/LeaderboardItem";
-import Topper from "../../../../components/Topper";
-import titleTag from "../../../../assets/event-gifting/leaderboard-tag.png";
 import EventGiftingLeaderboardItem from "../../../../components/EventGiftingLeaderboardItem";
-import EventGiftingTopper from "../../../../components/EventGiftingTopper";
 import { AppContext } from "../../../../AppContext";
-const TalentOverall = () => {
-  const [seeMore, setSeeMore] = useState(true);
+import EventGiftingTopper from "../../../../components/EventGiftingTopper";
+
+const TalentDailyYest = () => {
   const { leaderboardsData } = useContext(AppContext);
-  let { eventgiftingTalentOverall } = leaderboardsData;
+  const { eventGiftingDailyYest } = leaderboardsData;
+  const [seeMore, setSeeMore] = useState(true);
 
   return (
-    <div className="talent-overall-leaderboard">
-      <img src={titleTag} className="title" />
-      {eventgiftingTalentOverall?.length && eventgiftingTalentOverall[0] && (
+    <div className="event-gifting-leaderboard">
+      {eventGiftingDailyYest[0] && (
         <div className="top1">
-          <EventGiftingTopper user={eventgiftingTalentOverall[0]} />
+          <EventGiftingTopper user={eventGiftingDailyYest[0]} />
         </div>
       )}
 
@@ -24,7 +22,7 @@ const TalentOverall = () => {
         className="restWinners"
         style={{ overflowY: !seeMore ? "auto" : "" }}
       >
-        {eventgiftingTalentOverall
+        {eventGiftingDailyYest
           ?.slice(1, seeMore ? 10 : 20)
           .map((user, index) => (
             <EventGiftingLeaderboardItem
@@ -36,7 +34,7 @@ const TalentOverall = () => {
             />
           ))}
       </div>
-      {eventgiftingTalentOverall?.length > 10 && (
+      {eventGiftingDailyYest?.length > 10 && (
         <button
           className={`${seeMore ? "see-more" : "see-less"}`}
           onClick={() => setSeeMore((prevState) => !prevState)}
@@ -46,4 +44,4 @@ const TalentOverall = () => {
   );
 };
 
-export default TalentOverall;
+export default TalentDailyYest;

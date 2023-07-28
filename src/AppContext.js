@@ -6,6 +6,9 @@ const EventProvider = ({ children }) => {
   const [info, setInfo] = useState({
     dayIndex: 0,
     gamePoints: 0,
+    dailyCurrentSoldier: 0,
+    dailyTotalSoldier: 0,
+    fortState: 0,
   });
   const [user, setUser] = useState({
     userId: 0,
@@ -14,6 +17,8 @@ const EventProvider = ({ children }) => {
   const [leaderboardsData, setLeaderboardData] = useState({
     eventgiftingUserOverall: [],
     eventgiftingTalentOverall: [],
+    eventGiftingDailyToday: [],
+    eventGiftingDailyYest: [],
     userfanFollowerSendCard: [],
     talentfanFollowerSendCard: [],
     warriorsToday: [],
@@ -37,6 +42,9 @@ const EventProvider = ({ children }) => {
           ...info,
           dayIndex: response?.data?.dayIndex,
           gamePoints: response?.data?.gamePoints,
+          dailyCurrentSoldier: response?.data?.dailyCurrentSoldier,
+          dailyTotalSoldier: response?.data?.dailyTotalSoldier,
+          fortState: response?.data?.fortState,
         });
       })
       .catch((error) => {
@@ -68,6 +76,40 @@ const EventProvider = ({ children }) => {
         setLeaderboardData((prevData) => ({
           ...prevData,
           eventgiftingTalentOverall: response?.data?.list,
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const getEventGiftingDailyToday = () => {
+    fetch(
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=13&pageNum=1&pageSize=20&dayIndex=${info?.dayIndex}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setLeaderboardData((prevData) => ({
+          ...prevData,
+          eventGiftingDailyToday: response?.data?.list,
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const getEventGiftingDailyYest = () => {
+    fetch(
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=13&pageNum=1&pageSize=20&dayIndex=${
+        info?.dayIndex - 1
+      }`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setLeaderboardData((prevData) => ({
+          ...prevData,
+          eventGiftingDailyYest: response?.data?.list,
         }));
       })
       .catch((error) => {
@@ -107,7 +149,9 @@ const EventProvider = ({ children }) => {
   };
   const getWarriorsToday = () => {
     fetch(
-      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=16&pageNum=1&pageSize=20&dayIndex=${info?.dayIndex}`
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=16&pageNum=1&pageSize=20&dayIndex=${
+        info?.dayIndex - 1
+      }`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -122,7 +166,9 @@ const EventProvider = ({ children }) => {
   };
   const getWarriorsYest = () => {
     fetch(
-      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=16&pageNum=1&pageSize=20&dayIndex=${info?.dayIndex}`
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=16&pageNum=1&pageSize=20&dayIndex=${
+        info?.dayIndex - 1
+      }`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -154,7 +200,9 @@ const EventProvider = ({ children }) => {
 
   const getConquerersYest = () => {
     fetch(
-      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=17&pageNum=1&pageSize=20&dayIndex=${info?.dayIndex}`
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=17&pageNum=1&pageSize=20&dayIndex=${
+        info?.dayIndex - 1
+      }`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -184,7 +232,9 @@ const EventProvider = ({ children }) => {
   };
   const getChampionsYest = () => {
     fetch(
-      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=18&pageNum=1&pageSize=20&dayIndex=${info?.dayIndex}`
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=18&pageNum=1&pageSize=20&dayIndex=${
+        info?.dayIndex - 1
+      }`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -222,6 +272,8 @@ const EventProvider = ({ children }) => {
     getChampionsYest();
     getChampionsToday();
     getConquerersYest();
+    getEventGiftingDailyToday();
+    getEventGiftingDailyYest();
   }, [info?.dayIndex]);
 
   return (

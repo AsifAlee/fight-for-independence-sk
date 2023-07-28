@@ -109,6 +109,8 @@ export function getRewardsImage(rewDesc) {
     rewImg = baseUrl + "/streamkar/rewards/kingshipProfileFrame.png";
   } else if (rewDesc?.includes("King Profile Frame")) {
     rewImg = baseUrl + "/streamkar/rewards/kingshipProfileFrame.png";
+  } else if (rewDesc?.includes("soldiers")) {
+    rewImg = baseUrl + "/streamkar/rewards/soliderIcon.png";
   } else {
     rewImg = baseUrl + "/streamkar/rewards/noRew.png";
   }

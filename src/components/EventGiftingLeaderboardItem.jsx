@@ -5,6 +5,8 @@ import top2 from "../assets/top-2-frame.png";
 import top3 from "../assets/top-3-frame.png";
 import beansIcon from "../assets/event-gifting/bean-icon.png";
 import "../styles/leaderboard-item.scss";
+import unknownUser from "../assets/unknown-user.png";
+
 import { testData } from "../utils/testData";
 const EventGiftingLeaderboardItem = ({
   user,
@@ -18,7 +20,10 @@ const EventGiftingLeaderboardItem = ({
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
         {index > 3 && <span className="index">{index}</span>}
         <div className="images">
-          <img src={user?.avatar} className="avatar" />
+          <img
+            src={user?.portrait ? user?.portrait : unknownUser}
+            className="avatar"
+          />
           {index <= 3 && (
             <img
               src={index === 2 ? top2 : top3}
@@ -38,7 +43,7 @@ const EventGiftingLeaderboardItem = ({
         </div>
       }
       <div className="right-div">
-        <span>{`1234566 beans spent `}</span>
+        <span>{`${user?.userScore} beans spent `}</span>
         <img src={beansIcon} className="bean-icon" />
       </div>
     </div>

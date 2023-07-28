@@ -1,22 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import todayBtn from "../../../../assets/event-gifting/today-btn.png";
 import yestBtn from "../../../../assets/event-gifting/yest-btn.png";
 import title from "../../../../assets/event-gifting/leaderboard-tag.png";
 import SwitchButton from "../../../../components/SwitchButton";
 import { testLeaderData } from "../../../../utils/testData";
-import Topper from "../../../../components/Topper";
-import LeaderboardItem from "../../../../components/LeaderboardItem";
 import switchBg from "../../../../assets/Conquer-tab/today-yesterday-btn.png";
 import EventGiftingLeaderboardItem from "../../../../components/EventGiftingLeaderboardItem";
-import EventGiftingTopper from "../../../../components/EventGiftingTopper";
+import { AppContext } from "../../../../AppContext";
+import TalentDailyToday from "./TalentDailyToday";
+import TalentDailyYest from "./TalentDailyYest";
 
 const TalentDaily = () => {
-  const [leaderBoardTabs, setLeaderBoardTabs] = useState({
-    today: false,
-    yest: true,
-  });
-  const [seeMore, setSeeMore] = useState(true);
+  const { leaderboardsData } = useContext(AppContext);
 
+  const [seeMore, setSeeMore] = useState(true);
   const [isSliderOn, setIsSliderOn] = useState(false);
 
   function handleSliderToggle(isOn) {
@@ -34,38 +31,9 @@ const TalentDaily = () => {
             bg={switchBg}
           />
 
-          {testLeaderData[0] && (
-            <div className="top1">
-              {/* <Topper user={testLeaderData[0]} /> */}
-              <EventGiftingTopper user={testLeaderData[0]} />
-            </div>
-          )}
+          {testLeaderData[0] && <div className="top1"></div>}
 
-          <div
-            className="restWinners"
-            style={{ overflowY: !seeMore ? "auto" : "" }}
-          >
-            {testLeaderData?.slice(1, seeMore ? 10 : 20).map((user, index) => (
-              // <LeaderboardItem
-              //   user={user}
-              //   rewards={[]}
-              //   key={index}
-              //   index={index + 2}
-              //   showEst={true}
-              // />
-              <EventGiftingLeaderboardItem
-                user={user}
-                rewards={[]}
-                key={index}
-                index={index + 2}
-                showEst={true}
-              />
-            ))}
-          </div>
-          <button
-            className={`${seeMore ? "see-more" : "see-less"}`}
-            onClick={() => setSeeMore((prevState) => !prevState)}
-          />
+          {isSliderOn ? <TalentDailyYest /> : <TalentDailyToday />}
         </div>
       </div>
     </div>

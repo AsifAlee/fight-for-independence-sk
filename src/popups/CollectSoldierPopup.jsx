@@ -10,6 +10,7 @@ const CollectSoldierPopup = ({
   rewardsContent,
   soldiers,
   title,
+  errMsg,
 }) => {
   let newRewards = rewardsContent?.includes("+")
     ? rewardsContent.split("+")
@@ -27,7 +28,6 @@ const CollectSoldierPopup = ({
               <RewardItem desc={newRewards} name={newRewards} />
             )}
           </div>
-          {soldiers > 0 && <span> and {soldiers} soldiers.</span>}
           <br />
           TIP: Collect maximum soldiers to give FREEDOM to the VICTORY FORT.
           Extra BEANS reward is waiting for you!
@@ -40,7 +40,7 @@ const CollectSoldierPopup = ({
           your triumphant liberation of the VICTORY FORT. Join us soon!
         </div>
       ) : (
-        <div></div>
+        <div className="collect-sold-popup">{errMsg}</div>
       )}
     </PopUp>
   );
