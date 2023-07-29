@@ -13,17 +13,19 @@ import Talent from "./Leaderboards/fan-followers/Talent";
 import SendCardPopup from "../popups/SendCardPopup";
 import { AppContext } from "../AppContext";
 import BuyCard from "../popups/BuyCards";
-import wishSent from "../assets/popup/wish-sent.png";
+import congratulation from "../assets/popup/congratulation.png";
 import tryAgain from "../assets/popup/try-again.png";
+import { baseUrl, testToken, testUserId } from "../utils/api";
 
 const FanFollwers = () => {
-  const { info } = useContext(AppContext);
+  const { info, getInfo, leaderboardsData } = useContext(AppContext);
   const [showSendCard, setShowCard] = useState(false);
   const [buyCardPopup, setBuyCardPopup] = useState(false);
   const [rewardsTabs, setRewardsTabs] = useState({
     user: true,
     talent: false,
   });
+  const [errorCode, setErrorCode] = useState(0);
 
   const toggleCardPopup = () => {
     setShowCard((prevState) => !prevState);
@@ -67,6 +69,24 @@ const FanFollwers = () => {
         break;
     }
   };
+  const buyCard = () => {
+    fetch(`${baseUrl}api/activity/fightForIndependence/buyCard`, {
+      method: "POST",
+      headers: {
+        token: testToken,
+        userId: testUserId,
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setBuyCardPopup(true);
+        setErrorCode(response?.errorCode);
+        getInfo();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div className="fan-followers">
       <div className="note">
@@ -106,7 +126,7 @@ const FanFollwers = () => {
           <img src={beans} />
           <span>to buy 5 new cards</span>
         </div>
-        <div className="pay-btn" onClick={toggleBuyCard}></div>
+        <div className="pay-btn" onClick={buyCard}></div>
       </div>
 
       <div className="note" style={{ marginTop: "3vw" }}>
@@ -179,7 +199,8 @@ const FanFollwers = () => {
       {buyCardPopup && (
         <BuyCard
           popUpHandler={toggleBuyCard}
-          title={info?.ownedCards === 0 ? tryAgain : wishSent}
+          title={errorCode === 0 ? congratulation : tryAgain}
+          errorCode={errorCode}
         />
       )}
     </div>

@@ -32,6 +32,8 @@ const EventProvider = ({ children }) => {
     championsYest: [],
     teamTotalSoldiersInfoList: [],
     collectSoldiers: [],
+    fanFollowerUser: [],
+    fanFollowerTalent: [],
   });
   const [selectedLng, setSelectedLng] = useState(1);
   const changeLanguage = (index) => {
@@ -53,7 +55,7 @@ const EventProvider = ({ children }) => {
           teamId: response?.data?.teamId,
           teamTotalSoldiersInfoList: response?.data?.teamTotalSoldiersInfoList,
           ownedCards: response?.data?.ownedCards,
-          sentCards: response?.data?.sentCards,
+          sentCards: response?.data?.sendCards,
         });
       })
       .catch((error) => {
@@ -257,6 +259,42 @@ const EventProvider = ({ children }) => {
       });
   };
 
+  const getFanfollowerUser = () => {
+    fetch(
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=14&pageNum=1&pageSize=20&dayIndex=${
+        info?.dayIndex - 1
+      }`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setLeaderboardData((prevData) => ({
+          ...prevData,
+          fanFollowerUser: response?.data?.list || [],
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const getFanfollowerTalent = () => {
+    fetch(
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=15&pageNum=1&pageSize=20&dayIndex=${
+        info?.dayIndex - 1
+      }`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setLeaderboardData((prevData) => ({
+          ...prevData,
+          fanFollowerTalent: response?.data?.list || [],
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const getCollectSoldiers = () => {
     fetch(
       `${baseUrl}api/activity/eidF/getWinnerRankInfo?eventDesc=20230810_fightForIndependence&rankIndex=2&pageNum=1&pageSize=20&dayIndex=${info?.dayIndex}`
@@ -301,6 +339,8 @@ const EventProvider = ({ children }) => {
     getEventGiftingDailyYest();
     getConquerersToday();
     getCollectSoldiers();
+    getFanfollowerUser();
+    getFanfollowerTalent();
   }, [info?.dayIndex]);
 
   return (
@@ -314,6 +354,8 @@ const EventProvider = ({ children }) => {
         getTalentOverallEventGifting,
         getUserOverallEventGifting,
         getCollectSoldiers,
+        getFanfollowerTalent,
+        getFanfollowerUser,
       }}
     >
       {children}

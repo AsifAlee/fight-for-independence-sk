@@ -84,7 +84,7 @@ const ConquerVictoryFortTab = () => {
         getInfo();
       })
       .catch((error) => {
-        console.erro(error);
+        console.error(error);
       });
   };
 
@@ -114,7 +114,7 @@ const ConquerVictoryFortTab = () => {
         getInfo();
       })
       .catch((error) => {
-        console.erro(error);
+        console.error(error);
       });
   };
 

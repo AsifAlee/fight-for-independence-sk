@@ -12,14 +12,19 @@ const FanFollwerTopper = ({ user, isUser }) => {
     <div className="fan-follower-topper">
       <div className="topper-images">
         <img src={top1Frame} className="frame" />
-        <img src={user?.avatar} className="avatar" />
+        <img
+          src={user?.portrait ? user?.portrait : unknownUser}
+          className="avatar"
+        />
       </div>
       <div className="topper-details">
         <p className="name">{user.nickname}</p>
-        <img
-          src={followBtn}
-          style={{ width: "5vw", position: "relative", left: "-5vw" }}
-        />
+        {isUser === false && (
+          <img
+            src={followBtn}
+            style={{ width: "5vw", position: "relative", left: "-5vw" }}
+          />
+        )}
 
         {isUser === true ? (
           <div className="beans-won">
@@ -31,9 +36,9 @@ const FanFollwerTopper = ({ user, isUser }) => {
 
         <div className="soldier-collected">
           {isUser ? (
-            <span> Cards Sent:000</span>
+            <span> Cards Sent:{user?.userScore}</span>
           ) : (
-            <span>Card Receieved:000</span>
+            <span>Card Receieved:{user?.userScore}</span>
           )}
         </div>
       </div>

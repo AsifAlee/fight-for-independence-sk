@@ -36,8 +36,8 @@ const RewardsSlider = ({ rewards }) => {
         <p
           style={{
             width: "48vw",
-            border: "1px solid",
             textAlign: "center",
+            fontSize: "3vw",
           }}
         >
           {rewards[currentIndex].text}

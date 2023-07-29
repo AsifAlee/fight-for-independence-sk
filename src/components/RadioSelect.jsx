@@ -1,31 +1,16 @@
 import React, { useState } from "react";
 
-const RadioSelect = ({ options, onChange }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-    if (onChange) {
-      onChange(option);
-    }
-  };
-
+function RadioSelect(props) {
+  const { index, isSelected, children, handleRadioCheck } = props;
   return (
-    <>
-      {options.map((option, index) => (
-        <div
-          onClick={() => handleOptionClick(option)}
-          style={{
-            width: "30vw",
-            height: "21vw",
-            backgroundColor: "red",
-          }}
-        >
-          {option}
-        </div>
-      ))}
-    </>
+    <div className="single-radio">
+      {children}
+      <span
+        className={`circle ${index === isSelected ? "bgWhite" : ""}`}
+        onClick={() => handleRadioCheck(index)}
+      ></span>
+    </div>
   );
-};
+}
 
 export default RadioSelect;

@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import EventGiftingLeaderboardItem from "../../../components/EventGiftingLeaderboardItem";
 import { testLeaderData } from "../../../utils/testData";
 import titleTag from "../../../assets/event-gifting/leaderboard-tag.png";
 import EventGiftingTopper from "../../../components/EventGiftingTopper";
 import FanFollowerLbItem from "../../../components/FanFollowerLbItem";
 import FanFollwerTopper from "../../../components/FanFollowerTopper";
+import { AppContext } from "../../../AppContext";
 const User = () => {
   const [seeMore, setSeeMore] = useState(true);
-
+  const { leaderboardsData } = useContext(AppContext);
+  let { fanFollowerUser } = leaderboardsData;
   return (
     <div className="main-leaderboard ">
       <img src={titleTag} className="title" />
-      {testLeaderData[0] && (
+      {fanFollowerUser[0] && (
         <div className="top1">
-          {/* <EventGiftingTopper user={testLeaderData[0]} /> */}
-          <FanFollwerTopper user={testLeaderData[0]} isUser={true} />
+          <FanFollwerTopper user={fanFollowerUser[0]} isUser={true} />
         </div>
       )}
 
@@ -22,14 +23,7 @@ const User = () => {
         className="restWinners"
         style={{ overflowY: !seeMore ? "auto" : "" }}
       >
-        {testLeaderData?.slice(1, seeMore ? 10 : 20).map((user, index) => (
-          //   <EventGiftingLeaderboardItem
-          //     user={user}
-          //     rewards={[]}
-          //     key={index}
-          //     index={index + 2}
-          //     showEst={true}
-          //   />
+        {fanFollowerUser?.slice(1, seeMore ? 10 : 20).map((user, index) => (
           <FanFollowerLbItem
             user={user}
             rewards={[]}

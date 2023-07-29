@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/user.scss";
 import frame from "../assets/card/TalentFrame.png";
 import unknownUser from "../assets/unknown-user.png";
-const User = ({ user }) => {
+const User = ({ user, sendCard, isDisabled }) => {
   return (
     <div className="user">
       <div className="images">
@@ -18,7 +18,12 @@ const User = ({ user }) => {
         <img alt="" className="frame" src={frame} />
       </div>
       <span className="name">{user?.nickname}</span>
-      <button className="send-btn" />
+      <button
+        className="send-btn"
+        onClick={sendCard}
+        disabled={isDisabled}
+        style={{ filter: isDisabled && "grayScale(1)" }}
+      />
     </div>
   );
 };
