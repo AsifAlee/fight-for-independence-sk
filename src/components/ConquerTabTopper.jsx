@@ -10,7 +10,10 @@ const ConquerTabTopper = ({ user, isToday }) => {
     <div className="conquertab-topper">
       <div className="topper-images">
         <img src={top1Frame} className="frame" />
-        <img src={user?.avatar} className="avatar" />
+        <img
+          src={user?.portrait ? user?.portrait : unknownUser}
+          className="avatar"
+        />
       </div>
       <div className="topper-details">
         <p className="name">{user.nickname}</p>

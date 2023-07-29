@@ -9,6 +9,9 @@ const EventProvider = ({ children }) => {
     dailyCurrentSoldier: 0,
     dailyTotalSoldier: 0,
     fortState: 0,
+    teamId: 0,
+    ownedCards: 0,
+    sentCards: 0,
   });
   const [user, setUser] = useState({
     userId: 0,
@@ -27,6 +30,8 @@ const EventProvider = ({ children }) => {
     conquerersYest: [],
     championsToday: [],
     championsYest: [],
+    teamTotalSoldiersInfoList: [],
+    collectSoldiers: [],
   });
   const [selectedLng, setSelectedLng] = useState(1);
   const changeLanguage = (index) => {
@@ -45,6 +50,10 @@ const EventProvider = ({ children }) => {
           dailyCurrentSoldier: response?.data?.dailyCurrentSoldier,
           dailyTotalSoldier: response?.data?.dailyTotalSoldier,
           fortState: response?.data?.fortState,
+          teamId: response?.data?.teamId,
+          teamTotalSoldiersInfoList: response?.data?.teamTotalSoldiersInfoList,
+          ownedCards: response?.data?.ownedCards,
+          sentCards: response?.data?.sentCards,
         });
       })
       .catch((error) => {
@@ -157,7 +166,7 @@ const EventProvider = ({ children }) => {
       .then((response) => {
         setLeaderboardData((prevData) => ({
           ...prevData,
-          warriorsToday: response?.data?.list,
+          warriorsToday: response?.data?.list || [],
         }));
       })
       .catch((error) => {
@@ -174,7 +183,7 @@ const EventProvider = ({ children }) => {
       .then((response) => {
         setLeaderboardData((prevData) => ({
           ...prevData,
-          warriorsYest: response?.data?.list,
+          warriorsYest: response?.data?.list || [],
         }));
       })
       .catch((error) => {
@@ -190,7 +199,7 @@ const EventProvider = ({ children }) => {
       .then((response) => {
         setLeaderboardData((prevData) => ({
           ...prevData,
-          conquerersToday: response?.data?.list,
+          conquerersToday: response?.data?.list || [],
         }));
       })
       .catch((error) => {
@@ -208,7 +217,7 @@ const EventProvider = ({ children }) => {
       .then((response) => {
         setLeaderboardData((prevData) => ({
           ...prevData,
-          conquerersYest: response?.data?.list,
+          conquerersYest: response?.data?.list || [],
         }));
       })
       .catch((error) => {
@@ -223,7 +232,7 @@ const EventProvider = ({ children }) => {
       .then((response) => {
         setLeaderboardData((prevData) => ({
           ...prevData,
-          championsToday: response?.data?.list,
+          championsToday: response?.data?.list || [],
         }));
       })
       .catch((error) => {
@@ -240,7 +249,23 @@ const EventProvider = ({ children }) => {
       .then((response) => {
         setLeaderboardData((prevData) => ({
           ...prevData,
-          championsYest: response?.data?.list,
+          championsYest: response?.data?.list || [],
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const getCollectSoldiers = () => {
+    fetch(
+      `${baseUrl}api/activity/eidF/getWinnerRankInfo?eventDesc=20230810_fightForIndependence&rankIndex=2&pageNum=1&pageSize=20&dayIndex=${info?.dayIndex}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setLeaderboardData((prevData) => ({
+          ...prevData,
+          collectSoldiers: response?.data?.list || [],
         }));
       })
       .catch((error) => {
@@ -274,6 +299,8 @@ const EventProvider = ({ children }) => {
     getConquerersYest();
     getEventGiftingDailyToday();
     getEventGiftingDailyYest();
+    getConquerersToday();
+    getCollectSoldiers();
   }, [info?.dayIndex]);
 
   return (
@@ -286,6 +313,7 @@ const EventProvider = ({ children }) => {
         leaderboardsData,
         getTalentOverallEventGifting,
         getUserOverallEventGifting,
+        getCollectSoldiers,
       }}
     >
       {children}

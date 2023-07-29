@@ -1,22 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/fan-follower.scss";
 import bullet from "../assets/fanfollowers/bullet-point.png";
 import beans from "../assets/event-gifting/bean-icon.png";
 import TabButton from "../components/TabButton";
 import userBtn from "../assets/event-gifting/user-btn.png";
 import talentBtn from "../assets/event-gifting/talent-btn.png";
-import TalentRewards from "./rewards/TalentRewards";
-import UserRewards from "./rewards/UserRewards";
+
 import FanFollowerTalentRewards from "./rewards/FanFollowerTalentRewards";
 import FanFollwerUserRewards from "./rewards/FanFollwerUserRewards";
 import User from "./Leaderboards/fan-followers/User";
 import Talent from "./Leaderboards/fan-followers/Talent";
+import SendCardPopup from "../popups/SendCardPopup";
+import { AppContext } from "../AppContext";
+import BuyCard from "../popups/BuyCards";
+import wishSent from "../assets/popup/wish-sent.png";
+import tryAgain from "../assets/popup/try-again.png";
 
 const FanFollwers = () => {
+  const { info } = useContext(AppContext);
+  const [showSendCard, setShowCard] = useState(false);
+  const [buyCardPopup, setBuyCardPopup] = useState(false);
   const [rewardsTabs, setRewardsTabs] = useState({
     user: true,
     talent: false,
   });
+
+  const toggleCardPopup = () => {
+    setShowCard((prevState) => !prevState);
+  };
+  const toggleBuyCard = () => {
+    setBuyCardPopup((prevState) => !prevState);
+  };
   const [leaderBoardTabs, setLeaderBoardTabs] = useState({
     user: false,
     talent: true,
@@ -80,9 +94,9 @@ const FanFollwers = () => {
         </div>
       </div>
       <div className="send-wishes">
-        <button className="tab-here" />
+        <button className="tab-here" onClick={toggleCardPopup} />
         <div className="remaining-cards">
-          Remaining Cards in my account:0000
+          Remaining Cards in my account:{info?.ownedCards}
         </div>
       </div>
       <div className="pay-beans">
@@ -92,7 +106,7 @@ const FanFollwers = () => {
           <img src={beans} />
           <span>to buy 5 new cards</span>
         </div>
-        <div className="pay-btn"></div>
+        <div className="pay-btn" onClick={toggleBuyCard}></div>
       </div>
 
       <div className="note" style={{ marginTop: "3vw" }}>
@@ -138,7 +152,7 @@ const FanFollwers = () => {
           )}
         </div>
       </div>
-      <div className="cards-sent">Total Cards Sent:000</div>
+      <div className="cards-sent">Total Cards Sent:{info?.sentCards}</div>
 
       <div className="fan-follower-leaderboard">
         <div className="leaderboard-tabs">
@@ -161,6 +175,13 @@ const FanFollwers = () => {
           All rights reserved by StreamKar
         </p>
       </div>
+      {showSendCard && <SendCardPopup popUpHandler={toggleCardPopup} />}
+      {buyCardPopup && (
+        <BuyCard
+          popUpHandler={toggleBuyCard}
+          title={info?.ownedCards === 0 ? tryAgain : wishSent}
+        />
+      )}
     </div>
   );
 };

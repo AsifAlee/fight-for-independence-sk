@@ -3,13 +3,17 @@ import "../styles/leaderboard-item.scss";
 import top2 from "../assets/top-2-frame.png";
 import top3 from "../assets/top-3-frame.png";
 import soldierIcon from "../assets/Conquer-tab/soldiers-icon.png";
+import unknowUser from "../assets/unknown-user.png";
 const ConquerVictoryLeaderboardItems = ({ user, index, isToday }) => {
   return (
     <div className="conquer-victory-leaderboard-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
         {index > 3 && <span className="index">{index}</span>}
         <div className="images">
-          <img src={user?.avatar} className="avatar" />
+          <img
+            src={user?.portrait ? user?.portrait : unknowUser}
+            className="avatar"
+          />
           {index <= 3 && (
             <img
               src={index === 2 ? top2 : top3}

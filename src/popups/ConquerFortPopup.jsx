@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import PopUp from "../components/PopUp";
 import bg from "../assets/popup/mulitiple-popup-bg.png";
-import RewardItem from "../components/RewardItem";
 import { AppContext } from "../AppContext";
 const ConquerFortPopup = ({
   popUpHandler,

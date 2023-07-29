@@ -122,4 +122,44 @@
       margin-top: 5vw;
     }
   }
+
+  .send-card-popup{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .card{
+      width: 40vw;
+    }
+
+    .search-talent{
+      display: flex;
+      .input-id{
+        width: 40vw;
+        height: 8vw;
+        background-image: url('../assets/card/search-id-bg.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+   
+       }
+       .search-btn{
+        width: 8vw;
+        height: 8vw;
+        background-image: url('../assets/card/search-btn.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+   
+        
+       }
+    }
+
+    .found-users{
+      display: flex;
+    flex-direction: column;
+    // height: 56vw;
+    // overflow-y: auto;
+    }
+
+  }
 }

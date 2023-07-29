@@ -1,0 +1,46 @@
+.user{
+    .images {
+        width: 22vw;
+        position: relative;
+       
+    
+        .frame {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 21vw;
+            z-index: 1;
+        }
+    
+        .avatar {
+            position: absolute;
+            top: 5vw;
+            left: 1vw;
+            width: 84%;
+            border-radius: 100%;
+        }
+      }
+      .name{
+        width: 22vw;
+        height: 8vw;
+        background-image: url('../assets/card/talent-name-bg.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 2.5vw;
+       
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .send-btn{
+        width: 20vw;
+        height: 10vw;
+        background-image: url('../assets/card/send-btn.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+}

@@ -33,7 +33,15 @@ const RewardsSlider = ({ rewards }) => {
         <div className="images">
           <img src={getRewardsImage(rewards[currentIndex]?.desc)} />
         </div>
-        <p>{rewards[currentIndex].text}</p>
+        <p
+          style={{
+            width: "48vw",
+            border: "1px solid",
+            textAlign: "center",
+          }}
+        >
+          {rewards[currentIndex].text}
+        </p>
         <div className="indicators">
           {rewards.map((item, index) => (
             <SliderDot isActive={index === currentIndex} />

@@ -11,6 +11,8 @@ const PopUp = (props) => {
     isGame,
     isMilestone,
     isCollSold,
+    isSendCard,
+    isOverflow,
   } = props;
 
   useEffect(() => {
@@ -29,8 +31,8 @@ const PopUp = (props) => {
           minHeight: `${
             isCollSold
               ? "57vw"
-              : isRewards
-              ? "58vw"
+              : isSendCard
+              ? "102vw"
               : isGame
               ? "63vw"
               : isMilestone
@@ -40,6 +42,7 @@ const PopUp = (props) => {
           width: `${
             isAccPopUp ? "85%" : isRewards ? "85%" : isMilestone ? "98%" : ""
           }`,
+          overflowY: isOverflow ? "auto" : "",
         }}
       >
         <div

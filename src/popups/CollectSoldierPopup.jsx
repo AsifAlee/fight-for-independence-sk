@@ -29,8 +29,10 @@ const CollectSoldierPopup = ({
             )}
           </div>
           <br />
-          TIP: Collect maximum soldiers to give FREEDOM to the VICTORY FORT.
-          Extra BEANS reward is waiting for you!
+          <div style={{ fontSize: "3vw" }}>
+            TIP: Collect maximum soldiers to give FREEDOM to the VICTORY FORT.
+            Extra BEANS reward is waiting for you!
+          </div>
         </div>
       ) : errorCode === 10000004 ? (
         <div className="collect-sold-popup">

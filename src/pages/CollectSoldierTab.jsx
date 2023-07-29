@@ -9,8 +9,17 @@ import CollectSoldierPopup from "../popups/CollectSoldierPopup";
 import { AppContext } from "../AppContext";
 import congTag from "../assets/popup/congratulation.png";
 import tryAgain from "../assets/popup/try-again.png";
+import foreverGif from "../assets/game/forever.gif";
+import leftTerShoot from "../assets/game/left-terrist-shoot.gif";
+import righTertShoot from "../assets/game/right-terrist-shoot.gif";
+import rightPlaneShoot from "../assets/game/right-plane-shoot.gif";
+import tankShoot from "../assets/game/tank-shoot.gif";
+import { getRandomNumber } from "../utils/functions";
+
 const CollectSoldierTab = () => {
-  const { info, getInfo } = useContext(AppContext);
+  const { info, getInfo, leaderboardsData, getCollectSoldiers } =
+    useContext(AppContext);
+  const { collectSoldiers } = leaderboardsData;
   const [seeMore, setSeeMore] = useState(true);
   const [inputValue, setInputValue] = useState(1);
   const [errorCode, setErrorCode] = useState(null);
@@ -18,7 +27,10 @@ const CollectSoldierTab = () => {
   const [rewardsContent, setRewardsContent] = useState("");
   const [soldiers, setSoldiers] = useState(0);
   const [errMsg, setErrMsg] = useState("");
-
+  const [currentGif, setCurrentGif] = useState(null);
+  const [isPlaying, setIsplaying] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const gameGifs = [leftTerShoot, righTertShoot, rightPlaneShoot, tankShoot];
   const onChangeHandle = (event) => {
     setInputValue(parseInt(event.target.value));
   };
@@ -27,6 +39,8 @@ const CollectSoldierTab = () => {
     setShowGame(false);
   };
   const playGame = () => {
+    setIsDisabled(true);
+
     fetch(
       `${baseUrl}api/activity/fightForIndependence/collectSoldiers?playCount=${inputValue}`,
       {
@@ -42,12 +56,20 @@ const CollectSoldierTab = () => {
     )
       .then((response) => response?.json())
       .then((response) => {
-        setShowGame(true);
+        setIsplaying(true);
+
         setErrorCode(response?.errorCode);
         setRewardsContent(response?.data?.rewardContent);
         setRewards(response?.data?.rewardDTOList);
         setSoldiers(response?.data?.totalSoldiers);
         setErrMsg(response?.msg);
+        setCurrentGif(gameGifs[getRandomNumber() - 1]);
+        setTimeout(() => {
+          setIsDisabled(false);
+          setIsplaying(false);
+          setShowGame(true);
+          getCollectSoldiers();
+        }, 1400);
         getInfo();
       })
       .catch((error) => {
@@ -72,9 +94,17 @@ const CollectSoldierTab = () => {
   };
   return (
     <div className="collect-soldier-tab">
-      <div className="collect-soldier-game"></div>
+      <div id="extraContent"></div>
+      <div className="collect-soldier-game">
+        <img src={isPlaying ? currentGif : foreverGif} className="playingGif" />
+      </div>
       <div className="chances">
-        <button className="shoot-btn" onClick={playGame} />
+        <button
+          className="shoot-btn"
+          onClick={playGame}
+          style={{ filter: isDisabled && "grayScale(1)" }}
+          disabled={isDisabled}
+        />
         <div className="my-chances">
           <span
             style={{ marginTop: "3vw", marginLeft: "6vw", fontSize: "2.5vw" }}
@@ -104,9 +134,9 @@ const CollectSoldierTab = () => {
       </div>
       <div className="rewards">
         <img src={rewardsTitle} className="title" />
-        {testLeaderData[0] && (
+        {collectSoldiers[0] && (
           <div className="top1">
-            <Topper user={testLeaderData[0]} />
+            <Topper user={collectSoldiers[0]} />
           </div>
         )}
 
@@ -114,7 +144,7 @@ const CollectSoldierTab = () => {
           className="restWinners"
           style={{ overflowY: !seeMore ? "auto" : "" }}
         >
-          {testLeaderData.slice(1, seeMore ? 10 : 20).map((user, index) => (
+          {collectSoldiers?.slice(1, seeMore ? 10 : 20).map((user, index) => (
             <LeaderboardItem
               user={user}
               rewards={[]}

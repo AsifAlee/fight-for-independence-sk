@@ -16,10 +16,6 @@ const RadioSelect = ({ options, onChange }) => {
         <div
           onClick={() => handleOptionClick(option)}
           style={{
-            //   border: "1px solid #ccc",
-            //   padding: "10px",
-            //   borderRadius: "5px",
-            //   backgroundColor: selectedOption === option ? "#ddd" : "#fff",
             width: "30vw",
             height: "21vw",
             backgroundColor: "red",

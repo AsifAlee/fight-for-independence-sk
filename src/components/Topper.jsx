@@ -4,13 +4,19 @@ import unknownUser from "../assets/unknown-user.png";
 import "../styles/topper.scss";
 import LeaderBoardSlider from "./LeaderBoardSlider";
 import { testData } from "../utils/testData";
+import { formatData } from "../utils/functions";
 
 const Topper = ({ user }) => {
+  let currentReward = formatData(JSON.parse(user.desc));
+
   return (
     <div className="topper">
       <div className="topper-images">
         <img src={top1Frame} className="frame" />
-        <img src={user?.avatar} className="avatar" />
+        <img
+          src={user?.portrait ? user?.portrait : unknownUser}
+          className="avatar"
+        />
       </div>
       <div className="topper-details">
         <p className="name">{user.nickname}</p>
@@ -22,7 +28,7 @@ const Topper = ({ user }) => {
             bottom: "1vw",
           }}
         >
-          <LeaderBoardSlider rewards={testData} />
+          <LeaderBoardSlider rewards={currentReward} />
         </div>
       </div>
     </div>

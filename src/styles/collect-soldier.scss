@@ -1,14 +1,21 @@
 .collect-soldier-tab {
-  //   position: relative;
-  //   top: -89vw;
+
   .collect-soldier-game {
     width: 90%;
     height: 70vw;
-    background-image: url("../assets/game-bg.png");
+    background-image: url("../assets/game/game-bg.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
 
     margin: 0 auto;
+    position: relative;
+
+    .playingGif {
+      width: 85%;
+      position: absolute;
+      top: 7vw;
+      left: 6vw;
+    }
   }
   .chances {
     width: 100%;
@@ -20,14 +27,14 @@
 
     .shoot-btn {
       background-image: url("../assets/shoot-btn.png");
-      width: 19vw;
+      width: 20vw;
       height: 15vw;
       background-size: 100% 100%;
       background-repeat: no-repeat;
       display: block;
       margin: 0 auto;
       position: absolute;
-      top: -6vw;
+      top: -9vw;
       left: 0;
       right: 0;
     }
@@ -88,8 +95,8 @@
       // border: 2px solid green;
     }
 
-    .see-more{
-      background-image: url('../assets/more-btn.png');
+    .see-more {
+      background-image: url("../assets/more-btn.png");
       width: 15vw;
       height: 8vw;
       background-size: 100% 100%;
@@ -99,8 +106,8 @@
       // position: relative;
       // bottom: 7vw;
     }
-    .see-less{
-      background-image: url('../assets/less-btn.png');
+    .see-less {
+      background-image: url("../assets/less-btn.png");
       width: 15vw;
       height: 8vw;
       background-size: 100% 100%;
@@ -110,5 +117,19 @@
       // position: relative;
       // bottom: 7vw;
     }
+  }
+
+  #extraContent {
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    z-index: -2147483648;
+    content: url("../assets/game/forever.gif")
+      url("../assets/game/left-terrist-shoot.gif")
+      url("../assets/game/right-terrist-shoot.gif")
+      url("../assets/game/right-plane-shoot.gif")
+      url("../assets/game/tank-shoot.gif");
+    visibility: hidden;
+    top: 0px;
   }
 }

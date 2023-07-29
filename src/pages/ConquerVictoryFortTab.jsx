@@ -16,12 +16,17 @@ import ConquerFortPopup from "../popups/ConquerFortPopup";
 import congTag from "../assets/popup/congratulation.png";
 import oops from "../assets/popup/oops.png";
 import yay from "../assets/popup/yay.png";
+import DynamicCard from "../components/DynamicCard";
+import ChampionsLeaderboard from "./Leaderboards/conquer-fort/ChampionsLeaderboard";
+import WarriorLeaderboard from "./Leaderboards/conquer-fort/WarriorsLeaderboard";
+import ConquererLeaderboard from "./Leaderboards/conquer-fort/ConquerersLeaderboard";
 
 const ConquerVictoryFortTab = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [isSliderOn, setIsSliderOn] = useState(false);
   const [seeMore, setSeeMore] = useState(true);
   const { info, getInfo } = useContext(AppContext);
+
   const [showLevels, setShowLevels] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [showGame, setShowGame] = useState(false);
@@ -36,7 +41,6 @@ const ConquerVictoryFortTab = () => {
   }
   const closeGamePopup = () => {
     setShowGame(false);
-    // setCurrentLevel(info?.fortState);
     getInfo();
   };
   const [teamTabs, setTeamTabs] = useState({
@@ -58,7 +62,31 @@ const ConquerVictoryFortTab = () => {
         break;
     }
   };
-  const joinTheTeam = () => {};
+  const joinTheTeam = () => {
+    fetch(
+      `${baseUrl}api/activity/fightForIndependence/joinTeam?teamId=${
+        teamTabs.warriors ? 1 : teamTabs.conquerers ? 2 : 3
+      }`,
+      {
+        method: "POST",
+        headers: {
+          userId: testUserId,
+          token: testToken,
+
+          // userId: user.uid,
+          // token: user.token,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        getInfo();
+      })
+      .catch((error) => {
+        console.erro(error);
+      });
+  };
 
   const playGame = () => {
     setIsDisabled(true);
@@ -141,74 +169,65 @@ const ConquerVictoryFortTab = () => {
         <span>Soldiers collected today:{info?.dailyCurrentSoldier}</span>
       </div>
       <div className="join-team-wrap">
-        <div className="teams">
-          <div
-            className="warriors"
-            onClick={() => toggleTeam("warriors")}
-            style={{ border: teamTabs.warriors ? "1px solid white" : "" }}
-          ></div>
-          <div
-            className="conquerers"
-            onClick={() => toggleTeam("conquerers")}
-            style={{ border: teamTabs.conquerers ? "1px solid white" : "" }}
-          ></div>
-          <div
-            className="champions"
-            onClick={() => toggleTeam("champions")}
-            style={{ border: teamTabs.champions ? "1px solid white" : "" }}
-          ></div>
-        </div>
-        <div className="use-soldier-info">
-          <p>
-            Team once choosen cannot be changed. <br />
-            Choose wisely!
-          </p>
-        </div>
+        {info?.teamId === 0 && (
+          <>
+            <div className="teams">
+              <div
+                className="warriors"
+                onClick={() => toggleTeam("warriors")}
+                style={{ border: teamTabs.warriors ? "1px solid white" : "" }}
+              ></div>
+              <div
+                className="conquerers"
+                onClick={() => toggleTeam("conquerers")}
+                style={{ border: teamTabs.conquerers ? "1px solid white" : "" }}
+              ></div>
+              <div
+                className="champions"
+                onClick={() => toggleTeam("champions")}
+                style={{ border: teamTabs.champions ? "1px solid white" : "" }}
+              ></div>
+            </div>
+            <div className="use-soldier-info">
+              <p>
+                Team once choosen cannot be changed. <br />
+                Choose wisely!
+              </p>
+            </div>
 
-        <button className="join-btn" onClick={joinTheTeam} />
+            <button className="join-btn" onClick={joinTheTeam} />
+          </>
+        )}
 
-        <div className="joined-team-sec">
-          <SwitchButton
-            bg={switchBg}
-            onToggle={handleSliderToggle}
-            btn={isSliderOn ? yestBtn : todayBtn}
-          />
-
-          <div className="dynamic-tabs"></div>
-          <div className="conquer-tab-leaderboard">
-            <img src={titleTag} className="title" />
-            {testLeaderData[0] && (
-              <div className="top1">
-                <ConquerTabTopper
-                  user={testLeaderData[0]}
-                  isToday={isSliderOn === false}
-                />
-              </div>
-            )}
-
-            <div
-              className="restWinners"
-              style={{ overflowY: !seeMore ? "auto" : "" }}
-            >
-              {testLeaderData
-                ?.slice(1, seeMore ? 10 : 20)
-                .map((user, index) => (
-                  <ConquerVictoryLeaderboardItems
-                    user={user}
-                    rewards={[]}
-                    key={index}
-                    index={index + 2}
-                    showEst={true}
-                    isToday={isSliderOn === false}
+        {info?.teamId > 0 && (
+          <div className="joined-team-sec">
+            <SwitchButton
+              bg={switchBg}
+              onToggle={handleSliderToggle}
+              btn={isSliderOn ? yestBtn : todayBtn}
+            />
+            <div className="dynamic-tabs">
+              {info?.teamTotalSoldiersInfoList
+                ?.sort((a, b) => b?.totalSoldiers - a?.totalSoldiers)
+                ?.map((team) => (
+                  <DynamicCard
+                    id={team?.teamId}
+                    soldiers={team?.totalSoldiers}
                   />
                 ))}
             </div>
-            <button
-              className={`${seeMore ? "see-more" : "see-less"}`}
-              onClick={() => setSeeMore((prevState) => !prevState)}
-            />
+
+            {info?.teamId === 1 ? (
+              <WarriorLeaderboard isSliderOn={isSliderOn} />
+            ) : info?.teamId === 2 ? (
+              <ConquererLeaderboard isSliderOn={isSliderOn} />
+            ) : info?.teamId === 3 ? (
+              <ChampionsLeaderboard isSliderOn={isSliderOn} />
+            ) : (
+              <></>
+            )}
           </div>
-        </div>
+        )}
 
         <p
           style={{ textAlign: "center", fontSize: "2.5vw", marginTop: "13vw" }}

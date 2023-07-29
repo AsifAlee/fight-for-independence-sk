@@ -206,7 +206,11 @@
         margin: 0 auto;
     }
 
+    .dynamic-tabs{
+      display: flex;
+      justify-content: space-around;
 
+    }
     .conquer-tab-leaderboard{
         width: 95%;
         height: 202vw;

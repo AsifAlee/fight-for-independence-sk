@@ -3,6 +3,8 @@ import "../styles/leaderboard-slider.scss";
 import LeaderboardSliderItem from "./LeaderboardSliderItem";
 
 const LeaderBoardSlider = ({ rewards }) => {
+  // debugger;
+  console.log("rewards:", rewards);
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
   const slideInterval = 2000;
@@ -44,9 +46,9 @@ const LeaderBoardSlider = ({ rewards }) => {
           top: "1vw",
         }}
       >
-        {rewards?.length > 1 &&
+        {rewards?.length &&
           rewards[currentIndex]?.map((item, index) => (
-            <LeaderboardSliderItem />
+            <LeaderboardSliderItem item={item} key={index} />
           ))}
       </div>
     </div>

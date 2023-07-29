@@ -4,15 +4,21 @@ import LeaderBoardSlider from "./LeaderBoardSlider";
 import top2 from "../assets/top-2-frame.png";
 import top3 from "../assets/top-3-frame.png";
 import beansIcon from "../assets/event-gifting/bean-icon.png";
-
+import unknowuser from "../assets/unknown-user.png";
 import { testData } from "../utils/testData";
+import { formatData } from "../utils/functions";
 const LeaderboardItem = ({ user, rewards, index, showEst }) => {
+  let currentReward = formatData(JSON.parse(user.desc));
+  console.log("current reward:", currentReward);
   return (
     <div className="leaderboard-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
         {index > 3 && <span className="index">{index}</span>}
         <div className="images">
-          <img src={user?.avatar} className="avatar" />
+          <img
+            src={user?.portrait ? user?.portrait : unknowuser}
+            className="avatar"
+          />
           {index <= 3 && (
             <img
               src={index === 2 ? top2 : top3}
@@ -25,7 +31,7 @@ const LeaderboardItem = ({ user, rewards, index, showEst }) => {
       </div>
 
       <div className="right-div">
-        <LeaderBoardSlider rewards={testData} />
+        <LeaderBoardSlider rewards={currentReward} />
       </div>
     </div>
   );

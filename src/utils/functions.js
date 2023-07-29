@@ -111,6 +111,12 @@ export function getRewardsImage(rewDesc) {
     rewImg = baseUrl + "/streamkar/rewards/kingshipProfileFrame.png";
   } else if (rewDesc?.includes("soldiers")) {
     rewImg = baseUrl + "/streamkar/rewards/soliderIcon.png";
+  } else if (rewDesc?.includes("Tiger entrance")) {
+    rewImg = baseUrl + "/streamkar/rewards/tiger.png";
+  } else if (rewDesc?.includes("Audio broadcast theme DOYEN")) {
+    rewImg = baseUrl + "/streamkar/rewards/doyenFrame.png";
+  } else if (rewDesc?.includes("Radiance Profile Frame")) {
+    rewImg = baseUrl + "/streamkar/rewards/radianceGold.png";
   } else {
     rewImg = baseUrl + "/streamkar/rewards/noRew.png";
   }
@@ -157,3 +163,54 @@ export const beansPot = [
 export const gotoProfile = (id) => {
   window.location.href = `http://www.kktv1.com/m/?roomid=${id}`;
 };
+
+export const formatData = (originalArray) => {
+  const newArray = [];
+  for (let i = 0; i < originalArray?.length; i += 3) {
+    newArray?.push(originalArray?.slice(i, i + 3));
+  }
+  return newArray;
+};
+export function getRandomNumber() {
+  return Math.floor(Math.random() * 4) + 1;
+}
+
+export const wishes = [
+  {
+    id: 1,
+    wish: "May this spirit of freedom lead us all to success and glory in life. Happy Independence Day!",
+  },
+  { id: 2, wish: "Saluting the entire nation, Happy Independence day 2023!" },
+  {
+    id: 3,
+    wish: "Freedom is the way God intended us; Lets celebrate Freedom! Happy Independence Day.",
+  },
+  {
+    id: 4,
+    wish: "Freedom is the most precious thing in every humans life. Happy Independence Day!",
+  },
+  {
+    id: 5,
+    wish: "Truly, the best way to celebrate your countrys independence is by being a patriotic citizen. Happy Independence Day.",
+  },
+  {
+    id: 6,
+    wish: "May you enjoy this freedom of speech & freedom of choice for the rest of your Life. Happy Independence Day!",
+  },
+  {
+    id: 7,
+    wish: "May the glory of Independence Day be with us forever. Happy Independence Day!",
+  },
+  {
+    id: 8,
+    wish: "May your Independence Day day be filled with patriotic spirit. Happy Independence Day.",
+  },
+  {
+    id: 9,
+    wish: "Freedom in mind, Faith in our heart, Memories in our souls. Let’s salute the Nation on Independence Day!",
+  },
+  {
+    id: 10,
+    wish: "Together we can win the world, together we can conquer our fear and together we can be a happy place. Happy Independence Day!",
+  },
+];
