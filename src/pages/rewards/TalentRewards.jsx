@@ -32,7 +32,7 @@ const TalentRewards = () => {
   ];
   const talentDailyRews = [
     {
-      desc: "roomSkin",
+      desc: "roomSKIN",
       text: "1 day Room Skin",
     },
     {
@@ -40,11 +40,11 @@ const TalentRewards = () => {
       text: "1 day ROYAL profile frame",
     },
     {
-      desc: "1 day Celebration Audio theme",
+      desc: "celebrationRoomskin",
       text: "1 day Celebration Audio theme",
     },
     {
-      desc: "1 day Royalty room skin",
+      desc: "royaltiRoom",
       text: "1 day Royalty room skin",
     },
     {

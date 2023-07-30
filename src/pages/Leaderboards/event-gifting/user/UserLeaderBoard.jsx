@@ -6,11 +6,19 @@ import titleTag from "../../../../assets/event-gifting/leaderboard-tag.png";
 import EventGiftingLeaderboardItem from "../../../../components/EventGiftingLeaderboardItem";
 import EventGiftingTopper from "../../../../components/EventGiftingTopper";
 import { AppContext } from "../../../../AppContext";
+import { eventGftingPot } from "../../../../beansPot";
 
 const UserLeaderBoard = () => {
   const { leaderboardsData } = useContext(AppContext);
+  const { info } = useContext(AppContext);
 
   const [seeMore, setSeeMore] = useState(true);
+  const calculateEstRewards = (index) => {
+    const totalBeansPot = info?.eventGftingUserPot;
+    const percent = eventGftingPot.find((item) => item.rank === index)?.percent;
+    const result = totalBeansPot ? (percent / 100) * totalBeansPot : 0;
+    return Math.floor(result);
+  };
 
   return (
     <div className="main-leaderboard">
@@ -19,6 +27,8 @@ const UserLeaderBoard = () => {
         <div className="top1">
           <EventGiftingTopper
             user={leaderboardsData?.eventgiftingUserOverall[0]}
+            showEst={true}
+            calculateEstRewards={calculateEstRewards}
           />
         </div>
       )}
@@ -36,6 +46,7 @@ const UserLeaderBoard = () => {
               key={index}
               index={index + 2}
               showEst={true}
+              calculateEstRewards={calculateEstRewards}
             />
           ))}
       </div>

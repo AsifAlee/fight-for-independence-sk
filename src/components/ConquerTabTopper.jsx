@@ -5,7 +5,7 @@ import soldierIcon from "../assets/Conquer-tab/soldiers-icon.png";
 import unknownUser from "../assets/unknown-user.png";
 import "../styles/topper.scss";
 
-const ConquerTabTopper = ({ user, isToday }) => {
+const ConquerTabTopper = ({ user, isToday, calculateEstRewards }) => {
   return (
     <div className="conquertab-topper">
       <div className="topper-images">
@@ -18,12 +18,14 @@ const ConquerTabTopper = ({ user, isToday }) => {
       <div className="topper-details">
         <p className="name">{user.nickname}</p>
         <div className="est-rews">
-          {isToday === false ? "Rewards Won" : "Est rewards"}
+          {isToday === false
+            ? `Rewards Won ${calculateEstRewards(1)}`
+            : `Est Rewards ${calculateEstRewards(1)}`}
         </div>
 
         <div className="soldier-collected">
           <img className="soldier-icon" src={soldierIcon} />
-          <span>000</span>
+          <span>{user?.userScore}</span>
         </div>
       </div>
     </div>

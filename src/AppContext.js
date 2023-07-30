@@ -12,6 +12,10 @@ const EventProvider = ({ children }) => {
     teamId: 0,
     ownedCards: 0,
     sentCards: 0,
+    eventGftingUserPot: 0,
+    eventGftingTalentPot: 0,
+    conquerFortTodayPot: 0,
+    conquerFortYestPot: 0,
   });
   const [user, setUser] = useState({
     userId: 0,
@@ -41,7 +45,7 @@ const EventProvider = ({ children }) => {
   };
   const getInfo = () => {
     fetch(
-      `${baseUrl}api/activity/fightForIndependence/getUserEventInfo?userId=${testUserId}`
+      `${baseUrl}api/activity/fightForIndependence/getUserEventInfo?userId=${user?.uid}`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -56,10 +60,18 @@ const EventProvider = ({ children }) => {
           teamTotalSoldiersInfoList: response?.data?.teamTotalSoldiersInfoList,
           ownedCards: response?.data?.ownedCards,
           sentCards: response?.data?.sendCards,
+          eventGftingUserPot: response?.data?.userBeansPot,
+          eventGftingTalentPot: response?.data?.talentBeansPot,
+          conquerFortTodayPot: response?.data?.teamDailybeansPotList?.find(
+            (item) => item?.dayIndex === response?.data?.dayIndex
+          )?.potValue,
+          conquerFortYestPot: response?.data?.teamDailybeansPotList?.find(
+            (item) => item?.dayIndex === response?.data?.dayIndex - 1
+          )?.potValue,
         });
       })
       .catch((error) => {
-        console.erro(error);
+        console.error(error);
       });
   };
   const getUserOverallEventGifting = () => {
@@ -102,7 +114,7 @@ const EventProvider = ({ children }) => {
       .then((response) => {
         setLeaderboardData((prevData) => ({
           ...prevData,
-          eventGiftingDailyToday: response?.data?.list,
+          eventGiftingDailyToday: response?.data?.list || [],
         }));
       })
       .catch((error) => {
@@ -160,9 +172,7 @@ const EventProvider = ({ children }) => {
   };
   const getWarriorsToday = () => {
     fetch(
-      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=16&pageNum=1&pageSize=20&dayIndex=${
-        info?.dayIndex - 1
-      }`
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=16&pageNum=1&pageSize=20&dayIndex=${info?.dayIndex}`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -261,9 +271,7 @@ const EventProvider = ({ children }) => {
 
   const getFanfollowerUser = () => {
     fetch(
-      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=14&pageNum=1&pageSize=20&dayIndex=${
-        info?.dayIndex - 1
-      }`
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=14&pageNum=1&pageSize=20&dayIndex=${info?.dayIndex}`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -279,9 +287,7 @@ const EventProvider = ({ children }) => {
 
   const getFanfollowerTalent = () => {
     fetch(
-      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=15&pageNum=1&pageSize=20&dayIndex=${
-        info?.dayIndex - 1
-      }`
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=15&pageNum=1&pageSize=20&followUserId=${user?.userId}&dayIndex=${info?.dayIndex}`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -324,7 +330,7 @@ const EventProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    getInfo();
+    // getInfo();
     getTalentOverallEventGifting();
     getUserOverallEventGifting();
     getUserSendCardFanFollower();
@@ -343,6 +349,12 @@ const EventProvider = ({ children }) => {
     getFanfollowerTalent();
   }, [info?.dayIndex]);
 
+  useEffect(() => {
+    if (user.userId) {
+      getInfo();
+    }
+  }, [user.userId]);
+
   return (
     <AppContext.Provider
       value={{
@@ -356,6 +368,7 @@ const EventProvider = ({ children }) => {
         getCollectSoldiers,
         getFanfollowerTalent,
         getFanfollowerUser,
+        user,
       }}
     >
       {children}

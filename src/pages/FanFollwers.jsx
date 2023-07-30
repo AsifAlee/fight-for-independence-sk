@@ -18,7 +18,7 @@ import tryAgain from "../assets/popup/try-again.png";
 import { baseUrl, testToken, testUserId } from "../utils/api";
 
 const FanFollwers = () => {
-  const { info, getInfo, leaderboardsData } = useContext(AppContext);
+  const { info, getInfo, leaderboardsData, user } = useContext(AppContext);
   const [showSendCard, setShowCard] = useState(false);
   const [buyCardPopup, setBuyCardPopup] = useState(false);
   const [rewardsTabs, setRewardsTabs] = useState({
@@ -73,8 +73,10 @@ const FanFollwers = () => {
     fetch(`${baseUrl}api/activity/fightForIndependence/buyCard`, {
       method: "POST",
       headers: {
-        token: testToken,
-        userId: testUserId,
+        // token: testToken,
+        // userId: testUserId,
+        token: user.token,
+        userId: user.userId,
       },
     })
       .then((response) => response.json())

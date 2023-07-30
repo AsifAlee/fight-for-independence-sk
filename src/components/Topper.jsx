@@ -19,7 +19,7 @@ const Topper = ({ user }) => {
         />
       </div>
       <div className="topper-details">
-        <p className="name">{user.nickname}</p>
+        <p className="name">{user?.nickname}</p>
         <div
           className="reward-images"
           style={{

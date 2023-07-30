@@ -12,7 +12,7 @@ import tryAgain from "../assets/popup/try-again.png";
 import wishSent from "../assets/popup/wish-sent.png";
 
 const SendCardPopup = ({ popUpHandler, title }) => {
-  const { getInfo, info } = useContext(AppContext);
+  const { getInfo, info, user } = useContext(AppContext);
   const [cardRecvStatus, setCardRecvStatus] = useState("");
   const [radioSelected, setIsRadioSelected] = useState(null);
   const [inputValue, setInputValue] = useState("");
@@ -49,9 +49,12 @@ const SendCardPopup = ({ popUpHandler, title }) => {
       {
         method: "POST",
         headers: {
-          userId: testUserId,
-          token: testToken,
-          sendId: testUserId,
+          // userId: testUserId,
+          // token: testToken,
+          // sendId: testUserId,
+          userId: user.userId,
+          token: user.token,
+          sendId: user.userId,
           "Content-Type": "application/json",
         },
       }

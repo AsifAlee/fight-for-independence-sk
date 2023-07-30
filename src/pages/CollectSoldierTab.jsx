@@ -17,7 +17,7 @@ import tankShoot from "../assets/game/tank-shoot.gif";
 import { getRandomNumber } from "../utils/functions";
 
 const CollectSoldierTab = () => {
-  const { info, getInfo, leaderboardsData, getCollectSoldiers } =
+  const { info, getInfo, leaderboardsData, getCollectSoldiers, user } =
     useContext(AppContext);
   const { collectSoldiers } = leaderboardsData;
   const [seeMore, setSeeMore] = useState(true);
@@ -46,10 +46,10 @@ const CollectSoldierTab = () => {
       {
         method: "POST",
         headers: {
-          userId: testUserId,
-          token: testToken,
-          // userId: user.uid,
-          // token: user.token,
+          // userId: testUserId,
+          // token: testToken,
+          userId: user.userId,
+          token: user.token,
           "Content-Type": "application/json",
         },
       }
@@ -73,7 +73,7 @@ const CollectSoldierTab = () => {
         getInfo();
       })
       .catch((error) => {
-        console.erro(error);
+        console.error(error);
       });
   };
   const onUpCheck = (e) => {

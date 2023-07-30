@@ -6,8 +6,9 @@ import bean from "../assets/event-gifting/bean-icon.png";
 import unknownUser from "../assets/unknown-user.png";
 import "../styles/topper.scss";
 import followBtn from "../assets/fanfollowers/follow-btn.png";
+import followedBtn from "../assets/fanfollowers/followed.png";
 
-const FanFollwerTopper = ({ user, isUser }) => {
+const FanFollwerTopper = ({ user, isUser, followTalent }) => {
   return (
     <div className="fan-follower-topper">
       <div className="topper-images">
@@ -21,8 +22,9 @@ const FanFollwerTopper = ({ user, isUser }) => {
         <p className="name">{user.nickname}</p>
         {isUser === false && (
           <img
-            src={followBtn}
+            src={user?.isFollow ? followedBtn : followBtn}
             style={{ width: "5vw", position: "relative", left: "-5vw" }}
+            onClick={() => followTalent(user?.userId)}
           />
         )}
 

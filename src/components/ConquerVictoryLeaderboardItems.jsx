@@ -4,7 +4,12 @@ import top2 from "../assets/top-2-frame.png";
 import top3 from "../assets/top-3-frame.png";
 import soldierIcon from "../assets/Conquer-tab/soldiers-icon.png";
 import unknowUser from "../assets/unknown-user.png";
-const ConquerVictoryLeaderboardItems = ({ user, index, isToday }) => {
+const ConquerVictoryLeaderboardItems = ({
+  user,
+  index,
+  isToday,
+  calculateEstRewards,
+}) => {
   return (
     <div className="conquer-victory-leaderboard-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
@@ -29,7 +34,11 @@ const ConquerVictoryLeaderboardItems = ({ user, index, isToday }) => {
           className="middle-div"
           style={{ visibility: index > 5 && "hidden" }}
         >
-          {isToday === false ? "Rewards Won" : "Est Rewards"}
+          {isToday === false
+            ? `Rewards won ${calculateEstRewards && calculateEstRewards(index)}`
+            : `Est Rewards ${
+                calculateEstRewards && calculateEstRewards(index)
+              }`}
         </div>
       }
       <div className="right-div">

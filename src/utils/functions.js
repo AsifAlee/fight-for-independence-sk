@@ -117,6 +117,16 @@ export function getRewardsImage(rewDesc) {
     rewImg = baseUrl + "/streamkar/rewards/doyenFrame.png";
   } else if (rewDesc?.includes("Radiance Profile Frame")) {
     rewImg = baseUrl + "/streamkar/rewards/radianceGold.png";
+  } else if (rewDesc?.includes("roomSKIN")) {
+    rewImg = baseUrl + "/streamkar/rewards/thunderRoomskin.png";
+  } else if (rewDesc?.includes("royalProfileFrame")) {
+    rewImg = baseUrl + "/streamkar/rewards/royalProfileFrame.png";
+  } else if (rewDesc?.includes("celebrationRoomskin")) {
+    rewImg = baseUrl + "/streamkar/rewards/celebrationRoomskin.png";
+  } else if (rewDesc?.includes("royaltiRoom")) {
+    rewImg = baseUrl + "/streamkar/rewards/royaltiRoom.png";
+  } else if (rewDesc?.includes("ace")) {
+    rewImg = baseUrl + "/streamkar/rewards/ace.png";
   } else {
     rewImg = baseUrl + "/streamkar/rewards/noRew.png";
   }

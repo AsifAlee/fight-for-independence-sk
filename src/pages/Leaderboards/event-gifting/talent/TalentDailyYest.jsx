@@ -14,7 +14,11 @@ const TalentDailyYest = () => {
     <div className="event-gifting-leaderboard">
       {eventGiftingDailyYest[0] && (
         <div className="top1">
-          <EventGiftingTopper user={eventGiftingDailyYest[0]} />
+          <EventGiftingTopper
+            user={eventGiftingDailyYest[0]}
+            showEst={false}
+            isTalent={true}
+          />
         </div>
       )}
 
@@ -30,7 +34,9 @@ const TalentDailyYest = () => {
               rewards={[]}
               key={index}
               index={index + 2}
-              showEst={true}
+              showEst={false}
+              isTalent={true}
+              isDaily={true}
             />
           ))}
       </div>

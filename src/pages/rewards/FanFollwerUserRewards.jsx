@@ -10,19 +10,19 @@ const FanFollwerUserRewards = () => {
     },
     {
       desc: "beansbag",
-      text: "15,000 beansbag",
+      text: "15,000 beans",
     },
     {
       desc: "beansbag",
-      text: "10,000 beansbag",
+      text: "10,000 beans",
     },
     {
       desc: "beansbag",
-      text: "10,000 beansbag",
+      text: "10,000 beans",
     },
     {
       desc: "beansbag",
-      text: "5,000 beansbag",
+      text: "5,000 beans",
     },
   ];
   return (

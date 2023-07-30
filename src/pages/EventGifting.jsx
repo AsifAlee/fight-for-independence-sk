@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import giftTag from "../assets/event-gifting/event-gift-tag.png";
 import "../styles/event-gifting.scss";
 import Gift from "../components/Gift";
@@ -6,26 +6,19 @@ import TabButton from "../components/TabButton";
 import userBtn from "../assets/event-gifting/user-btn.png";
 import talentBtn from "../assets/event-gifting/talent-btn.png";
 import BeansPot from "../components/BeansPot";
-import RewardsSlider from "../components/RewardsSlider";
-import rewardsTag from "../assets/event-gifting/rewards-tag.png";
-import SwitchButton from "../components/SwitchButton";
-import dailyBtn from "../assets/event-gifting/daily-btn.png";
-import overallBtn from "../assets/event-gifting/Overall-btn.png";
-import titleTag from "../assets/event-gifting/leaderboard-tag.png";
-import LeaderboardItem from "../components/LeaderboardItem";
-import Topper from "../components/Topper";
 import { testLeaderData } from "../utils/testData";
 import UserLeaderBoard from "./Leaderboards/event-gifting/user/UserLeaderBoard";
 import TalentLeaderBoard from "./Leaderboards/event-gifting/talent/TalentLeaderBoard";
 import TalentRewards from "./rewards/TalentRewards";
 import UserRewards from "./rewards/UserRewards";
+import { AppContext } from "../AppContext";
 
 const EventGifting = () => {
   const [beansPotTabs, setBeansPotTabs] = useState({
     user: true,
     talent: false,
   });
-  const [seeMore, setSeeMore] = useState(true);
+  const { info } = useContext(AppContext);
 
   const [rewardsTabs, setRewardsTabs] = useState({
     user: true,
@@ -36,33 +29,6 @@ const EventGifting = () => {
     user: false,
     talent: true,
   });
-
-  const dailOverallRewards = [
-    {
-      rank: "1st",
-      text: "40% of the beans pot",
-    },
-    {
-      rank: "2nd",
-
-      text: "30% of the beans pot",
-    },
-    {
-      rank: "3rd",
-
-      text: "10% of the beans pot",
-    },
-    {
-      rank: "4th",
-
-      text: "10% of the beans pot",
-    },
-    {
-      rank: "5th",
-
-      text: "10% of the beans pot",
-    },
-  ];
 
   const switchBeansTabs = (name) => {
     switch (name) {
@@ -150,7 +116,13 @@ const EventGifting = () => {
           />
         </div>
 
-        <BeansPot />
+        <BeansPot
+          potValue={
+            beansPotTabs.talent
+              ? info?.eventGftingTalentPot
+              : info?.eventGftingUserPot
+          }
+        />
       </div>
 
       <div className="rewards">

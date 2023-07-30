@@ -70,11 +70,11 @@ const ConquerVictoryFortTab = () => {
       {
         method: "POST",
         headers: {
-          userId: testUserId,
-          token: testToken,
+          // userId: testUserId,
+          // token: testToken,
 
-          // userId: user.uid,
-          // token: user.token,
+          userId: user.userId,
+          token: user.token,
           "Content-Type": "application/json",
         },
       }
@@ -93,10 +93,10 @@ const ConquerVictoryFortTab = () => {
     fetch(`${baseUrl}api/activity/fightForIndependence/conquerFort`, {
       method: "POST",
       headers: {
-        userId: testUserId,
-        token: testToken,
-        // userId: user.uid,
-        // token: user.token,
+        // userId: testUserId,
+        // token: testToken,
+        userId: user.userId,
+        token: user.token,
         "Content-Type": "application/json",
       },
     })

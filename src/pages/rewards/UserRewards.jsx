@@ -7,7 +7,7 @@ import rewardsTag from "../../assets/event-gifting/rewards-tag.png";
 import switchBg from "../../assets/event-gifting/daily-overall-bg.png";
 
 const UserRewards = () => {
-  const [isSliderOn, setIsSliderOn] = useState(false);
+  // const [isSliderOn, setIsSliderOn] = useState(false);
 
   const userOveralRews = [
     {
@@ -31,39 +31,39 @@ const UserRewards = () => {
       text: "5% of beans pot",
     },
   ];
-  const userDailyRews = [
-    {
-      desc: "beansbag",
-      text: "40% of beans pot",
-    },
-    {
-      desc: "beansbag",
-      text: "30% of beans pot",
-    },
-    {
-      desc: "beansbag",
-      text: "10% of beans pot",
-    },
-    {
-      desc: "beansbag",
-      text: "10% of beans pot",
-    },
-    {
-      desc: "beansbag",
-      text: "10% of beans pot",
-    },
-  ];
-  function handleSliderToggle(isOn) {
-    setIsSliderOn(isOn);
-  }
+  // const userDailyRews = [
+  //   {
+  //     desc: "beansbag",
+  //     text: "40% of beans pot",
+  //   },
+  //   {
+  //     desc: "beansbag",
+  //     text: "30% of beans pot",
+  //   },
+  //   {
+  //     desc: "beansbag",
+  //     text: "10% of beans pot",
+  //   },
+  //   {
+  //     desc: "beansbag",
+  //     text: "10% of beans pot",
+  //   },
+  //   {
+  //     desc: "beansbag",
+  //     text: "10% of beans pot",
+  //   },
+  // ];
+  // function handleSliderToggle(isOn) {
+  //   setIsSliderOn(isOn);
+  // }
 
   return (
     <div>
-      <SwitchButton
+      {/* <SwitchButton
         onToggle={handleSliderToggle}
         btn={isSliderOn ? overallBtn : dailyBtn}
         bg={switchBg}
-      />
+      /> */}
 
       <div className="rewards-container">
         <div
@@ -77,7 +77,8 @@ const UserRewards = () => {
         </div>
         <div className="slider-container">
           <RewardsSlider
-            rewards={isSliderOn ? userOveralRews : userDailyRews}
+            // rewards={isSliderOn ? userOveralRews : userDailyRews}
+            rewards={userOveralRews}
           />
         </div>
       </div>

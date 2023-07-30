@@ -65,7 +65,7 @@
       }
       .right-div {
         .beans-counter {
-          width: 30vw;
+          width: 40vw;
           height: 12vw;
           background-image: url("../assets//event-gifting/beans-amount-bg.png");
           background-size: 100% 100%;
@@ -73,6 +73,13 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          
+          span{
+            font-size: 3vw;
+            margin-top: 3vw;
+            margin-left: 5vw;
+        
+          }
         }
 
         .beanspot-text {

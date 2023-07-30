@@ -143,7 +143,7 @@
     }
   }
   .topper-details {
-    width: 70%;
+    min-width: 80%;
     height: 17vw;
     background-image: url("../assets//top-1-bg.png");
     background-size: 100% 100%;
@@ -168,10 +168,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-right: 2vw;
 
       img {
         width: 4vw;
       }
+    }
+    .est-rews{
+      // border: 1px solid;
+    font-size: 2.5vw;
+    text-align: center;
+    width: 20vw;
     }
   }
 }

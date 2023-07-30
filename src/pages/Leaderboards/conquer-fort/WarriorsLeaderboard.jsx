@@ -5,22 +5,27 @@ import { testLeaderData } from "../../../utils/testData";
 import ConquerTabTopper from "../../../components/ConquerTabTopper";
 import ConquerVictoryLeaderboardItems from "../../../components/ConquerVictoryLeaderboardItems";
 import { AppContext } from "../../../AppContext";
+import { conquerFortPot } from "../../../beansPot";
 const WarriorLeaderboard = ({ isSliderOn }) => {
   const [seeMore, setSeeMore] = useState(true);
-  const { leaderboardsData } = useContext(AppContext);
-
-  const { eventGiftingDailyToday, eventGiftingDailyYest } = leaderboardsData;
-  const [currentData, setCurrentData] = useState(eventGiftingDailyToday);
-  //   debugger;
+  const { leaderboardsData, info } = useContext(AppContext);
+  const { warriorsToday, warriorsYest } = leaderboardsData;
+  const [currentData, setCurrentData] = useState(warriorsToday);
+  const calculateEstRewards = (index) => {
+    const totalBeansPot = info?.conquerFortTodayPot;
+    const percent = conquerFortPot.find((item) => item.rank === index)?.percent;
+    const result = totalBeansPot ? (percent / 100) * totalBeansPot : 0;
+    return Math.floor(result);
+  };
   useEffect(() => {
-    setCurrentData(eventGiftingDailyToday);
+    setCurrentData(warriorsToday);
   }, [leaderboardsData]);
 
   useEffect(() => {
     if (isSliderOn) {
-      setCurrentData(eventGiftingDailyYest);
+      setCurrentData(warriorsYest);
     } else {
-      setCurrentData(eventGiftingDailyToday);
+      setCurrentData(warriorsToday);
     }
   }, [isSliderOn]);
   return (
@@ -33,6 +38,7 @@ const WarriorLeaderboard = ({ isSliderOn }) => {
               <ConquerTabTopper
                 user={currentData[0]}
                 isToday={isSliderOn === false}
+                calculateEstRewards={calculateEstRewards}
               />
             </div>
           )}
@@ -49,6 +55,7 @@ const WarriorLeaderboard = ({ isSliderOn }) => {
                 index={index + 2}
                 showEst={true}
                 isToday={isSliderOn === false}
+                calculateEstRewards={calculateEstRewards}
               />
             ))}
           </div>

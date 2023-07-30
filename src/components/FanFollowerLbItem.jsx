@@ -4,6 +4,8 @@ import top2 from "../assets/top-2-frame.png";
 import top3 from "../assets/top-3-frame.png";
 import bean from "../assets/event-gifting/bean-icon.png";
 import followBtn from "../assets/fanfollowers/follow-btn.png";
+import followedBtn from "../assets/fanfollowers/followed.png";
+
 const FanFollowerLbItem = ({ user, index, isUser }) => {
   return (
     <div className="fan-follower-lb-item">
@@ -20,7 +22,10 @@ const FanFollowerLbItem = ({ user, index, isUser }) => {
           )}
         </div>
         <span className="name">{user?.nickname}</span>
-        <img src={followBtn} style={{ width: "5vw" }} />
+        <img
+          style={{ width: "5vw" }}
+          src={user?.isFollow ? followedBtn : followBtn}
+        />
       </div>
 
       <div className="middle-div" style={{ visibility: index > 5 && "hidden" }}>

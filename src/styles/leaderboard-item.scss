@@ -202,7 +202,7 @@
 }
 
 .event-gifiting-leaderboard-item {
-  width: 88%;
+  // width: 88%;
   height: 15vw;
   background-image: url("../assets/leaderboard-name-strip.png");
   background-size: contain;
@@ -213,6 +213,7 @@
   padding-left: 3vw;
   margin: 0 auto;
   background-position: center;
+  margin-left: 4vw;
   // justify-content: space-around;
 
   .left-div {
@@ -297,12 +298,13 @@
     }
   }
   .middle-div {
-    font-size: 1.6vw;
+    font-size: 1.8vw;
     position: relative;
     left: 3vw;
     width: 14vw;
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
 }
 

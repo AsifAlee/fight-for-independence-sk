@@ -1,11 +1,11 @@
 import React from "react";
 import "../styles/leaderboard-item.scss";
-import LeaderBoardSlider from "./LeaderBoardSlider";
 import top2 from "../assets/top-2-frame.png";
 import top3 from "../assets/top-3-frame.png";
 import beansIcon from "../assets/event-gifting/bean-icon.png";
 import "../styles/leaderboard-item.scss";
 import unknownUser from "../assets/unknown-user.png";
+import gem from "../assets/gems.png";
 
 import { testData } from "../utils/testData";
 const EventGiftingLeaderboardItem = ({
@@ -14,6 +14,9 @@ const EventGiftingLeaderboardItem = ({
   index,
   showEst,
   isUser,
+  calculateEstRewards,
+  isTalent,
+  isDaily,
 }) => {
   return (
     <div className="event-gifiting-leaderboard-item">
@@ -34,17 +37,19 @@ const EventGiftingLeaderboardItem = ({
         </div>
         <span className="name">{user?.nickname}</span>
       </div>
-      {
-        <div
-          className="middle-div"
-          style={{ visibility: index > 5 && "hidden" }}
-        >
-          Est Rewards
-        </div>
-      }
-      <div className="right-div">
-        <span>{`${user?.userScore} beans spent `}</span>
-        <img src={beansIcon} className="bean-icon" />
+
+      <div className="middle-div" style={{ visibility: index > 5 && "hidden" }}>
+        Est Rewards {calculateEstRewards ? calculateEstRewards(index) : ""}
+      </div>
+
+      <div
+        className="right-div"
+        // style={{ left: index > 5 || isDaily ? "20vw" : "" }}
+      >
+        <span>{`${user?.userScore} ${
+          isTalent ? "gems recieved" : "beans spent"
+        }  `}</span>
+        <img src={isTalent ? gem : beansIcon} className="bean-icon" />
       </div>
     </div>
   );
