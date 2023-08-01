@@ -4,7 +4,6 @@ import LeaderboardSliderItem from "./LeaderboardSliderItem";
 
 const LeaderBoardSlider = ({ rewards }) => {
   // debugger;
-  console.log("rewards:", rewards);
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
   const slideInterval = 2000;

@@ -1,15 +1,21 @@
 .dynamic-card{
     width: 30vw;
-    height: 15vw;
-    background-color: yellow;
+    height: 18vw;
+    // background-color: yellow;
     border-radius: 2vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    background-image: url('../assets//card/dynamic-bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+   padding: 2vw;
+
+
     .title{
-     font-size: 4vw;
-    color: black;
+ 
+    width: 27vw;
 
     }
     .soldiers{
@@ -17,4 +23,13 @@
     color: black;
 
     }
+
+
+}
+.active-card{
+    background-image: url('../assets/card/active-team.gif') !important;
+}
+
+.unactive-card{
+    background-image: url('../assets/card/unactive-team.gif') !important;
 }

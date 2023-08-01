@@ -9,7 +9,6 @@ import { testData } from "../utils/testData";
 import { formatData } from "../utils/functions";
 const LeaderboardItem = ({ user, rewards, index, showEst }) => {
   let currentReward = formatData(JSON.parse(user.desc));
-  console.log("current reward:", currentReward);
   return (
     <div className="leaderboard-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>

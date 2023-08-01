@@ -16,6 +16,13 @@
       top: 7vw;
       left: 6vw;
     }
+
+    .reward-icon{
+      width: 8vw;
+      position: absolute;
+      right: 4vw;
+      top: 2vw;
+    }
   }
   .chances {
     width: 100%;
@@ -131,5 +138,46 @@
       url("../assets/game/tank-shoot.gif");
     visibility: hidden;
     top: 0px;
+  }
+
+  .marquee {
+    .marquee-item {
+      display: flex;
+      // border: 1px solid;
+      padding: 0.5vw;
+      font-size: 2vw;
+      border-radius: 5vw;
+      margin-right: 4vw;
+      // background-color: brown;
+      font-size: 2.5vw;
+      // font-family: 'Acme-Regular';
+      color: white;
+      margin-top: 2vw;
+      background-image: url('../assets/tickertape.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+
+      .user-img {
+        width: 7vw;
+        height: 7vw;
+        border-radius: 100%;
+      }
+
+      .user-details {
+        display: flex;
+        align-items: center;
+
+        .name {
+         
+          margin-left: 0.7vw;
+        }
+        .rew-img {
+          width: 5vw;
+          margin-left: 0.5vw;
+          margin-right: 0.5vw;
+        }
+      }
+    }
   }
 }

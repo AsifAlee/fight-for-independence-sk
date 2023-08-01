@@ -13,6 +13,8 @@ const PopUp = (props) => {
     isCollSold,
     isSendCard,
     isOverflow,
+    isSendCardPopup,
+    isRewardHist,
   } = props;
 
   useEffect(() => {
@@ -35,12 +37,18 @@ const PopUp = (props) => {
               ? "102vw"
               : isGame
               ? "63vw"
-              : isMilestone
-              ? "83vw"
+              : isRewardHist
+              ? "90vw"
               : ""
           }`,
           width: `${
-            isAccPopUp ? "85%" : isRewards ? "85%" : isMilestone ? "98%" : ""
+            isSendCardPopup
+              ? "95%"
+              : isRewards
+              ? "85%"
+              : isMilestone
+              ? "98%"
+              : ""
           }`,
           overflowY: isOverflow ? "auto" : "",
         }}

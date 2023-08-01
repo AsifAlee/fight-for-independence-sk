@@ -93,9 +93,9 @@ const EventGifting = () => {
               alignItems: "center",
             }}
           >
-            <Gift />
-            <Gift />
-            <Gift />
+            <Gift id={"40001520"} name="White Horse" />
+            <Gift id={"40001676"} name="Fighter" />
+            <Gift id={"40001528"} name="MITHAI" />
           </div>
         </div>
       </div>

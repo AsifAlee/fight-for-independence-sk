@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import PopUp from "../components/PopUp";
 import bg from "../assets/card/card-popup-bg.png";
 import congTag from "../assets/popup/congratulation.png";
-import wishCard from "../assets/card/Card1.png";
+import wishCard from "../assets/card/card-1.gif";
 import { baseUrl, testToken, testUserId } from "../utils/api";
 import User from "../components/User";
 import RadioSelect from "../components/RadioSelect";
@@ -10,6 +10,7 @@ import { AppContext } from "../AppContext";
 import RecvCardPopup from "./RecieveCardPopup";
 import tryAgain from "../assets/popup/try-again.png";
 import wishSent from "../assets/popup/wish-sent.png";
+import { wishes } from "../utils/functions";
 
 const SendCardPopup = ({ popUpHandler, title }) => {
   const { getInfo, info, user } = useContext(AppContext);
@@ -19,7 +20,8 @@ const SendCardPopup = ({ popUpHandler, title }) => {
   const [foundUsers, setFoundUsers] = useState([]);
   const [recvCardPopup, setRecvCardPopup] = useState(false);
   const [isCardSendSuccess, setIsCardSendSuccess] = useState(false);
-
+  const currentBackgroundImg = wishes.find((item) => item.id === info?.wishId);
+  console.log("current background:", currentBackgroundImg);
   const closeRecvCardPopup = () => {
     setRecvCardPopup(false);
   };
@@ -96,10 +98,43 @@ const SendCardPopup = ({ popUpHandler, title }) => {
       popUpHandler={popUpHandler}
       isSendCard={true}
       isOverflow={true}
+      isSendCardPopup={true}
     >
       <div className="send-card-popup">
-        <div className="wish-card">
-          <img src={wishCard} className="card" />
+        <div
+          className="wish-card"
+          style={{
+            backgroundImage: `url(${currentBackgroundImg.bg})`,
+            width: currentBackgroundImg?.isPortrait && "92%",
+            height: currentBackgroundImg?.isPortrait && "46vw",
+          }}
+        >
+          {currentBackgroundImg.isPortrait ? (
+            <div
+              className={`${
+                currentBackgroundImg.isPortrait && "portrait-wish-text"
+              }`}
+            >
+              {currentBackgroundImg.wish}
+              <p style={{ position: "absolute", top: "23vw", fontSize: "4vw" }}>
+                Happy Indepencdenc Day 2023!
+              </p>
+            </div>
+          ) : (
+            <div className="wish-card">
+              {currentBackgroundImg.wish}
+              <div
+                style={{
+                  position: "relative",
+                  width: " 41vw",
+                  top: "11vw",
+                  left: "16vw",
+                }}
+              >
+                Happy Independence Day!
+              </div>
+            </div>
+          )}
         </div>
         <div className="search-talent">
           <input

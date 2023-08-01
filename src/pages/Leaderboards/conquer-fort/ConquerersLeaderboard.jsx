@@ -5,22 +5,31 @@ import { testLeaderData } from "../../../utils/testData";
 import ConquerTabTopper from "../../../components/ConquerTabTopper";
 import ConquerVictoryLeaderboardItems from "../../../components/ConquerVictoryLeaderboardItems";
 import { AppContext } from "../../../AppContext";
+import { conquerFortPot } from "../../../beansPot";
 const ConquererLeaderboard = ({ isSliderOn }) => {
   const [seeMore, setSeeMore] = useState(true);
-  const { leaderboardsData } = useContext(AppContext);
+  const { leaderboardsData, info } = useContext(AppContext);
 
-  const { eventGiftingDailyToday, eventGiftingDailyYest } = leaderboardsData;
-  const [currentData, setCurrentData] = useState(eventGiftingDailyToday);
+  const { conquerersToday, conquerersYest } = leaderboardsData;
+  const [currentData, setCurrentData] = useState(conquerersToday);
   //   debugger;
+  const calculateEstRewards = (index, isToday) => {
+    const totalBeansPot = isToday
+      ? info?.conquerFortTodayPot
+      : info?.conquerFortYestPot;
+    const percent = conquerFortPot.find((item) => item.rank === index)?.percent;
+    const result = totalBeansPot ? (percent / 100) * totalBeansPot : 0;
+    return Math.floor(result);
+  };
   useEffect(() => {
-    setCurrentData(eventGiftingDailyToday);
+    setCurrentData(conquerersToday);
   }, [leaderboardsData]);
 
   useEffect(() => {
     if (isSliderOn) {
-      setCurrentData(eventGiftingDailyYest);
+      setCurrentData(conquerersYest);
     } else {
-      setCurrentData(eventGiftingDailyToday);
+      setCurrentData(conquerersToday);
     }
   }, [isSliderOn]);
   return (
@@ -33,6 +42,7 @@ const ConquererLeaderboard = ({ isSliderOn }) => {
               <ConquerTabTopper
                 user={currentData[0]}
                 isToday={isSliderOn === false}
+                calculateEstRewards={calculateEstRewards}
               />
             </div>
           )}
@@ -49,6 +59,7 @@ const ConquererLeaderboard = ({ isSliderOn }) => {
                 index={index + 2}
                 showEst={true}
                 isToday={isSliderOn === false}
+                calculateEstRewards={calculateEstRewards}
               />
             ))}
           </div>

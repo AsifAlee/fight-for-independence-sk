@@ -130,12 +130,38 @@
     align-items: center;
     padding-bottom: 5vw;
 
+    .wish-card{
+      width: 83%;
+      height: 89vw;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    // color: #432926;
+    flex-direction: column;
+
+    .portrait-wish-text{
+      font-size: 3.5vw;
+    width: 56%;
+    // border: 1px solid;
+    position: relative;
+    left: 17vw;
+    top: -14vw;
+    color: #6e1f03;
+    font-weight: bold;
+    }
+    }
+
     .card{
       width: 40vw;
     }
 
     .search-talent{
       display: flex;
+      margin-top: 4vw;
       .input-id{
         width: 40vw;
         height: 8vw;
@@ -215,5 +241,54 @@
     font-size: 3vw;
     width: 90%;
   }
+}
+
+.info-table{
+  border: 1px solid;
+  position: relative;
+  border-collapse: collapse;
+
+  left: 9vw;
+  top: 4vw;
+  min-width: 63vw;
+
+
+  tr td{
+    border: 1px solid;
+    padding: 2vw;
+    font-size: 2.7vw;
+    text-align: center;
+  }
+  thead th{
+    border: 1px solid;
+    font-size: 3vw;
+    text-align: center;
+    padding:2vw ;
+  }
+}
+
+.join-team-popup{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 80%;
+  text-align: center;
+  font-size: 3vw;
+  text-align: center;
+  width: 98%;
+}
+
+.reward-hist-popup{
+ 
+  // display: flex;
+  // justify-content: center;
+  // flex-direction: column;
+  // align-items: center;
+  height: 71vw;
+  overflow-y: auto;
+  gap: 1vw;
+  width: 88%;
+  margin: 0 auto;
+  
 }
 }

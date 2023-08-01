@@ -15,7 +15,6 @@ const ConquerFortPopup = ({
   let newRewards = rewardsContent?.includes("+")
     ? rewardsContent.split("+")
     : rewardsContent;
-  console.log("the rewards:", newRewards);
   const { info } = useContext(AppContext);
 
   return (

@@ -1,4 +1,7 @@
 import { baseUrl } from "./api";
+import card1 from "../assets/card/card-1.gif";
+import card2 from "../assets/card/card-2.gif";
+import card3 from "../assets/card/card-3.gif";
 
 export function getRewardsImage(rewDesc) {
   var rewImg;
@@ -127,6 +130,14 @@ export function getRewardsImage(rewDesc) {
     rewImg = baseUrl + "/streamkar/rewards/royaltiRoom.png";
   } else if (rewDesc?.includes("ace")) {
     rewImg = baseUrl + "/streamkar/rewards/ace.png";
+  } else if (rewDesc?.includes("Victory Slide")) {
+    rewImg = baseUrl + "/streamkar/rewards/victorySlide.png";
+  } else if (rewDesc?.includes("Phantom")) {
+    rewImg = baseUrl + "/streamkar/rewards/phantom.png";
+  } else if (rewDesc?.includes("Hummer Premium")) {
+    rewImg = baseUrl + "/streamkar/rewards/hummer.png";
+  } else if (rewDesc?.includes("Phantom")) {
+    rewImg = baseUrl + "/streamkar/rewards/hummer.png";
   } else {
     rewImg = baseUrl + "/streamkar/rewards/noRew.png";
   }
@@ -189,38 +200,54 @@ export const wishes = [
   {
     id: 1,
     wish: "May this spirit of freedom lead us all to success and glory in life. Happy Independence Day!",
+    bg: card3,
   },
-  { id: 2, wish: "Saluting the entire nation, Happy Independence day 2023!" },
+  {
+    id: 2,
+    wish: "Saluting the entire nation, Happy Independence day 2023!",
+    bg: card1,
+    isPortrait: true,
+  },
   {
     id: 3,
     wish: "Freedom is the way God intended us; Lets celebrate Freedom! Happy Independence Day.",
+    bg: card1,
+    isPortrait: true,
   },
   {
     id: 4,
     wish: "Freedom is the most precious thing in every humans life. Happy Independence Day!",
+    bg: card1,
+    isPortrait: true,
   },
   {
     id: 5,
     wish: "Truly, the best way to celebrate your countrys independence is by being a patriotic citizen. Happy Independence Day.",
+    bg: card2,
   },
   {
     id: 6,
     wish: "May you enjoy this freedom of speech & freedom of choice for the rest of your Life. Happy Independence Day!",
+    bg: card2,
   },
   {
     id: 7,
     wish: "May the glory of Independence Day be with us forever. Happy Independence Day!",
+    bg: card3,
   },
   {
     id: 8,
     wish: "May your Independence Day day be filled with patriotic spirit. Happy Independence Day.",
+    bg: card3,
   },
   {
     id: 9,
     wish: "Freedom in mind, Faith in our heart, Memories in our souls. Let’s salute the Nation on Independence Day!",
+    bg: card2,
   },
   {
     id: 10,
     wish: "Together we can win the world, together we can conquer our fear and together we can be a happy place. Happy Independence Day!",
+    bg: card2,
   },
 ];

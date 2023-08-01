@@ -16,11 +16,17 @@ const EventProvider = ({ children }) => {
     eventGftingTalentPot: 0,
     conquerFortTodayPot: 0,
     conquerFortYestPot: 0,
+    wishId: 0,
   });
   const [user, setUser] = useState({
     userId: 0,
     token: "",
   });
+  const [marqueeData, setMarqueeData] = useState({
+    collectSoldier: [],
+    conquerFort: [],
+  });
+  const [soldiersRecords, setSoldierRecord] = useState([]);
   const [leaderboardsData, setLeaderboardData] = useState({
     eventgiftingUserOverall: [],
     eventgiftingTalentOverall: [],
@@ -45,7 +51,7 @@ const EventProvider = ({ children }) => {
   };
   const getInfo = () => {
     fetch(
-      `${baseUrl}api/activity/fightForIndependence/getUserEventInfo?userId=${user?.uid}`
+      `${baseUrl}api/activity/fightForIndependence/getUserEventInfo?userId=${user.userId}`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -68,6 +74,7 @@ const EventProvider = ({ children }) => {
           conquerFortYestPot: response?.data?.teamDailybeansPotList?.find(
             (item) => item?.dayIndex === response?.data?.dayIndex - 1
           )?.potValue,
+          wishId: response?.data?.wishId,
         });
       })
       .catch((error) => {
@@ -316,11 +323,46 @@ const EventProvider = ({ children }) => {
         console.error(error);
       });
   };
+
+  const getSoldierRecords = () => {
+    fetch(
+      `${baseUrl}api/activity/fightForIndependence/getRecord?userId=596492373&pageNum=1&pageSize=20&type=1`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setSoldierRecord(response?.data?.list);
+      })
+      .catch((error) => {
+        console.error("api error:", error);
+      });
+  };
+  const getMarqueeData = (rankIndex) => {
+    fetch(
+      `${baseUrl}api/activity/eidF/getWinnerRankInfo?&pageNum=1&pageSize=20&eventDesc=20230810_fightForIndependence&rankIndex=${rankIndex}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        if (rankIndex === 1) {
+          setMarqueeData((prevData) => ({
+            ...prevData,
+            collectSoldier: response?.data?.list,
+          }));
+        } else if (rankIndex === 3) {
+          setMarqueeData((prevData) => ({
+            ...prevData,
+            conquerFort: response?.data?.list,
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error("api error:", error);
+      });
+  };
   useEffect(() => {
     try {
       window.phone.getUserInfo(function (userInfo) {
         setUser({
-          uid: userInfo?.userId > 0 ? userInfo?.userId : 0,
+          userId: userInfo?.userId > 0 ? userInfo?.userId : 0,
           token: userInfo?.token != "" ? userInfo?.token : null,
         });
       });
@@ -330,7 +372,7 @@ const EventProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    // getInfo();
+    getInfo();
     getTalentOverallEventGifting();
     getUserOverallEventGifting();
     getUserSendCardFanFollower();
@@ -347,6 +389,9 @@ const EventProvider = ({ children }) => {
     getCollectSoldiers();
     getFanfollowerUser();
     getFanfollowerTalent();
+    getSoldierRecords();
+    getMarqueeData(1);
+    getMarqueeData(3);
   }, [info?.dayIndex]);
 
   useEffect(() => {
@@ -368,7 +413,9 @@ const EventProvider = ({ children }) => {
         getCollectSoldiers,
         getFanfollowerTalent,
         getFanfollowerUser,
+        soldiersRecords,
         user,
+        marqueeData,
       }}
     >
       {children}

@@ -10,6 +10,7 @@ const ConquerVictoryLeaderboardItems = ({
   isToday,
   calculateEstRewards,
 }) => {
+  // debugger;
   return (
     <div className="conquer-victory-leaderboard-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
@@ -35,7 +36,9 @@ const ConquerVictoryLeaderboardItems = ({
           style={{ visibility: index > 5 && "hidden" }}
         >
           {isToday === false
-            ? `Rewards won ${calculateEstRewards && calculateEstRewards(index)}`
+            ? `Rewards won ${
+                calculateEstRewards && calculateEstRewards(index, isToday)
+              }`
             : `Est Rewards ${
                 calculateEstRewards && calculateEstRewards(index)
               }`}
@@ -43,7 +46,7 @@ const ConquerVictoryLeaderboardItems = ({
       }
       <div className="right-div">
         <img className="soldier-icon" src={soldierIcon} />
-        <span>000</span>
+        <span>{user?.userScore}</span>
       </div>
     </div>
   );

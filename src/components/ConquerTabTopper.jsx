@@ -19,8 +19,12 @@ const ConquerTabTopper = ({ user, isToday, calculateEstRewards }) => {
         <p className="name">{user.nickname}</p>
         <div className="est-rews">
           {isToday === false
-            ? `Rewards Won ${calculateEstRewards(1)}`
-            : `Est Rewards ${calculateEstRewards(1)}`}
+            ? `Rewards Won ${
+                calculateEstRewards && calculateEstRewards(1, isToday)
+              }`
+            : `Est Rewards ${
+                (calculateEstRewards && calculateEstRewards(1), isToday)
+              }`}
         </div>
 
         <div className="soldier-collected">

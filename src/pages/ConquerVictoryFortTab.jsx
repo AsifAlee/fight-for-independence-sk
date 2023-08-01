@@ -7,9 +7,7 @@ import todayBtn from "../assets/event-gifting/today-btn.png";
 import yestBtn from "../assets/event-gifting/yest-btn.png";
 import switchBg from "../assets/Conquer-tab/today-yesterday-btn.png";
 import { testLeaderData } from "../utils/testData";
-import titleTag from "../assets/event-gifting/leaderboard-tag.png";
-import ConquerVictoryLeaderboardItems from "../components/ConquerVictoryLeaderboardItems";
-import ConquerTabTopper from "../components/ConquerTabTopper";
+
 import { baseUrl, testToken, testUserId } from "../utils/api";
 import { AppContext } from "../AppContext";
 import ConquerFortPopup from "../popups/ConquerFortPopup";
@@ -20,13 +18,24 @@ import DynamicCard from "../components/DynamicCard";
 import ChampionsLeaderboard from "./Leaderboards/conquer-fort/ChampionsLeaderboard";
 import WarriorLeaderboard from "./Leaderboards/conquer-fort/WarriorsLeaderboard";
 import ConquererLeaderboard from "./Leaderboards/conquer-fort/ConquerersLeaderboard";
+import ConquerFortInfo from "../popups/ConquerFortInfo";
+import JoinTeamPopup from "../popups/JoinTeamPopup";
+import TabButton from "../components/TabButton";
+import warriorGif from "../assets/card/warrior_anim.gif";
+import conqGif from "../assets/card/conq_anim.gif";
+import champGif from "../assets/card/champ-anim.gif";
+import warriorSelect from "../assets/card/warriors-select.png";
+import conquerSelect from "../assets/card/conq-select.png";
+import champSelect from "../assets/card/champ-select.png";
+import Marquee from "react-fast-marquee";
+import unknowUser from "../assets/unknown-user.png";
 
 const ConquerVictoryFortTab = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [isSliderOn, setIsSliderOn] = useState(false);
-  const [seeMore, setSeeMore] = useState(true);
-  const { info, getInfo } = useContext(AppContext);
+  const { info, getInfo, user, marqueeData } = useContext(AppContext);
 
+  console.log("info in conquer victory:", info);
   const [showLevels, setShowLevels] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [showGame, setShowGame] = useState(false);
@@ -35,16 +44,26 @@ const ConquerVictoryFortTab = () => {
   const [errorCode, setErrorCode] = useState(null);
   const [currentLevel, setCurrentLevel] = useState(1);
   const [errMsg, setErrMsg] = useState("");
+  const [infoPopup, setInfoPopup] = useState(false);
+  const [joinTeamPopup, setJoinTeamPopup] = useState(false);
+  const [joinTeamMsg, setJoinTeamMsg] = useState("");
 
   function handleSliderToggle(isOn) {
     setIsSliderOn(isOn);
   }
+  const toggleJoinTeam = () => {
+    setJoinTeamPopup((prevState) => !prevState);
+  };
+
+  const toggleInfoPopup = () => {
+    setInfoPopup((prevState) => !prevState);
+  };
   const closeGamePopup = () => {
     setShowGame(false);
     getInfo();
   };
   const [teamTabs, setTeamTabs] = useState({
-    warriors: true,
+    warriors: false,
     conquerers: false,
     champions: false,
   });
@@ -63,6 +82,7 @@ const ConquerVictoryFortTab = () => {
     }
   };
   const joinTheTeam = () => {
+    setJoinTeamPopup(true);
     fetch(
       `${baseUrl}api/activity/fightForIndependence/joinTeam?teamId=${
         teamTabs.warriors ? 1 : teamTabs.conquerers ? 2 : 3
@@ -82,6 +102,8 @@ const ConquerVictoryFortTab = () => {
       .then((response) => response.json())
       .then((response) => {
         getInfo();
+        setJoinTeamMsg(response?.msg);
+        setErrorCode(response?.errorCode);
       })
       .catch((error) => {
         console.error(error);
@@ -123,6 +145,39 @@ const ConquerVictoryFortTab = () => {
   };
   return (
     <div className="conquer-fort">
+      <Marquee className="marquee">
+        {marqueeData?.conquerFort?.map((item) => {
+          return (
+            <div className="marquee-item">
+              <img
+                src={item?.portrait ? item?.portrait : unknowUser}
+                className="user-img"
+              />
+              <div className="user-details">
+                <span className="name">{`${item?.nickname?.slice(0, 6)}`}</span>
+                <div>
+                  {item?.userScore === 3 ? (
+                    <span>
+                      has just freed the VICTORY FORT & won 110,000 Beans.
+                    </span>
+                  ) : item?.userScore === 2 ? (
+                    <span>
+                      has just freed level 2 of the VICTORY FORT & won 50,000
+                      Beans.
+                    </span>
+                  ) : (
+                    <span>
+                      has just freed level 1 of the VICTORY FORT & won 20,000
+                      Beans.
+                    </span>
+                  )}
+                  .Congratulations!
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </Marquee>
       <div className="use-soldier-info">
         <p>
           Use your soldiers carefully.If your pursuit of freeing the forts level
@@ -134,7 +189,7 @@ const ConquerVictoryFortTab = () => {
           <div className="collect-soldiers">
             <span>Soldiers Collected:{info?.dailyTotalSoldier}</span>
           </div>
-          <div className="info-icon"></div>
+          <div className="info-icon" onClick={toggleInfoPopup}></div>
 
           <div className="levels">
             <div
@@ -172,21 +227,39 @@ const ConquerVictoryFortTab = () => {
         {info?.teamId === 0 && (
           <>
             <div className="teams">
-              <div
-                className="warriors"
+              {/* <div
                 onClick={() => toggleTeam("warriors")}
                 style={{ border: teamTabs.warriors ? "1px solid white" : "" }}
+                className="warriors"
               ></div>
               <div
-                className="conquerers"
                 onClick={() => toggleTeam("conquerers")}
                 style={{ border: teamTabs.conquerers ? "1px solid white" : "" }}
+                className="conquerers"
               ></div>
               <div
-                className="champions"
                 onClick={() => toggleTeam("champions")}
                 style={{ border: teamTabs.champions ? "1px solid white" : "" }}
-              ></div>
+                className="champions"
+              ></div> */}
+              <TabButton
+                src={teamTabs?.warriors ? warriorGif : warriorSelect}
+                handleClick={toggleTeam}
+                name="warriors"
+                isActive={teamTabs.warriors}
+              />
+              <TabButton
+                src={teamTabs.conquerers ? conqGif : conquerSelect}
+                handleClick={toggleTeam}
+                name="conquerers"
+                isActive={teamTabs.conquerers}
+              />
+              <TabButton
+                src={teamTabs.champions ? champGif : champSelect}
+                handleClick={toggleTeam}
+                name="champions"
+                isActive={teamTabs.champions}
+              />
             </div>
             <div className="use-soldier-info">
               <p>
@@ -199,7 +272,7 @@ const ConquerVictoryFortTab = () => {
           </>
         )}
 
-        {info?.teamId > 0 && (
+        {info?.teamId && (
           <div className="joined-team-sec">
             <SwitchButton
               bg={switchBg}
@@ -209,10 +282,12 @@ const ConquerVictoryFortTab = () => {
             <div className="dynamic-tabs">
               {info?.teamTotalSoldiersInfoList
                 ?.sort((a, b) => b?.totalSoldiers - a?.totalSoldiers)
-                ?.map((team) => (
+                ?.map((team, index) => (
                   <DynamicCard
                     id={team?.teamId}
                     soldiers={team?.totalSoldiers}
+                    key={index}
+                    index={index}
                   />
                 ))}
             </div>
@@ -246,6 +321,32 @@ const ConquerVictoryFortTab = () => {
           title={errorCode === 10000008 ? oops : congTag}
           currentLevel={currentLevel}
           errMsg={errMsg}
+        />
+      )}
+      {infoPopup && <ConquerFortInfo popupHandler={toggleInfoPopup} />}
+      {joinTeamPopup && (
+        <JoinTeamPopup
+          popUpHandler={toggleJoinTeam}
+          teamName={
+            teamTabs.warriors
+              ? "Warriors"
+              : teamTabs.champions
+              ? "Champions"
+              : teamTabs.conquerers
+              ? "Conquerers"
+              : ""
+          }
+          teamId={
+            teamTabs.warriors
+              ? 1
+              : teamTabs.champions
+              ? 2
+              : teamTabs.conquerers
+              ? 3
+              : 0
+          }
+          msg={joinTeamMsg}
+          errorCode={errorCode}
         />
       )}
     </div>

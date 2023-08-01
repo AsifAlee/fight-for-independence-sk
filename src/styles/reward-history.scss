@@ -1,0 +1,34 @@
+.reward-history-item{
+ 
+    // height: 20vw;
+    background-color: brown;
+    font-size: 2vw;
+    width: 69vw;
+    border-radius: 3vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2vw;
+
+
+
+    .time{
+    
+    }
+    .reward{
+        width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        // height: 20vw;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hidden-text{
+        height: 5vw;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    }
+}

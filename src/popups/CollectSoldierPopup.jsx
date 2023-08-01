@@ -15,7 +15,6 @@ const CollectSoldierPopup = ({
   let newRewards = rewardsContent?.includes("+")
     ? rewardsContent.split("+")
     : rewardsContent;
-  console.log("the rewards:", newRewards);
   return (
     <PopUp bg={bg} title={title} popUpHandler={popUpHandler} isCollSold={true}>
       {errorCode === 0 ? (

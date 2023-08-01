@@ -11,8 +11,10 @@ const WarriorLeaderboard = ({ isSliderOn }) => {
   const { leaderboardsData, info } = useContext(AppContext);
   const { warriorsToday, warriorsYest } = leaderboardsData;
   const [currentData, setCurrentData] = useState(warriorsToday);
-  const calculateEstRewards = (index) => {
-    const totalBeansPot = info?.conquerFortTodayPot;
+  const calculateEstRewards = (index, isToday) => {
+    const totalBeansPot = isToday
+      ? info?.conquerFortTodayPot
+      : info?.conquerFortYestPot;
     const percent = conquerFortPot.find((item) => item.rank === index)?.percent;
     const result = totalBeansPot ? (percent / 100) * totalBeansPot : 0;
     return Math.floor(result);

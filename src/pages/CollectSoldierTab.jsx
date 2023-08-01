@@ -15,10 +15,20 @@ import righTertShoot from "../assets/game/right-terrist-shoot.gif";
 import rightPlaneShoot from "../assets/game/right-plane-shoot.gif";
 import tankShoot from "../assets/game/tank-shoot.gif";
 import { getRandomNumber } from "../utils/functions";
+import RewardHistoryPopup from "../popups/RewardHistoryPopup";
+import giftIcon from "../assets/giftIcon.png";
+import Marquee from "react-fast-marquee";
+import unknowUser from "../assets/unknown-user.png";
 
 const CollectSoldierTab = () => {
-  const { info, getInfo, leaderboardsData, getCollectSoldiers, user } =
-    useContext(AppContext);
+  const {
+    info,
+    getInfo,
+    leaderboardsData,
+    getCollectSoldiers,
+    user,
+    marqueeData,
+  } = useContext(AppContext);
   const { collectSoldiers } = leaderboardsData;
   const [seeMore, setSeeMore] = useState(true);
   const [inputValue, setInputValue] = useState(1);
@@ -30,13 +40,18 @@ const CollectSoldierTab = () => {
   const [currentGif, setCurrentGif] = useState(null);
   const [isPlaying, setIsplaying] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [showRewardHistory, setRewardHistory] = useState(false);
   const gameGifs = [leftTerShoot, righTertShoot, rightPlaneShoot, tankShoot];
+
   const onChangeHandle = (event) => {
     setInputValue(parseInt(event.target.value));
   };
   const [showGame, setShowGame] = useState(false);
   const closeGamePopup = () => {
     setShowGame(false);
+  };
+  const toggleRewardHistory = () => {
+    setRewardHistory((prevState) => !prevState);
   };
   const playGame = () => {
     setIsDisabled(true);
@@ -94,9 +109,37 @@ const CollectSoldierTab = () => {
   };
   return (
     <div className="collect-soldier-tab">
+      <Marquee className="marquee">
+        {marqueeData?.collectSoldier?.map((item) => {
+          // let rewDescriptions = JSON.parse(item.desc);
+
+          return (
+            <div className="marquee-item">
+              <img
+                src={item?.portrait ? item?.portrait : unknowUser}
+                className="user-img"
+              />
+              <div className="user-details">
+                <span className="name">{`${item?.nickname?.slice(0, 6)}`}</span>
+                <div>
+                  has won {`${item?.userScore} Beans`}
+                  .Congratulations!
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </Marquee>
+
       <div id="extraContent"></div>
       <div className="collect-soldier-game">
         <img src={isPlaying ? currentGif : foreverGif} className="playingGif" />
+
+        <img
+          src={giftIcon}
+          className="reward-icon"
+          onClick={toggleRewardHistory}
+        />
       </div>
       <div className="chances">
         <button
@@ -173,6 +216,10 @@ const CollectSoldierTab = () => {
           title={errorCode === 10000004 ? tryAgain : congTag}
           errMsg={errMsg}
         />
+      )}
+
+      {showRewardHistory && (
+        <RewardHistoryPopup popUpHandler={toggleRewardHistory} />
       )}
     </div>
   );
