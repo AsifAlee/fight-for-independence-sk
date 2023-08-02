@@ -39,6 +39,11 @@
 
   .guide-popup {
     margin-top: 5vw;
+
+    .highlight{
+      background-color: yellow;
+      color: black;
+    }
     .guide-content {
       padding: 3vw;
       height: 80vw;
@@ -191,6 +196,9 @@
     }
     .eligibility-text{
     font-size: 3vw;
+    position: relative;
+    top: -39vw;
+left: -5vw;
     }
 
     .single-radio {
@@ -214,6 +222,19 @@
     }
     .bgBlack {
       background-color: black;
+    }
+
+    #cardGifs {
+      height: 0px;
+      width: 0px;
+      position: absolute;
+      z-index: -2147483648;
+      content: url("../assets/card/card-1.gif")
+        url("../assets/card/card-2.gif")
+        url("../assets/card/card-3.gif");
+       
+      visibility: hidden;
+      top: 0px;
     }
   }
 
@@ -275,20 +296,24 @@
   text-align: center;
   font-size: 3vw;
   text-align: center;
-  width: 98%;
+  width: 86%;
+  margin: 0 auto;
 }
 
 .reward-hist-popup{
+
+margin-top: 9vw !important;
  
-  // display: flex;
-  // justify-content: center;
-  // flex-direction: column;
-  // align-items: center;
+ 
   height: 71vw;
   overflow-y: auto;
   gap: 1vw;
   width: 88%;
   margin: 0 auto;
-  
+  .rewards-hist-title{
+    display: flex;
+    justify-content: space-around;
+    font-size: 4vw;
+      }
 }
 }

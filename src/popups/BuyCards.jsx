@@ -8,7 +8,7 @@ const BuyCard = ({ popUpHandler, title, errorCode }) => {
       <div className="buy-card-popup">
         {errorCode === 0 ? (
           <p>
-            We’ve received 5000 Beans successfully and we have credited 5 cards
+            We’ve received 10000 Beans successfully and we have credited 5 cards
             to your account.
           </p>
         ) : (

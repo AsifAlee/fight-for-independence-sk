@@ -114,6 +114,8 @@ export function getRewardsImage(rewDesc) {
     rewImg = baseUrl + "/streamkar/rewards/kingshipProfileFrame.png";
   } else if (rewDesc?.includes("soldiers")) {
     rewImg = baseUrl + "/streamkar/rewards/soliderIcon.png";
+  } else if (rewDesc?.includes("Soldiers")) {
+    rewImg = baseUrl + "/streamkar/rewards/soliderIcon.png";
   } else if (rewDesc?.includes("Tiger entrance")) {
     rewImg = baseUrl + "/streamkar/rewards/tiger.png";
   } else if (rewDesc?.includes("Audio broadcast theme DOYEN")) {

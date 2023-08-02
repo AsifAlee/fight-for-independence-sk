@@ -12,7 +12,7 @@ const ConquererLeaderboard = ({ isSliderOn }) => {
 
   const { conquerersToday, conquerersYest } = leaderboardsData;
   const [currentData, setCurrentData] = useState(conquerersToday);
-  //   debugger;
+
   const calculateEstRewards = (index, isToday) => {
     const totalBeansPot = isToday
       ? info?.conquerFortTodayPot

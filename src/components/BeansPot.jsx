@@ -1,7 +1,7 @@
 import React from "react";
 import beansPot from "../assets/event-gifting/beans-pot.png";
 
-const BeansPot = ({ potValue }) => {
+const BeansPot = ({ potValue, isTalent }) => {
   return (
     <div className="beanspot-container">
       <img src={beansPot} className="beans-pot-img" />
@@ -10,8 +10,8 @@ const BeansPot = ({ potValue }) => {
           <span>{potValue}</span>
         </div>
         <p className="beanspot-text">
-          Overall Beans Pot will be rewarded to top 5 users ranking on the
-          hourly leaderboard
+          Overall Beans Pot will be rewarded to top 5{" "}
+          {isTalent ? "talents" : "users"} ranking on the hourly leaderboard
         </p>
       </div>
     </div>

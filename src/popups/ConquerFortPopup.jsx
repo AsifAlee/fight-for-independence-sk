@@ -43,7 +43,7 @@ const ConquerFortPopup = ({
           process.
         </div>
       ) : errorCode === 30001007 ? (
-        <div>{errMsg}</div>
+        <div className="collect-sold-popup">{errMsg}</div>
       ) : (
         <></>
       )}

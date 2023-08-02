@@ -18,12 +18,15 @@ const ChampionsLeaderboard = ({ isSliderOn }) => {
   }, [leaderboardsData]);
 
   const calculateEstRewards = (index, isToday) => {
+    debugger;
     const totalBeansPot = isToday
       ? info?.conquerFortTodayPot
       : info?.conquerFortYestPot;
     const percent = conquerFortPot.find((item) => item.rank === index)?.percent;
     const result = totalBeansPot ? (percent / 100) * totalBeansPot : 0;
+    console.log("champs leaderboard:", result);
     return Math.floor(result);
+    // return 100;
   };
 
   useEffect(() => {

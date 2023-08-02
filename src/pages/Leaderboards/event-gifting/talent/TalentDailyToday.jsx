@@ -4,20 +4,27 @@ import { testLeaderData } from "../../../../utils/testData";
 import EventGiftingLeaderboardItem from "../../../../components/EventGiftingLeaderboardItem";
 import { AppContext } from "../../../../AppContext";
 import EventGiftingTopper from "../../../../components/EventGiftingTopper";
+import { eventGftingPot } from "../../../../beansPot";
 
 const TalentDailyToday = () => {
-  const { leaderboardsData } = useContext(AppContext);
+  const { leaderboardsData, info } = useContext(AppContext);
   const { eventGiftingDailyToday } = leaderboardsData;
   const [seeMore, setSeeMore] = useState(true);
-
+  // const calculateEstRewards = (index) => {
+  //   const totalBeansPot = info?.eventGftingTalentPot;
+  //   const percent = eventGftingPot.find((item) => item.rank === index)?.percent;
+  //   const result = totalBeansPot ? (percent / 100) * totalBeansPot : 0;
+  //   return Math.floor(result);
+  // };
   return (
     <div className="event-gifting-leaderboard">
       {eventGiftingDailyToday[0] && (
         <div className="top1">
           <EventGiftingTopper
             user={eventGiftingDailyToday[0]}
-            showEst={false}
+            // showEst={true}
             isTalent={true}
+            // calculateEstRewards={calculateEstRewards}
           />
         </div>
       )}
@@ -37,6 +44,7 @@ const TalentDailyToday = () => {
               showEst={false}
               isTalent={true}
               isDaily={true}
+              // calculateEstRewards={calculateEstRewards}
             />
           ))}
       </div>

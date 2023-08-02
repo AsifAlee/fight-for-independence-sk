@@ -34,10 +34,14 @@ const User = () => {
           />
         ))}
       </div>
-      <button
-        className={`${seeMore ? "see-more" : "see-less"}`}
-        onClick={() => setSeeMore((prevState) => !prevState)}
-      />
+      {fanFollowerUser?.length > 10 ? (
+        <button
+          className={`${seeMore ? "see-more" : "see-less"}`}
+          onClick={() => setSeeMore((prevState) => !prevState)}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

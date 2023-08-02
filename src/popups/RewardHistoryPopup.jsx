@@ -16,6 +16,10 @@ const RewardHistoryPopup = ({ popUpHandler }) => {
       title={title}
     >
       <div style={{}} className="reward-hist-popup">
+        <div className="rewards-hist-title">
+          <span>Time</span>
+          <span>Rewards</span>
+        </div>
         {soldiersRecords?.map((item) => {
           return (
             <RewardsHistoryItem

@@ -30,9 +30,7 @@ const EventGiftingTopper = ({
         )}
 
         <div className="beans-collected">
-          <span>{`${user?.userScore} ${
-            isTalent ? "gems recieved" : "beans spent"
-          } `}</span>
+          <span>{`${user?.userScore} `}</span>
 
           <img className="soldier-icon" src={isTalent ? gem : beanIcon} />
         </div>

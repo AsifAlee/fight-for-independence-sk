@@ -1,0 +1,33 @@
+.toast-container {
+  position: fixed;
+  bottom: 7vw;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+
+}
+
+.toast {
+  background-color: #333;
+  color: #fff;
+  border-radius: 1vw;
+  width: 68vw;
+  padding: 2vw;
+  text-align: center;
+}
+
+.toast-message {
+  /* margin-right: 30px; */
+}
+
+/* .close-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+} */

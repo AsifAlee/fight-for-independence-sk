@@ -23,8 +23,10 @@ const FanFollwerTopper = ({ user, isUser, followTalent }) => {
         {isUser === false && (
           <img
             src={user?.isFollow ? followedBtn : followBtn}
-            style={{ width: "5vw", position: "relative", left: "-5vw" }}
-            onClick={() => followTalent(user?.userId)}
+            style={{ width: "7vw", position: "relative", left: "-5vw" }}
+            onClick={() =>
+              followTalent(user?.userId, user?.nickname, user?.isFollow)
+            }
           />
         )}
 

@@ -10,7 +10,6 @@ const ConquerVictoryLeaderboardItems = ({
   isToday,
   calculateEstRewards,
 }) => {
-  // debugger;
   return (
     <div className="conquer-victory-leaderboard-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
@@ -37,10 +36,14 @@ const ConquerVictoryLeaderboardItems = ({
         >
           {isToday === false
             ? `Rewards won ${
-                calculateEstRewards && calculateEstRewards(index, isToday)
+                typeof calculateEstRewards === "function"
+                  ? calculateEstRewards(index, false)
+                  : ""
               }`
             : `Est Rewards ${
-                calculateEstRewards && calculateEstRewards(index)
+                typeof calculateEstRewards === "function"
+                  ? calculateEstRewards(index, true)
+                  : ""
               }`}
         </div>
       }

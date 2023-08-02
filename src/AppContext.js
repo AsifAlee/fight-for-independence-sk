@@ -294,7 +294,7 @@ const EventProvider = ({ children }) => {
 
   const getFanfollowerTalent = () => {
     fetch(
-      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=15&pageNum=1&pageSize=20&followUserId=${user?.userId}&dayIndex=${info?.dayIndex}`
+      `${baseUrl}api/activity/eidF/getLeaderboardInfo?eventDesc=20230810_fightForIndependence&rankIndex=15&pageNum=1&pageSize=20&followUserId=${user.userId}&dayIndex=${info?.dayIndex}`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -326,7 +326,7 @@ const EventProvider = ({ children }) => {
 
   const getSoldierRecords = () => {
     fetch(
-      `${baseUrl}api/activity/fightForIndependence/getRecord?userId=596492373&pageNum=1&pageSize=20&type=1`
+      `${baseUrl}api/activity/fightForIndependence/getRecord?userId=${user.userId}&pageNum=1&pageSize=20&type=1`
     )
       .then((response) => response.json())
       .then((response) => {

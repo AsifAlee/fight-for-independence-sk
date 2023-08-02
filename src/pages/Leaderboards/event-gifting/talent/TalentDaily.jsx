@@ -31,8 +31,6 @@ const TalentDaily = () => {
             bg={switchBg}
           />
 
-          {testLeaderData[0] && <div className="top1"></div>}
-
           {isSliderOn ? <TalentDailyYest /> : <TalentDailyToday />}
         </div>
       </div>

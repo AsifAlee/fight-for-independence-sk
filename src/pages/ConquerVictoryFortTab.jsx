@@ -35,7 +35,6 @@ const ConquerVictoryFortTab = () => {
   const [isSliderOn, setIsSliderOn] = useState(false);
   const { info, getInfo, user, marqueeData } = useContext(AppContext);
 
-  console.log("info in conquer victory:", info);
   const [showLevels, setShowLevels] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [showGame, setShowGame] = useState(false);
@@ -82,7 +81,12 @@ const ConquerVictoryFortTab = () => {
     }
   };
   const joinTheTeam = () => {
+    if (selectedTeam === null) {
+      setJoinTeamPopup(true);
+      return;
+    }
     setJoinTeamPopup(true);
+
     fetch(
       `${baseUrl}api/activity/fightForIndependence/joinTeam?teamId=${
         teamTabs.warriors ? 1 : teamTabs.conquerers ? 2 : 3
@@ -137,6 +141,8 @@ const ConquerVictoryFortTab = () => {
       })
       .catch((error) => {
         console.error(error);
+        setIsDisabled(false);
+        setShowGame(false);
       });
   };
 
@@ -158,20 +164,21 @@ const ConquerVictoryFortTab = () => {
                 <div>
                   {item?.userScore === 3 ? (
                     <span>
-                      has just freed the VICTORY FORT & won 110,000 Beans.
+                      &nbsp; has just freed the VICTORY FORT & won 110,000
+                      Beans.
                     </span>
                   ) : item?.userScore === 2 ? (
                     <span>
-                      has just freed level 2 of the VICTORY FORT & won 50,000
-                      Beans.
+                      &nbsp; has just freed level 2 of the VICTORY FORT & won
+                      50,000 Beans.
                     </span>
                   ) : (
                     <span>
-                      has just freed level 1 of the VICTORY FORT & won 20,000
-                      Beans.
+                      &nbsp; has just freed level 1 of the VICTORY FORT & won
+                      20,000 Beans.
                     </span>
                   )}
-                  .Congratulations!
+                  .&nbsp;Congratulations!
                 </div>
               </div>
             </div>
@@ -227,21 +234,6 @@ const ConquerVictoryFortTab = () => {
         {info?.teamId === 0 && (
           <>
             <div className="teams">
-              {/* <div
-                onClick={() => toggleTeam("warriors")}
-                style={{ border: teamTabs.warriors ? "1px solid white" : "" }}
-                className="warriors"
-              ></div>
-              <div
-                onClick={() => toggleTeam("conquerers")}
-                style={{ border: teamTabs.conquerers ? "1px solid white" : "" }}
-                className="conquerers"
-              ></div>
-              <div
-                onClick={() => toggleTeam("champions")}
-                style={{ border: teamTabs.champions ? "1px solid white" : "" }}
-                className="champions"
-              ></div> */}
               <TabButton
                 src={teamTabs?.warriors ? warriorGif : warriorSelect}
                 handleClick={toggleTeam}
@@ -272,7 +264,7 @@ const ConquerVictoryFortTab = () => {
           </>
         )}
 
-        {info?.teamId && (
+        {info?.teamId ? (
           <div className="joined-team-sec">
             <SwitchButton
               bg={switchBg}
@@ -302,6 +294,8 @@ const ConquerVictoryFortTab = () => {
               <></>
             )}
           </div>
+        ) : (
+          ""
         )}
 
         <p
@@ -318,7 +312,7 @@ const ConquerVictoryFortTab = () => {
           rewards={rewards}
           rewardsContent={rewardsContent}
           isCollSold={true}
-          title={errorCode === 10000008 ? oops : congTag}
+          title={errorCode === 0 ? congTag : oops}
           currentLevel={currentLevel}
           errMsg={errMsg}
         />

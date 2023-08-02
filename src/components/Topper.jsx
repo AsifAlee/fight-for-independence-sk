@@ -24,7 +24,7 @@ const Topper = ({ user }) => {
           className="reward-images"
           style={{
             position: "relative",
-            left: "19vw",
+            left: "9vw",
             bottom: "1vw",
           }}
         >

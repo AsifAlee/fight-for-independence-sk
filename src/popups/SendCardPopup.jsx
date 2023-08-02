@@ -13,7 +13,8 @@ import wishSent from "../assets/popup/wish-sent.png";
 import { wishes } from "../utils/functions";
 
 const SendCardPopup = ({ popUpHandler, title }) => {
-  const { getInfo, info, user } = useContext(AppContext);
+  const { getInfo, info, user, getFanfollowerTalent, getFanfollowerUser } =
+    useContext(AppContext);
   const [cardRecvStatus, setCardRecvStatus] = useState("");
   const [radioSelected, setIsRadioSelected] = useState(null);
   const [inputValue, setInputValue] = useState("");
@@ -21,7 +22,6 @@ const SendCardPopup = ({ popUpHandler, title }) => {
   const [recvCardPopup, setRecvCardPopup] = useState(false);
   const [isCardSendSuccess, setIsCardSendSuccess] = useState(false);
   const currentBackgroundImg = wishes.find((item) => item.id === info?.wishId);
-  console.log("current background:", currentBackgroundImg);
   const closeRecvCardPopup = () => {
     setRecvCardPopup(false);
   };
@@ -33,6 +33,10 @@ const SendCardPopup = ({ popUpHandler, title }) => {
   const searchUser = () => {
     setIsRadioSelected(null);
     setCardRecvStatus("");
+    if (inputValue === "") {
+      setCardRecvStatus("Enter user name or ID");
+      return;
+    }
     fetch(
       `${baseUrl}meShow/entrance?parameter=%7B%22FuncTag%22:10002008,%22fuzzyString%22:%22${inputValue}%22,pageCount:10,%22pageNum%22:%221%22%7D`
     )
@@ -66,8 +70,11 @@ const SendCardPopup = ({ popUpHandler, title }) => {
         setRecvCardPopup(true);
 
         if (res.data === true) {
-          setCardRecvStatus(res.msg);
+          // setCardRecvStatus(res.msg);
           setIsCardSendSuccess(true);
+          getFanfollowerTalent();
+          getFanfollowerUser();
+          // popUpHandler();
         } else if (res.errorCode === 11000000) {
           setCardRecvStatus("NOT ELIGIBLE FOR THIS CARD");
           setIsCardSendSuccess(false);
@@ -101,6 +108,7 @@ const SendCardPopup = ({ popUpHandler, title }) => {
       isSendCardPopup={true}
     >
       <div className="send-card-popup">
+        <div id="cardGifs"></div>
         <div
           className="wish-card"
           style={{
@@ -147,23 +155,22 @@ const SendCardPopup = ({ popUpHandler, title }) => {
           <button className="search-btn" onClick={searchUser} />
         </div>
         <div className="found-users">
-          {foundUsers?.length
-            ? foundUsers?.map((user, index) => (
-                <RadioSelect
-                  handleRadioCheck={handleRadioCheck}
-                  index={index}
-                  isSelected={radioSelected}
-                >
-                  <User
-                    user={user}
-                    sendCard={sendCard}
-                    isDisabled={radioSelected === null}
-                  />
-                </RadioSelect>
-              ))
-            : ""}
+          {foundUsers?.length > 0 &&
+            foundUsers?.map((user, index) => (
+              <RadioSelect
+                handleRadioCheck={handleRadioCheck}
+                index={index}
+                isSelected={radioSelected}
+              >
+                <User
+                  user={user}
+                  sendCard={sendCard}
+                  isDisabled={radioSelected === null}
+                />
+              </RadioSelect>
+            ))}
         </div>
-        {/* <p className="eligibility-text">{cardRecvStatus}</p> */}
+        <p className="eligibility-text">{cardRecvStatus}</p>
       </div>
       {recvCardPopup && (
         <RecvCardPopup

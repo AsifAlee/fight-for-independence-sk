@@ -12,39 +12,56 @@ const TalentDailyYest = () => {
 
   return (
     <div className="event-gifting-leaderboard">
-      {eventGiftingDailyYest[0] && (
-        <div className="top1">
-          <EventGiftingTopper
-            user={eventGiftingDailyYest[0]}
-            showEst={false}
-            isTalent={true}
-          />
-        </div>
-      )}
+      {eventGiftingDailyYest?.length > 0 ? (
+        <div>
+          {eventGiftingDailyYest && eventGiftingDailyYest[0] && (
+            <div className="top1">
+              <EventGiftingTopper
+                user={eventGiftingDailyYest[0]}
+                showEst={false}
+                isTalent={true}
+              />
+            </div>
+          )}
 
-      <div
-        className="restWinners"
-        style={{ overflowY: !seeMore ? "auto" : "" }}
-      >
-        {eventGiftingDailyYest
-          ?.slice(1, seeMore ? 10 : 20)
-          .map((user, index) => (
-            <EventGiftingLeaderboardItem
-              user={user}
-              rewards={[]}
-              key={index}
-              index={index + 2}
-              showEst={false}
-              isTalent={true}
-              isDaily={true}
+          <div
+            className="restWinners"
+            style={{ overflowY: !seeMore ? "auto" : "" }}
+          >
+            {eventGiftingDailyYest
+              ?.slice(1, seeMore ? 10 : 20)
+              .map((user, index) => (
+                <EventGiftingLeaderboardItem
+                  user={user}
+                  rewards={[]}
+                  key={index}
+                  index={index + 2}
+                  showEst={false}
+                  isTalent={true}
+                  isDaily={true}
+                />
+              ))}
+          </div>
+
+          {eventGiftingDailyYest?.length > 10 && (
+            <button
+              className={`${seeMore ? "see-more" : "see-less"}`}
+              onClick={() => setSeeMore((prevState) => !prevState)}
             />
-          ))}
-      </div>
-      {eventGiftingDailyYest?.length > 10 && (
-        <button
-          className={`${seeMore ? "see-more" : "see-less"}`}
-          onClick={() => setSeeMore((prevState) => !prevState)}
-        />
+          )}
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "relative",
+            top: "46vw",
+          }}
+        >
+          No Data Found
+        </div>
       )}
     </div>
   );

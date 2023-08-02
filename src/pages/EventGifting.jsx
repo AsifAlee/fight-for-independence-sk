@@ -93,9 +93,9 @@ const EventGifting = () => {
               alignItems: "center",
             }}
           >
-            <Gift id={"40001520"} name="White Horse" />
-            <Gift id={"40001676"} name="Fighter" />
-            <Gift id={"40001528"} name="MITHAI" />
+            <Gift id={"40001520"} name="White Horse" price="25,000" />
+            <Gift id={"40001676"} name="Fighter" price="50,000" />
+            <Gift id={"40001528"} name="MITHAI" price="500" />
           </div>
         </div>
       </div>
@@ -122,6 +122,7 @@ const EventGifting = () => {
               ? info?.eventGftingTalentPot
               : info?.eventGftingUserPot
           }
+          isTalent={beansPotTabs.talent ? true : false}
         />
       </div>
 

@@ -38,17 +38,17 @@ const EventGiftingLeaderboardItem = ({
         <span className="name">{user?.nickname}</span>
       </div>
 
-      <div className="middle-div" style={{ visibility: index > 5 && "hidden" }}>
-        Est Rewards {calculateEstRewards ? calculateEstRewards(index) : ""}
-      </div>
+      {
+        <div
+          className="middle-div"
+          style={{ visibility: index > 5 || !showEst ? "hidden" : "" }}
+        >
+          Est Rewards {calculateEstRewards ? calculateEstRewards(index) : ""}
+        </div>
+      }
 
-      <div
-        className="right-div"
-        // style={{ left: index > 5 || isDaily ? "20vw" : "" }}
-      >
-        <span>{`${user?.userScore} ${
-          isTalent ? "gems recieved" : "beans spent"
-        }  `}</span>
+      <div className="right-div" style={{ left: "21vw" }}>
+        <span>{`${user?.userScore}`}</span>
         <img src={isTalent ? gem : beansIcon} className="bean-icon" />
       </div>
     </div>

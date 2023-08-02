@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import "../styles/collect-soldier.scss";
 import rewardsTitle from "../assets/Rewards-tag.png";
+import leaderBoardTag from "../assets/event-gifting/leaderboard-tag.png";
 import Topper from "../components/Topper";
 import LeaderboardItem from "../components/LeaderboardItem";
 import { testLeaderData } from "../utils/testData";
@@ -122,8 +123,15 @@ const CollectSoldierTab = () => {
               <div className="user-details">
                 <span className="name">{`${item?.nickname?.slice(0, 6)}`}</span>
                 <div>
-                  has won {`${item?.userScore} Beans`}
-                  .Congratulations!
+                  &nbsp; has won{" "}
+                  {`${
+                    item?.userScore === 1
+                      ? "20,000"
+                      : item?.userScore === 2
+                      ? "50,000"
+                      : "110,000"
+                  } Beans`}
+                  .&nbsp;Congratulations!
                 </div>
               </div>
             </div>
@@ -176,7 +184,7 @@ const CollectSoldierTab = () => {
         </div>
       </div>
       <div className="rewards">
-        <img src={rewardsTitle} className="title" />
+        <img src={leaderBoardTag} className="title" />
         {collectSoldiers[0] && (
           <div className="top1">
             <Topper user={collectSoldiers[0]} />
@@ -196,10 +204,12 @@ const CollectSoldierTab = () => {
             />
           ))}
         </div>
-        <button
-          className={`${seeMore ? "see-more" : "see-less"}`}
-          onClick={() => setSeeMore((prevState) => !prevState)}
-        />
+        {collectSoldiers?.length > 10 && (
+          <button
+            className={`${seeMore ? "see-more" : "see-less"}`}
+            onClick={() => setSeeMore((prevState) => !prevState)}
+          />
+        )}
       </div>
       <p style={{ textAlign: "center", fontSize: "2.5vw" }}>
         All rights reserved by StreamKar
