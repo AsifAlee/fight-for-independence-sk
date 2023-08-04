@@ -9,6 +9,7 @@ import { eventGftingPot } from "../../../../beansPot";
 const TalentDailyToday = () => {
   const { leaderboardsData, info } = useContext(AppContext);
   const { eventGiftingDailyToday } = leaderboardsData;
+
   const [seeMore, setSeeMore] = useState(true);
   // const calculateEstRewards = (index) => {
   //   const totalBeansPot = info?.eventGftingTalentPot;
@@ -18,41 +19,57 @@ const TalentDailyToday = () => {
   // };
   return (
     <div className="event-gifting-leaderboard">
-      {eventGiftingDailyToday[0] && (
-        <div className="top1">
-          <EventGiftingTopper
-            user={eventGiftingDailyToday[0]}
-            // showEst={true}
-            isTalent={true}
-            // calculateEstRewards={calculateEstRewards}
-          />
-        </div>
-      )}
+      {eventGiftingDailyToday?.length > 0 ? (
+        <div>
+          {eventGiftingDailyToday && eventGiftingDailyToday[0] && (
+            <div className="top1">
+              <EventGiftingTopper
+                user={eventGiftingDailyToday[0]}
+                // showEst={true}
+                isTalent={true}
+                // calculateEstRewards={calculateEstRewards}
+              />
+            </div>
+          )}
 
-      <div
-        className="restWinners"
-        style={{ overflowY: !seeMore ? "auto" : "" }}
-      >
-        {eventGiftingDailyToday
-          ?.slice(1, seeMore ? 10 : 20)
-          .map((user, index) => (
-            <EventGiftingLeaderboardItem
-              user={user}
-              rewards={[]}
-              key={index}
-              index={index + 2}
-              showEst={false}
-              isTalent={true}
-              isDaily={true}
-              // calculateEstRewards={calculateEstRewards}
+          <div
+            className="restWinners"
+            style={{ overflowY: !seeMore ? "auto" : "" }}
+          >
+            {eventGiftingDailyToday
+              ?.slice(1, seeMore ? 10 : 20)
+              .map((user, index) => (
+                <EventGiftingLeaderboardItem
+                  user={user}
+                  rewards={[]}
+                  key={index}
+                  index={index + 2}
+                  showEst={false}
+                  isTalent={true}
+                  isDaily={true}
+                  // calculateEstRewards={calculateEstRewards}
+                />
+              ))}
+          </div>
+          {eventGiftingDailyToday?.length > 10 && (
+            <button
+              className={`${seeMore ? "see-more" : "see-less"}`}
+              onClick={() => setSeeMore((prevState) => !prevState)}
             />
-          ))}
-      </div>
-      {eventGiftingDailyToday?.length > 10 && (
-        <button
-          className={`${seeMore ? "see-more" : "see-less"}`}
-          onClick={() => setSeeMore((prevState) => !prevState)}
-        />
+          )}
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "relative",
+            top: "46vw",
+          }}
+        >
+          No Data Found
+        </div>
       )}
     </div>
   );

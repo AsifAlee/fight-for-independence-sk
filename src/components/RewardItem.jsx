@@ -25,7 +25,8 @@ const RewardItem = ({ desc, name, isReward }) => {
       <p
         className={`rew-name ${isReward && "hidden-text"}`}
         style={{
-          width: isReward && "11vw",
+          width: isReward && "10vw",
+          // textAlign: "left",
         }}
       >
         {name}

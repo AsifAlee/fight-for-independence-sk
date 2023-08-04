@@ -6,14 +6,14 @@ import top3 from "../assets/top-3-frame.png";
 import beansIcon from "../assets/event-gifting/bean-icon.png";
 import unknowuser from "../assets/unknown-user.png";
 import { testData } from "../utils/testData";
-import { formatData } from "../utils/functions";
-const LeaderboardItem = ({ user, rewards, index, showEst }) => {
+import { formatData, getLevelImage, gotoProfile } from "../utils/functions";
+const LeaderboardItem = ({ user, rewards, index, showEst, isTalent }) => {
   let currentReward = formatData(JSON.parse(user.desc));
   return (
     <div className="leaderboard-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
         {index > 3 && <span className="index">{index}</span>}
-        <div className="images">
+        <div className="images" onClick={() => gotoProfile(user.userId)}>
           <img
             src={user?.portrait ? user?.portrait : unknowuser}
             className="avatar"
@@ -26,7 +26,16 @@ const LeaderboardItem = ({ user, rewards, index, showEst }) => {
             />
           )}
         </div>
-        <span className="name">{user?.nickname}</span>
+        <div className="nameNLevel">
+          <span className="name">{user?.nickname}</span>
+          <img
+            className="level"
+            src={getLevelImage(
+              isTalent ? user?.actorLevel : user?.userLevel,
+              isTalent
+            )}
+          />
+        </div>
       </div>
 
       <div className="right-div">

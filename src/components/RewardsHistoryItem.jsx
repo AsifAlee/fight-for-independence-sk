@@ -10,9 +10,15 @@ const RewardsHistoryItem = ({ time, rewards }) => {
       } else {
         return `${reward?.count} Bean`;
       }
+    } else if (reward?.desc === "Soldiers") {
+      if (reward?.count > 1) {
+        return `${reward?.count} Soldiers`;
+      } else {
+        return `${reward?.count} Soldier`;
+      }
     } else {
       if (reward?.count > 1) {
-        return `${reward?.count} day ${reward.desc}`;
+        return `${reward?.count} days ${reward.desc}`;
       } else {
         return `${reward?.count} day ${reward.desc}`;
       }

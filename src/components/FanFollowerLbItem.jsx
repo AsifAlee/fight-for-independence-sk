@@ -6,13 +6,15 @@ import bean from "../assets/event-gifting/bean-icon.png";
 import followBtn from "../assets/fanfollowers/follow-btn.png";
 import followedBtn from "../assets/fanfollowers/followed.png";
 import unknownUser from "../assets/unknown-user.png";
+import beanIcon from "../assets/event-gifting/bean-icon.png";
+import { getLevelImage, gotoProfile } from "../utils/functions";
 
 const FanFollowerLbItem = ({ user, index, isUser, followTalent }) => {
   return (
     <div className="fan-follower-lb-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
         {index > 3 && <span className="index">{index}</span>}
-        <div className="images">
+        <div className="images" onClick={() => gotoProfile(user?.userId)}>
           <img
             src={user?.portrait ? user?.portrait : unknownUser}
             className="avatar"
@@ -25,7 +27,16 @@ const FanFollowerLbItem = ({ user, index, isUser, followTalent }) => {
             />
           )}
         </div>
-        <span className="name">{user?.nickname}</span>
+        <div className="nameNLevel">
+          <span className="name">{user?.nickname}</span>
+          <img
+            src={getLevelImage(
+              isUser ? user?.userLevel : user?.actorLevel,
+              isUser === true ? false : true
+            )}
+          />
+        </div>
+        {/* <span className="name">{user?.nickname}</span> */}
         {isUser === false && (
           <img
             style={{ width: "7vw" }}

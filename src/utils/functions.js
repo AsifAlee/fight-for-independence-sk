@@ -119,7 +119,7 @@ export function getRewardsImage(rewDesc) {
   } else if (rewDesc?.includes("Tiger entrance")) {
     rewImg = baseUrl + "/streamkar/rewards/tiger.png";
   } else if (rewDesc?.includes("Audio broadcast theme DOYEN")) {
-    rewImg = baseUrl + "/streamkar/rewards/doyenFrame.png";
+    rewImg = baseUrl + "/streamkar/rewards/doyenRoomskin.png";
   } else if (rewDesc?.includes("Radiance Profile Frame")) {
     rewImg = baseUrl + "/streamkar/rewards/radianceGold.png";
   } else if (rewDesc?.includes("roomSKIN")) {
@@ -201,7 +201,7 @@ export function getRandomNumber() {
 export const wishes = [
   {
     id: 1,
-    wish: "May this spirit of freedom lead us all to success and glory in life. Happy Independence Day!",
+    wish: "May this spirit of freedom lead us all to success and glory in life.",
     bg: card3,
   },
   {
@@ -212,34 +212,34 @@ export const wishes = [
   },
   {
     id: 3,
-    wish: "Freedom is the way God intended us; Lets celebrate Freedom! Happy Independence Day.",
+    wish: "Freedom is the way God intended us; Lets celebrate Freedom! ",
     bg: card1,
     isPortrait: true,
   },
   {
     id: 4,
-    wish: "Freedom is the most precious thing in every humans life. Happy Independence Day!",
+    wish: "Freedom is the most precious thing in every humans life.",
     bg: card1,
     isPortrait: true,
   },
   {
     id: 5,
-    wish: "Truly, the best way to celebrate your countrys independence is by being a patriotic citizen. Happy Independence Day.",
+    wish: "Truly, the best way to celebrate your countrys independence is by being a patriotic citizen.",
     bg: card2,
   },
   {
     id: 6,
-    wish: "May you enjoy this freedom of speech & freedom of choice for the rest of your Life. Happy Independence Day!",
+    wish: "May you enjoy this freedom of speech & freedom of choice for the rest of your Life.",
     bg: card2,
   },
   {
     id: 7,
-    wish: "May the glory of Independence Day be with us forever. Happy Independence Day!",
+    wish: "May the glory of Independence Day be with us forever.",
     bg: card3,
   },
   {
     id: 8,
-    wish: "May your Independence Day day be filled with patriotic spirit. Happy Independence Day.",
+    wish: "May your Independence Day day be filled with patriotic spirit.",
     bg: card3,
   },
   {
@@ -249,7 +249,7 @@ export const wishes = [
   },
   {
     id: 10,
-    wish: "Together we can win the world, together we can conquer our fear and together we can be a happy place. Happy Independence Day!",
+    wish: "Together we can win the world, together we can conquer our fear and together we can be a happy place.",
     bg: card2,
   },
 ];

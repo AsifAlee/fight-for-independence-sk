@@ -5,22 +5,31 @@ import RewardsSlider from "../../components/RewardsSlider";
 const FanFollwerUserRewards = () => {
   const rewards = [
     {
+      rank: "top 1st",
       desc: "beansbag",
       text: "40,000 beans",
     },
     {
+      rank: "top 2nd",
+
       desc: "beansbag",
       text: "15,000 beans",
     },
     {
+      rank: "top 3rd",
+
       desc: "beansbag",
       text: "10,000 beans",
     },
     {
+      rank: "top 4th",
+
       desc: "beansbag",
       text: "10,000 beans",
     },
     {
+      rank: "top 5th",
+
       desc: "beansbag",
       text: "5,000 beans",
     },
@@ -37,7 +46,7 @@ const FanFollwerUserRewards = () => {
         <img src={rewardsTag} className="rewards-tag" />
       </div>
       <div className="slider-container">
-        <RewardsSlider rewards={rewards} />
+        <RewardsSlider rewards={rewards} showRanks={true} />
       </div>
     </div>
   );

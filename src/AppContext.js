@@ -416,6 +416,7 @@ const EventProvider = ({ children }) => {
         soldiersRecords,
         user,
         marqueeData,
+        getSoldierRecords,
       }}
     >
       {children}

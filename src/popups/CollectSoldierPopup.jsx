@@ -35,13 +35,15 @@ const CollectSoldierPopup = ({
         </div>
       ) : errorCode === 10000004 ? (
         <div className="collect-sold-popup">
-          To have an opportunity to take a shot, please utilise event gifts
+          To have an opportunity to take a shot, please utilize event gifts
           valued at 25k beans. Once you have done so, you can start playing. We
           eagerly anticipate your participation and look forward to witnessing
           your triumphant liberation of the VICTORY FORT. Join us soon!
         </div>
       ) : (
-        <div className="collect-sold-popup">{errMsg}</div>
+        <div className="collect-sold-popup" style={{ marginTop: "14vw" }}>
+          {errMsg}
+        </div>
       )}
     </PopUp>
   );

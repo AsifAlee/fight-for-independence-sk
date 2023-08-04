@@ -46,6 +46,7 @@ const SendCardPopup = ({ popUpHandler, title }) => {
         if (!res.roomList.length) {
           setCardRecvStatus("No User Found!");
         }
+        setInputValue("");
       });
   };
   const sendCard = () => {
@@ -67,13 +68,13 @@ const SendCardPopup = ({ popUpHandler, title }) => {
     )
       .then((res) => res.json())
       .then((res) => {
-        setRecvCardPopup(true);
-
-        if (res.data === true) {
+        if (res.errorCode === 0) {
           // setCardRecvStatus(res.msg);
           setIsCardSendSuccess(true);
           getFanfollowerTalent();
           getFanfollowerUser();
+          setRecvCardPopup(true);
+
           // popUpHandler();
         } else if (res.errorCode === 11000000) {
           setCardRecvStatus("NOT ELIGIBLE FOR THIS CARD");
@@ -84,7 +85,7 @@ const SendCardPopup = ({ popUpHandler, title }) => {
         }
         // setIsAccBtnDisabled(false);
 
-        // setInputValue("");
+        setInputValue("");
         setFoundUsers([]);
 
         getInfo();
@@ -104,7 +105,7 @@ const SendCardPopup = ({ popUpHandler, title }) => {
       title={title}
       popUpHandler={popUpHandler}
       isSendCard={true}
-      isOverflow={true}
+      // isOverflow={true}
       isSendCardPopup={true}
     >
       <div className="send-card-popup">
@@ -112,31 +113,32 @@ const SendCardPopup = ({ popUpHandler, title }) => {
         <div
           className="wish-card"
           style={{
-            backgroundImage: `url(${currentBackgroundImg.bg})`,
+            backgroundImage: `url(${currentBackgroundImg?.bg})`,
             width: currentBackgroundImg?.isPortrait && "92%",
             height: currentBackgroundImg?.isPortrait && "46vw",
+            left: currentBackgroundImg?.isPortrait && "3vw",
           }}
         >
-          {currentBackgroundImg.isPortrait ? (
+          {currentBackgroundImg?.isPortrait ? (
             <div
               className={`${
-                currentBackgroundImg.isPortrait && "portrait-wish-text"
+                currentBackgroundImg?.isPortrait && "portrait-wish-text"
               }`}
             >
-              {currentBackgroundImg.wish}
+              {currentBackgroundImg?.wish}
               <p style={{ position: "absolute", top: "23vw", fontSize: "4vw" }}>
                 Happy Indepencdenc Day 2023!
               </p>
             </div>
           ) : (
-            <div className="wish-card">
-              {currentBackgroundImg.wish}
+            <div className="wish-card-text">
+              {currentBackgroundImg?.wish}
               <div
                 style={{
                   position: "relative",
-                  width: " 41vw",
-                  top: "11vw",
-                  left: "16vw",
+                  width: " 40vw",
+                  top: "5vw",
+                  left: "14vw",
                 }}
               >
                 Happy Independence Day!
@@ -151,24 +153,35 @@ const SendCardPopup = ({ popUpHandler, title }) => {
             onChange={(event) => {
               setInputValue(event.target.value);
             }}
+            value={inputValue}
           />
           <button className="search-btn" onClick={searchUser} />
         </div>
         <div className="found-users">
           {foundUsers?.length > 0 &&
             foundUsers?.map((user, index) => (
-              <RadioSelect
-                handleRadioCheck={handleRadioCheck}
-                index={index}
-                isSelected={radioSelected}
-              >
-                <User
-                  user={user}
-                  sendCard={sendCard}
-                  isDisabled={radioSelected === null}
-                />
-              </RadioSelect>
+              <div>
+                <RadioSelect
+                  handleRadioCheck={handleRadioCheck}
+                  index={index}
+                  isSelected={radioSelected}
+                >
+                  <User
+                    user={user}
+                    sendCard={sendCard}
+                    isDisabled={radioSelected === null}
+                  />
+                </RadioSelect>
+              </div>
             ))}
+          {foundUsers?.length > 0 && (
+            <button
+              className="send-btn"
+              onClick={sendCard}
+              disabled={radioSelected === null}
+              style={{ filter: radioSelected === null && "grayScale(1)" }}
+            />
+          )}
         </div>
         <p className="eligibility-text">{cardRecvStatus}</p>
       </div>

@@ -10,6 +10,7 @@ import { eventGftingPot } from "../../../../beansPot";
 
 const UserLeaderBoard = () => {
   const { leaderboardsData } = useContext(AppContext);
+  const { eventgiftingUserOverall } = leaderboardsData;
   const { info } = useContext(AppContext);
 
   const [seeMore, setSeeMore] = useState(true);
@@ -23,12 +24,13 @@ const UserLeaderBoard = () => {
   return (
     <div className="main-leaderboard">
       <img src={titleTag} className="title" />
-      {testLeaderData[0] && (
+      {eventgiftingUserOverall && eventgiftingUserOverall[0] && (
         <div className="top1">
           <EventGiftingTopper
             user={leaderboardsData?.eventgiftingUserOverall[0]}
             showEst={true}
             calculateEstRewards={calculateEstRewards}
+            isTalent={false}
           />
         </div>
       )}
@@ -37,7 +39,7 @@ const UserLeaderBoard = () => {
         className="restWinners"
         style={{ overflowY: !seeMore ? "auto" : "" }}
       >
-        {leaderboardsData?.eventgiftingUserOverall
+        {eventgiftingUserOverall
           ?.slice(1, seeMore ? 10 : 20)
           .map((user, index) => (
             <EventGiftingLeaderboardItem
@@ -47,10 +49,11 @@ const UserLeaderBoard = () => {
               index={index + 2}
               showEst={true}
               calculateEstRewards={calculateEstRewards}
+              isTalent={false}
             />
           ))}
       </div>
-      {leaderboardsData?.eventgiftingUserOverall?.length > 10 && (
+      {eventgiftingUserOverall?.length > 10 && (
         <button
           className={`${seeMore ? "see-more" : "see-less"}`}
           onClick={() => setSeeMore((prevState) => !prevState)}

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import PopUp from "../components/PopUp";
 import bg from "../assets/popup/mulitiple-popup-bg.png";
+import beanIcon from "../assets/event-gifting/bean-icon.png";
 import { AppContext } from "../AppContext";
 const ConquerFortPopup = ({
   popUpHandler,
@@ -11,30 +12,37 @@ const ConquerFortPopup = ({
   title,
   currentLevel,
   errMsg,
+  // dyingSoldiers,
+  // isNotEnoughSoldiers,
+  zeroSoldiers,
 }) => {
-  let newRewards = rewardsContent?.includes("+")
-    ? rewardsContent.split("+")
-    : rewardsContent;
   const { info } = useContext(AppContext);
 
   return (
     <PopUp bg={bg} title={title} popUpHandler={popUpHandler} isCollSold={true}>
-      {errorCode === 0 && currentLevel === 1 ? (
+      {zeroSoldiers === true ? (
         <div className="collect-sold-popup">
-          You have successfully defeated enemies and have cleared level 1. Keep
-          on playing, you are just 2 levels away from achieving freedom. For
-          this you have won 20,000 (beans). You're almost there.
+          You dont have enough soldiers.Please collect soldiers first.
         </div>
       ) : errorCode === 0 && currentLevel === 2 ? (
         <div className="collect-sold-popup">
-          You have successfully cleared level 2. Keep on playing, you are just 1
-          level away from achieving freedom. For this you have won 50,000
-          (beans). You're almost there.
+          You have successfully defeated enemies and have cleared level 1. Keep
+          on playing, you are just 2 levels away from achieving freedom. For
+          this you have won 20,000{" "}
+          <img src={beanIcon} style={{ width: "3vw" }} />. You're almost there.
         </div>
       ) : errorCode === 0 && currentLevel === 3 ? (
         <div className="collect-sold-popup">
+          You have successfully cleared level 2. Keep on playing, you are just 1
+          level away from achieving freedom. For this you have won 50,000
+          <img src={beanIcon} style={{ width: "3vw" }} />. You're almost there.
+        </div>
+      ) : errorCode === 0 && currentLevel === 4 ? (
+        <div className="collect-sold-popup">
           You have successfully defeated enemies and won this VICTORY FORT. As a
-          result, you have won 110,000 beans. Keep Playing to earn more!
+          result, you have won 110,000{" "}
+          <img src={beanIcon} style={{ width: "3vw" }} />. Keep Playing to earn
+          more!
         </div>
       ) : errorCode === 10000008 ? (
         <div className="collect-sold-popup">

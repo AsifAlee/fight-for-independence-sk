@@ -18,7 +18,6 @@ const ChampionsLeaderboard = ({ isSliderOn }) => {
   }, [leaderboardsData]);
 
   const calculateEstRewards = (index, isToday) => {
-    debugger;
     const totalBeansPot = isToday
       ? info?.conquerFortTodayPot
       : info?.conquerFortYestPot;

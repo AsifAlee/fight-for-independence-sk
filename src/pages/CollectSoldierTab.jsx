@@ -15,11 +15,13 @@ import leftTerShoot from "../assets/game/left-terrist-shoot.gif";
 import righTertShoot from "../assets/game/right-terrist-shoot.gif";
 import rightPlaneShoot from "../assets/game/right-plane-shoot.gif";
 import tankShoot from "../assets/game/tank-shoot.gif";
-import { getRandomNumber } from "../utils/functions";
+import { getRandomNumber, gotoProfile } from "../utils/functions";
 import RewardHistoryPopup from "../popups/RewardHistoryPopup";
 import giftIcon from "../assets/giftIcon.png";
 import Marquee from "react-fast-marquee";
+import hurrah from "../assets/popup/hurrah.png";
 import unknowUser from "../assets/unknown-user.png";
+import beanIcon from "../assets/event-gifting/bean-icon.png";
 
 const CollectSoldierTab = () => {
   const {
@@ -29,6 +31,7 @@ const CollectSoldierTab = () => {
     getCollectSoldiers,
     user,
     marqueeData,
+    getSoldierRecords,
   } = useContext(AppContext);
   const { collectSoldiers } = leaderboardsData;
   const [seeMore, setSeeMore] = useState(true);
@@ -43,6 +46,9 @@ const CollectSoldierTab = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [showRewardHistory, setRewardHistory] = useState(false);
   const gameGifs = [leftTerShoot, righTertShoot, rightPlaneShoot, tankShoot];
+  const chances = info?.gamePoints / 25000;
+  const [warn, setWarn] = useState("");
+  const [shakeText, setShakeText] = useState(false);
 
   const onChangeHandle = (event) => {
     setInputValue(parseInt(event.target.value));
@@ -55,8 +61,19 @@ const CollectSoldierTab = () => {
     setRewardHistory((prevState) => !prevState);
   };
   const playGame = () => {
+    if (!inputValue) {
+      setWarn("Enter Some value");
+      setShakeText(true);
+      // setShakeText(true);
+      // setTimeout(() => {
+      //   setShakeText(false);
+      //   setWarn("");
+      // }, [2000]);
+      return;
+    } else {
+      setShakeText(false);
+    }
     setIsDisabled(true);
-
     fetch(
       `${baseUrl}api/activity/fightForIndependence/collectSoldiers?playCount=${inputValue}`,
       {
@@ -72,24 +89,32 @@ const CollectSoldierTab = () => {
     )
       .then((response) => response?.json())
       .then((response) => {
-        setIsplaying(true);
-
         setErrorCode(response?.errorCode);
+
         setRewardsContent(response?.data?.rewardContent);
         setRewards(response?.data?.rewardDTOList);
         setSoldiers(response?.data?.totalSoldiers);
         setErrMsg(response?.msg);
-        setCurrentGif(gameGifs[getRandomNumber() - 1]);
+        if (response?.errorCode === 0) {
+          setIsplaying(true);
+          setCurrentGif(gameGifs[getRandomNumber() - 1]);
+        }
+
         setTimeout(() => {
           setIsDisabled(false);
           setIsplaying(false);
           setShowGame(true);
           getCollectSoldiers();
+          getSoldierRecords();
+          setInputValue(1);
         }, 1400);
         getInfo();
       })
       .catch((error) => {
         console.error(error);
+        setInputValue(1);
+        setIsDisabled(false);
+        setIsplaying(false);
       });
   };
   const onUpCheck = (e) => {
@@ -97,14 +122,14 @@ const CollectSoldierTab = () => {
     if (/[+-.]/.test(e.key)) {
       setInputValue("");
     } else {
-      if (info.gamePoints <= 99 && info.gamePoints > 0) {
-        max = info.gamePoints;
-      } else if (info.gamePoints > 99) {
+      if (chances <= 99 && chances > 0) {
+        max = chances;
+      } else if (chances > 99) {
         max = 99;
-      } else if (info.gamePoints === 0) {
+      } else if (chances === 0) {
         max = 1;
       }
-      let number = inputValue > max ? max : inputValue <= 0 ? "" : inputValue;
+      let number = inputValue > max ? max : inputValue <= 0 ? 1 : inputValue;
       setInputValue(parseInt(number));
     }
   };
@@ -119,10 +144,11 @@ const CollectSoldierTab = () => {
               <img
                 src={item?.portrait ? item?.portrait : unknowUser}
                 className="user-img"
+                onClick={() => gotoProfile(item?.userId)}
               />
               <div className="user-details">
                 <span className="name">{`${item?.nickname?.slice(0, 6)}`}</span>
-                <div>
+                <div className="d-flex j-center al-center">
                   &nbsp; has won{" "}
                   {`${
                     item?.userScore === 1
@@ -130,7 +156,10 @@ const CollectSoldierTab = () => {
                       : item?.userScore === 2
                       ? "50,000"
                       : "110,000"
-                  } Beans`}
+                  }`}
+                  <span style={{ marginTop: "1vw" }}>
+                    <img src={beanIcon} className="bean-img" />
+                  </span>
                   .&nbsp;Congratulations!
                 </div>
               </div>
@@ -160,8 +189,12 @@ const CollectSoldierTab = () => {
           <span
             style={{ marginTop: "3vw", marginLeft: "6vw", fontSize: "2.5vw" }}
           >
-            My Chances = {info?.gamePoints}
+            My Chances = {Math.floor(info?.gamePoints / 25000)}
           </span>
+          {/* ${shakeText && "shaking-text */}
+          {shakeText && (
+            <span className={`warning-text shaking-text`}>{warn}</span>
+          )}
         </div>
         <div
           className="enter-chances"
@@ -175,6 +208,7 @@ const CollectSoldierTab = () => {
               backgroundColor: "#200e0c",
               height: "4vw",
               fontSize: "2.2vw",
+              textAlign: "center",
             }}
             value={inputValue}
             onChange={onChangeHandle}
@@ -187,7 +221,7 @@ const CollectSoldierTab = () => {
         <img src={leaderBoardTag} className="title" />
         {collectSoldiers[0] && (
           <div className="top1">
-            <Topper user={collectSoldiers[0]} />
+            <Topper user={collectSoldiers[0]} isTalent={false} />
           </div>
         )}
 
@@ -201,6 +235,7 @@ const CollectSoldierTab = () => {
               rewards={[]}
               key={index}
               index={index + 2}
+              isTalent={false}
             />
           ))}
         </div>
@@ -223,7 +258,7 @@ const CollectSoldierTab = () => {
           rewardsContent={rewardsContent}
           soldiers={soldiers}
           isCollSold={true}
-          title={errorCode === 10000004 ? tryAgain : congTag}
+          title={errorCode === 10000004 ? tryAgain : hurrah}
           errMsg={errMsg}
         />
       )}

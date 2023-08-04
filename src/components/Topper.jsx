@@ -4,14 +4,14 @@ import unknownUser from "../assets/unknown-user.png";
 import "../styles/topper.scss";
 import LeaderBoardSlider from "./LeaderBoardSlider";
 import { testData } from "../utils/testData";
-import { formatData } from "../utils/functions";
+import { formatData, getLevelImage, gotoProfile } from "../utils/functions";
 
 const Topper = ({ user }) => {
   let currentReward = formatData(JSON.parse(user.desc));
 
   return (
     <div className="topper">
-      <div className="topper-images">
+      <div className="topper-images" onClick={() => gotoProfile(user?.userId)}>
         <img src={top1Frame} className="frame" />
         <img
           src={user?.portrait ? user?.portrait : unknownUser}
@@ -19,7 +19,10 @@ const Topper = ({ user }) => {
         />
       </div>
       <div className="topper-details">
-        <p className="name">{user?.nickname}</p>
+        <div className="nameLevel">
+          <p className="name">{user?.nickname}</p>
+          <img src={getLevelImage(user?.userLevel, false)} />
+        </div>
         <div
           className="reward-images"
           style={{

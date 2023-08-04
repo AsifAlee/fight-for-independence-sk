@@ -5,7 +5,7 @@ import rightArrow from "../assets/event-gifting/right-arrow.png";
 import SliderDot from "./SliderDot";
 import { getRewardsImage } from "../utils/functions";
 
-const RewardsSlider = ({ rewards }) => {
+const RewardsSlider = ({ rewards, showRanks }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   let intervalId = null;
   const nextSlide = () => {
@@ -30,6 +30,9 @@ const RewardsSlider = ({ rewards }) => {
     <div className="slider">
       <img className="left-arrow" src={leftArrow} onClick={prevSlide} />
       <div className="slider-content">
+        {showRanks && (
+          <p style={{ fontSize: "3vw" }}>{rewards[currentIndex]?.rank}</p>
+        )}
         <div className="images">
           <img src={getRewardsImage(rewards[currentIndex]?.desc)} />
         </div>
@@ -38,6 +41,7 @@ const RewardsSlider = ({ rewards }) => {
             width: "48vw",
             textAlign: "center",
             fontSize: "3vw",
+            marginTop: "2vw",
           }}
         >
           {rewards[currentIndex].text}

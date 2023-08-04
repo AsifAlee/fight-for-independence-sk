@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import titleTag from "../../../assets/event-gifting/leaderboard-tag.png";
 import { testLeaderData } from "../../../utils/testData";
 
@@ -13,9 +13,14 @@ const Talent = () => {
   const { leaderboardsData, getFanfollowerTalent, user } =
     useContext(AppContext);
   let { fanFollowerTalent } = leaderboardsData;
-  const [tagCode, setTagCode] = useState(null);
   const [toastMsg, setToastMsg] = useState("");
   const [showToastMsg, setShowToastMsg] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
+  useEffect(() => {
+    setFilteredData(
+      fanFollowerTalent?.filter((item) => item?.userId !== user.userId)
+    );
+  }, [fanFollowerTalent]);
 
   const toggleToastPopup = () => {
     setShowToastMsg((prevState) => !prevState);
@@ -32,7 +37,6 @@ const Talent = () => {
       )
         .then((response) => response.json())
         .then((response) => {
-          // toggleToastPopup();
           setShowToastMsg(true);
           if (
             response?.TagCode === "00000000" &&
@@ -58,10 +62,10 @@ const Talent = () => {
         <Toast message={toastMsg} closeToast={toggleToastPopup} />
       )}
 
-      {fanFollowerTalent[0] && (
+      {filteredData && filteredData[0] && (
         <div className="top1">
           <FanFollwerTopper
-            user={fanFollowerTalent[0]}
+            user={filteredData[0]}
             isUser={false}
             followTalent={followTalent}
           />
@@ -72,7 +76,7 @@ const Talent = () => {
         className="restWinners"
         style={{ overflowY: !seeMore ? "auto" : "" }}
       >
-        {fanFollowerTalent?.slice(1, seeMore ? 10 : 20).map((user, index) => (
+        {filteredData?.slice(1, seeMore ? 10 : 20).map((user, index) => (
           <FanFollowerLbItem
             user={user}
             rewards={[]}
@@ -85,7 +89,7 @@ const Talent = () => {
         ))}
       </div>
 
-      {fanFollowerTalent?.length > 10 ? (
+      {filteredData?.length > 10 ? (
         <button
           className={`${seeMore ? "see-more" : "see-less"}`}
           onClick={() => setSeeMore((prevState) => !prevState)}

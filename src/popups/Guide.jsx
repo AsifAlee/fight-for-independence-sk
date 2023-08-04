@@ -3,10 +3,14 @@ import PopUp from "../components/PopUp";
 import titleBanner from "../assets/popup/guide.png";
 import bg from "../assets/popup/guide-bg.png";
 import howToPlay from "../assets/popup/howtoplay.png";
-import soldCol from "../assets/popup/sold-tag.png";
-import conquerfort from "../assets/popup/conquer-fort.png";
+// import soldCol from "../assets/popup/sold-tag.png";
+import soldCol from "../assets/popup/soldier-collection.png";
+// import conquerfort from "../assets/popup/conquer-fort.png";
+import conquerfort from "../assets/popup/Conquer-the-victory-fory.png";
+
 import fanfollower from "../assets/popup/fan-follower.png";
 import { AppContext } from "../AppContext";
+import beanIcon from "../assets/event-gifting/bean-icon.png";
 
 const Guide = ({ toggleGuide }) => {
   const { selectedLng } = useContext(AppContext);
@@ -23,12 +27,13 @@ const Guide = ({ toggleGuide }) => {
                 <ol>
                   <li>
                     For every <span className="highlight"> 25,000</span> Beans
-                    spent on <span className="highlight">event gifts</span> ,
-                    you will get a chance.
+                    spent on <span className="highlight">event gifts</span>, you
+                    will get a chance.
                   </li>
                   <li>
-                    You have gun to use the{" "}
-                    <span className="highlight"> gun</span> and
+                    You have the
+                    <span className="highlight"> gun</span>
+                    to use and
                     <span className="highlight"> destroy</span> things on the
                     battle ground. After successfully destroying, you can
                     receive rewards. Along with the rewards, you will also be
@@ -36,8 +41,7 @@ const Guide = ({ toggleGuide }) => {
                   </li>
                   <li>
                     On the webpage, you can also check your
-                    <span className="highlight"> rewards history</span>
-                    ..
+                    <span className="highlight"> rewards history</span>.
                   </li>
                   <li>
                     You can play up to
@@ -48,7 +52,11 @@ const Guide = ({ toggleGuide }) => {
               </div>
             </div>
             <div className="conquer-fort">
-              <img src={conquerfort} className="tag" />
+              <img
+                src={conquerfort}
+                // className="tag"
+                style={{ width: "40vw ", marginTop: "2vw" }}
+              />
 
               <div className="list-item">
                 <ol>
@@ -100,19 +108,34 @@ const Guide = ({ toggleGuide }) => {
                     </thead>
 
                     <tr>
-                      <td>1</td>
-                      <td>5000</td>
-                      <td>20,000 beans</td>
+                      <td>Lvl 1</td>
+                      <td>5,000</td>
+                      <td>
+                        <div className="d-flex j-center al-center">
+                          <span>20000</span>
+                          <img src={beanIcon} style={{ width: "4vw" }} />
+                        </div>
+                      </td>
                     </tr>
                     <tr>
-                      <td>1</td>
-                      <td>5000</td>
-                      <td>20,000 beans</td>
+                      <td>Lvl 2</td>
+                      <td>15,000</td>
+                      <td>
+                        <div className="d-flex j-center al-center">
+                          <span>70000</span>
+                          <img src={beanIcon} style={{ width: "4vw" }} />
+                        </div>
+                      </td>
                     </tr>
                     <tr>
-                      <td>1</td>
-                      <td>5000</td>
-                      <td>20,000 beans</td>
+                      <td>Lvl 3</td>
+                      <td>40,000</td>
+                      <td>
+                        <div className="d-flex j-center al-center">
+                          <span>200,000</span>
+                          <img src={beanIcon} style={{ width: "4vw" }} />
+                        </div>
+                      </td>
                     </tr>
                   </table>
                 </ol>
@@ -218,7 +241,10 @@ const Guide = ({ toggleGuide }) => {
               </div>
             </div>
             <div className="conquer-fort">
-              <img src={conquerfort} className="tag" />
+              <img
+                src={conquerfort}
+                style={{ width: "40vw ", marginTop: "2vw" }}
+              />
 
               <div className="list-item">
                 <ol>
@@ -230,7 +256,7 @@ const Guide = ({ toggleGuide }) => {
                   </li>
                   <li>
                     <span className="highlight">3 levels</span>
-                    honge Fort ko free karne ke liye..
+                    honge Fort ko free karne ke liye.
                   </li>
                   <li>
                     Level 1, Level 2, Level 3 inn teen levels ko unlock karna
@@ -272,17 +298,32 @@ const Guide = ({ toggleGuide }) => {
                     <tr>
                       <td>Lvl 1</td>
                       <td>5,000</td>
-                      <td>20,000 beans</td>
+                      <td>
+                        <div className="d-flex j-center al-center">
+                          <span>20000</span>
+                          <img src={beanIcon} style={{ width: "4vw" }} />
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                       <td>Lvl 2</td>
                       <td>15,000</td>
-                      <td>50,000 beans</td>
+                      <td>
+                        <div className="d-flex j-center al-center">
+                          <span>70000</span>
+                          <img src={beanIcon} style={{ width: "4vw" }} />
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                       <td>Lvl 3</td>
                       <td>40,000</td>
-                      <td>1,30,000 beans</td>
+                      <td>
+                        <div className="d-flex j-center al-center">
+                          <span>200,000</span>
+                          <img src={beanIcon} style={{ width: "4vw" }} />
+                        </div>
+                      </td>
                     </tr>
                   </table>
                 </ol>
@@ -317,7 +358,7 @@ const Guide = ({ toggleGuide }) => {
                     Step 3:
                   </span>
                   Card ke neeche search bar hoga. Aap talent ID ya username ke
-                  saath search kar sakte hai; jab talent ID search results mein
+                  saath search kar sakte hai.jab talent ID search results mein
                   appear ho, aap use select karke send pe tap kar de. (Aap card
                   khud ko nahi bhej sakte)
                 </p>

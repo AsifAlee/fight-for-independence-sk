@@ -39,9 +39,28 @@
     padding-bottom: 5vw;
     padding-left: 3vw;
 
-    .name {
-      font-size: 2.5vw;
+    
+    .nameLevel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 18vw;
+      .name {
+        font-size: 2.5vw;
+        font-family: "Acme-Regular";
+        color: white;
+
+        width: 18vw;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      img{
+        width: 7vw;
+      }
     }
+
   }
 }
 
@@ -109,6 +128,28 @@
         width: 5vw;
       }
     }
+
+          
+    .nameLevel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 18vw;
+      .name {
+        font-size: 2.5vw;
+        font-family: "Acme-Regular";
+        color: white;
+
+        width: 18vw;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      img{
+        width: 7vw;
+      }
+    }
   }
 }
 
@@ -155,13 +196,35 @@
     justify-content: space-around;
     font-size: 2vw;
 
-    .name {
-      font-size: 2.5vw;
-      color: white;
+    // .name {
+    //   font-size: 2.5vw;
+    //   color: white;
+    //   width: 18vw;
+    //   overflow: hidden;
+    //   text-overflow: ellipsis;
+    //   white-space: nowrap;
+    // }
+
+        
+    .nameLevel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       width: 18vw;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      .name {
+        font-size: 2.5vw;
+        font-family: "Acme-Regular";
+        color: white;
+
+        width: 18vw;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      img{
+        width: 7vw;
+      }
     }
 
     .beans-collected {
@@ -226,15 +289,28 @@
     justify-content: space-around;
     font-size: 2vw;
 
-    .name {
-      
-      font-size: 2.5vw;
-      font-family: "Acme-Regular";
-      color: white;
-      // width: 18vw;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+
+
+        
+    .nameLevel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 18vw;
+      .name {
+        font-size: 2.5vw;
+        font-family: "Acme-Regular";
+        color: white;
+
+        width: 18vw;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      img{
+        width: 7vw;
+      }
     }
 
     .beans-won{

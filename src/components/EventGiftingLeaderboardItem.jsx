@@ -8,6 +8,7 @@ import unknownUser from "../assets/unknown-user.png";
 import gem from "../assets/gems.png";
 
 import { testData } from "../utils/testData";
+import { getLevelImage, gotoProfile } from "../utils/functions";
 const EventGiftingLeaderboardItem = ({
   user,
   rewards,
@@ -22,7 +23,7 @@ const EventGiftingLeaderboardItem = ({
     <div className="event-gifiting-leaderboard-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
         {index > 3 && <span className="index">{index}</span>}
-        <div className="images">
+        <div className="images" onClick={() => gotoProfile(user?.userId)}>
           <img
             src={user?.portrait ? user?.portrait : unknownUser}
             className="avatar"
@@ -35,7 +36,15 @@ const EventGiftingLeaderboardItem = ({
             />
           )}
         </div>
-        <span className="name">{user?.nickname}</span>
+        <div className="nameNLevel">
+          <span className="name">{user?.nickname}</span>
+          <img
+            src={getLevelImage(
+              isTalent ? user?.actorLevel : user?.userLevel,
+              isTalent
+            )}
+          />
+        </div>
       </div>
 
       {
@@ -43,7 +52,17 @@ const EventGiftingLeaderboardItem = ({
           className="middle-div"
           style={{ visibility: index > 5 || !showEst ? "hidden" : "" }}
         >
-          Est Rewards {calculateEstRewards ? calculateEstRewards(index) : ""}
+          <span>Est Rewards</span>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <span>{calculateEstRewards ? calculateEstRewards(index) : ""}</span>
+            <img src={beansIcon} style={{ width: "4vw" }} />
+          </div>
         </div>
       }
 

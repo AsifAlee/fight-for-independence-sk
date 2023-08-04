@@ -43,7 +43,7 @@
     .tab-here {
       height: 19vw;
       width: 41%;
-      background-image: url("../assets//fanfollowers/tab-here-btn.png");
+      background-image: url("../assets/card/tab-here.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
       margin: 0 auto;
@@ -112,7 +112,7 @@
       .rewards-container {
         background-image: url("../assets/event-gifting/rewards-bg.png");
         width: 90%;
-        height: 50vw;
+        height: 65vw;
         background-repeat: no-repeat;
         background-size: 100% 100%;
         margin: 0 auto;
@@ -124,7 +124,7 @@
   
         .slider-container {
           position: relative;
-          bottom: 6vw;
+          // bottom: 6vw;
           left: 4vw;
         }
       }

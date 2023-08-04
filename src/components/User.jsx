@@ -18,12 +18,12 @@ const User = ({ user, sendCard, isDisabled }) => {
         <img alt="" className="frame" src={frame} />
       </div>
       <span className="name">{user?.nickname}</span>
-      <button
+      {/* <button
         className="send-btn"
         onClick={sendCard}
         disabled={isDisabled}
         style={{ filter: isDisabled && "grayScale(1)" }}
-      />
+      /> */}
     </div>
   );
 };

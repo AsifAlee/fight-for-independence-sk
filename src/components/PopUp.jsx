@@ -34,13 +34,14 @@ const PopUp = (props) => {
             isCollSold
               ? "57vw"
               : isSendCard
-              ? "102vw"
+              ? "80vw"
               : isGame
               ? "63vw"
               : isRewardHist
               ? "90vw"
               : ""
           }`,
+          height: isSendCard && "102vw",
           width: `${
             isSendCardPopup
               ? "95%"

@@ -7,7 +7,9 @@ import { AppContext } from "../AppContext";
 import RewardsHistoryItem from "../components/RewardsHistoryItem";
 
 const RewardHistoryPopup = ({ popUpHandler }) => {
-  const { soldiersRecords } = useContext(AppContext);
+  let { soldiersRecords } = useContext(AppContext);
+
+  // soldiersRecords = [];
   return (
     <PopUp
       bg={bg}
@@ -17,17 +19,30 @@ const RewardHistoryPopup = ({ popUpHandler }) => {
     >
       <div style={{}} className="reward-hist-popup">
         <div className="rewards-hist-title">
-          <span>Time</span>
-          <span>Rewards</span>
+          <span className="time">Time</span>
+          <span className="rewards-t">Rewards</span>
         </div>
-        {soldiersRecords?.map((item) => {
-          return (
-            <RewardsHistoryItem
-              time={item?.time.split("T")[0]}
-              rewards={item?.rewardDTOList}
-            />
-          );
-        })}
+        {soldiersRecords?.length > 0 ? (
+          soldiersRecords?.map((item) => {
+            return (
+              <RewardsHistoryItem
+                time={item?.time.split("T")[0]}
+                rewards={item?.rewardDTOList}
+              />
+            );
+          })
+        ) : (
+          <div
+            style={{
+              height: "70%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            No Records Found
+          </div>
+        )}
       </div>
     </PopUp>
   );

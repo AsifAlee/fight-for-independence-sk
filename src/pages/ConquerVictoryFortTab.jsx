@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../styles/conquer-fort.scss";
 import title from "../assets/Conquer-tab/hero-journey.png";
 import beanspot from "../assets/event-gifting/beans-pot.png";
@@ -29,6 +29,8 @@ import conquerSelect from "../assets/card/conq-select.png";
 import champSelect from "../assets/card/champ-select.png";
 import Marquee from "react-fast-marquee";
 import unknowUser from "../assets/unknown-user.png";
+import beanIcon from "../assets/event-gifting/bean-icon.png";
+import { gotoProfile } from "../utils/functions";
 
 const ConquerVictoryFortTab = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
@@ -41,11 +43,21 @@ const ConquerVictoryFortTab = () => {
   const [rewards, setRewards] = useState([]);
   const [rewardsContent, setRewardsContent] = useState("");
   const [errorCode, setErrorCode] = useState(null);
-  const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentLevel, setCurrentLevel] = useState(0);
   const [errMsg, setErrMsg] = useState("");
   const [infoPopup, setInfoPopup] = useState(false);
   const [joinTeamPopup, setJoinTeamPopup] = useState(false);
   const [joinTeamMsg, setJoinTeamMsg] = useState("");
+  // const [dyingSoldiers, setDyingSoldiers] = useState(0);
+  const [isNotEnoughSoldiers, setIsNotEnoughSoldier] = useState(false);
+
+  // useEffect(() => {
+  //   setDyingSoldiers(info.dailyCurrentSoldier);
+  // }, [info.dailyCurrentSoldier]);
+
+  useEffect(() => {
+    setCurrentLevel(info.fortState);
+  }, []);
 
   function handleSliderToggle(isOn) {
     setIsSliderOn(isOn);
@@ -54,10 +66,15 @@ const ConquerVictoryFortTab = () => {
     setJoinTeamPopup((prevState) => !prevState);
   };
 
+  useEffect(() => {});
+
   const toggleInfoPopup = () => {
     setInfoPopup((prevState) => !prevState);
   };
-  const closeGamePopup = () => {
+  const closeGamePopup = (isNotEnoughSoldiers) => {
+    if (isNotEnoughSoldiers) {
+      getInfo();
+    }
     setShowGame(false);
     getInfo();
   };
@@ -115,6 +132,10 @@ const ConquerVictoryFortTab = () => {
   };
 
   const playGame = () => {
+    if (info.dailyCurrentSoldier === 0) {
+      setShowGame(true);
+      return;
+    }
     setIsDisabled(true);
     fetch(`${baseUrl}api/activity/fightForIndependence/conquerFort`, {
       method: "POST",
@@ -130,14 +151,23 @@ const ConquerVictoryFortTab = () => {
       .then((response) => {
         setIsDisabled(false);
         setShowGame(true);
+        // soldiers not enougt
+
         setErrorCode(response?.errorCode);
         setRewardsContent(response?.data?.rewardContent);
         setRewards(response?.data?.rewardDTOList);
-        if (response?.errorCode === 0 && info?.fortState !== 1) {
+        if (response?.errorCode === 0 && response?.fortState !== 1) {
+          if (currentLevel === 4) {
+            setCurrentLevel(info.fortState);
+          }
           setCurrentLevel((prevState) => prevState + 1);
         }
+        if (response?.errorCode === 10000008) {
+          setIsNotEnoughSoldier(true);
+        } else {
+          getInfo();
+        }
         setErrMsg(response?.msg);
-        getInfo();
       })
       .catch((error) => {
         console.error(error);
@@ -158,28 +188,40 @@ const ConquerVictoryFortTab = () => {
               <img
                 src={item?.portrait ? item?.portrait : unknowUser}
                 className="user-img"
+                onClick={() => gotoProfile(item?.userId)}
               />
               <div className="user-details">
                 <span className="name">{`${item?.nickname?.slice(0, 6)}`}</span>
-                <div>
-                  {item?.userScore === 3 ? (
-                    <span>
-                      &nbsp; has just freed the VICTORY FORT & won 110,000
-                      Beans.
+                {/* <div> */}
+                {item?.userScore === 3 ? (
+                  <div className="d-flex j-center al-center">
+                    &nbsp; has just freed the VICTORY FORT & won 110,000
+                    <span style={{ marginTop: "1vw" }}>
+                      <img src={beanIcon} className="bean-img" />
                     </span>
-                  ) : item?.userScore === 2 ? (
-                    <span>
-                      &nbsp; has just freed level 2 of the VICTORY FORT & won
-                      50,000 Beans.
+                    .
+                  </div>
+                ) : item?.userScore === 2 ? (
+                  <div className="d-flex j-center al-center">
+                    &nbsp; has just freed level 2 of the VICTORY FORT & won
+                    50,000{" "}
+                    <span style={{ marginTop: "1vw" }}>
+                      <img src={beanIcon} className="bean-img" />
                     </span>
-                  ) : (
-                    <span>
-                      &nbsp; has just freed level 1 of the VICTORY FORT & won
-                      20,000 Beans.
+                    .
+                  </div>
+                ) : (
+                  <div className="d-flex j-center al-center">
+                    &nbsp; has just freed level 1 of the VICTORY FORT & won
+                    20,000{" "}
+                    <span style={{ marginTop: "1vw" }}>
+                      <img src={beanIcon} className="bean-img" />
                     </span>
-                  )}
-                  .&nbsp;Congratulations!
-                </div>
+                    .
+                  </div>
+                )}
+                &nbsp;Congratulations!
+                {/* </div> */}
               </div>
             </div>
           );
@@ -194,7 +236,7 @@ const ConquerVictoryFortTab = () => {
       <div className="fort-wrapper">
         <div className="fort">
           <div className="collect-soldiers">
-            <span>Soldiers Collected:{info?.dailyTotalSoldier}</span>
+            <span>Soldiers Collected:{info?.dailyCurrentSoldier}</span>
           </div>
           <div className="info-icon" onClick={toggleInfoPopup}></div>
 
@@ -228,7 +270,7 @@ const ConquerVictoryFortTab = () => {
         </div>
       </div>
       <div className="collect-soldiers">
-        <span>Soldiers collected today:{info?.dailyCurrentSoldier}</span>
+        <span>Soldiers collected today:{info?.dailyTotalSoldier}</span>
       </div>
       <div className="join-team-wrap">
         {info?.teamId === 0 && (
@@ -315,6 +357,9 @@ const ConquerVictoryFortTab = () => {
           title={errorCode === 0 ? congTag : oops}
           currentLevel={currentLevel}
           errMsg={errMsg}
+          // dyingSoldiers={dyingSoldiers}
+          // isNotEnoughSoldiers={isNotEnoughSoldiers}
+          zeroSoldiers={info?.dailyCurrentSoldier === 0}
         />
       )}
       {infoPopup && <ConquerFortInfo popupHandler={toggleInfoPopup} />}

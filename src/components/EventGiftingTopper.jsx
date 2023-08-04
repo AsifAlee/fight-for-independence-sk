@@ -5,6 +5,7 @@ import beanIcon from "../assets/event-gifting/bean-icon.png";
 import gem from "../assets/gems.png";
 import unknownUser from "../assets/unknown-user.png";
 import "../styles/topper.scss";
+import { getLevelImage, gotoProfile } from "../utils/functions";
 
 const EventGiftingTopper = ({
   user,
@@ -14,7 +15,7 @@ const EventGiftingTopper = ({
 }) => {
   return (
     <div className="event-gifting-topper">
-      <div className="topper-images">
+      <div className="topper-images" onClick={() => gotoProfile(user?.userId)}>
         <img src={top1Frame} className="frame" />
         <img
           src={user?.portrait ? user?.portrait : unknownUser}
@@ -22,10 +23,24 @@ const EventGiftingTopper = ({
         />
       </div>
       <div className="topper-details">
-        <p className="name">{user.nickname}</p>
+        <div className="nameLevel">
+          <p className="name">{user?.nickname}</p>
+          <img
+            src={getLevelImage(
+              isTalent ? user?.actorLevel : user?.userLevel,
+              isTalent
+            )}
+          />
+        </div>
+
+        {/* <p className="name">{user.nickname}</p> */}
         {showEst === true && (
           <div className="est-rews">
-            Est rewards {calculateEstRewards ? calculateEstRewards(1) : ""}
+            Est rewards
+            <div className="d-flex j-center al-center">
+              <span>{calculateEstRewards ? calculateEstRewards(1) : ""}</span>
+              <img src={beanIcon} style={{ width: "4vw" }} />
+            </div>
           </div>
         )}
 

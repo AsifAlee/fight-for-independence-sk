@@ -15,9 +15,22 @@
   align-items: center;
   padding-top: 5vw;
 
+  .send-btn {
+    width: 20vw;
+    height: 10vw;
+    background-image: url("../assets/card/send-btn.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    top: 2vw;
+    left: 35vw;
+  }
+
   .content {
     width: 80%;
     min-height: 106vw;
+    // height: 106vw;
+
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
@@ -39,10 +52,12 @@
 
   .guide-popup {
     margin-top: 5vw;
+    line-height: 4vw;
 
-    .highlight{
+    .highlight {
       background-color: yellow;
       color: black;
+      margin: 0 1vw 0 1vw;
     }
     .guide-content {
       padding: 3vw;
@@ -58,6 +73,10 @@
 
         .tag {
           width: 30vw;
+        }
+        .tag2{
+          width: 40vw;
+          margin-top: 4vw;
         }
 
         .list-item {
@@ -77,6 +96,8 @@
 
           table {
             border-collapse: collapse;
+            width: 90%;
+            margin-top: 2vw;
 
             tr td {
               border: 1px solid;
@@ -128,85 +149,94 @@
     }
   }
 
-  .send-card-popup{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  .send-card-popup {
     padding-bottom: 5vw;
+    height: 88%;
+    overflow-y: auto;
+    // border: 1px solid;
+    width: 96%;
+    margin: 0 auto;
 
-    .wish-card{
-      width: 83%;
-      height: 89vw;
+    .wish-card {
+      width: 61%;
+      height: 72vw;
       background-size: 100% 100%;
       background-repeat: no-repeat;
-
       display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    // color: #432926;
-    flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
 
-    .portrait-wish-text{
-      font-size: 3.5vw;
-    width: 56%;
-    // border: 1px solid;
-    position: relative;
-    left: 17vw;
-    top: -14vw;
-    color: #6e1f03;
-    font-weight: bold;
-    }
+      position: relative;
+      left: 18vw;
+
+      .portrait-wish-text {
+        font-size: 3.5vw;
+        width: 56%;
+        position: relative;
+        left: 17vw;
+        top: -14vw;
+        color: #6e1f03;
+        font-weight: bold;
+      }
+      .wish-card-text{
+         font-size: 4vw;
+      }
     }
 
-    .card{
+    .card {
       width: 40vw;
     }
 
-    .search-talent{
+    .search-talent {
       display: flex;
       margin-top: 4vw;
-      .input-id{
+      position: relative;
+      width: 54vw;
+      left: 23vw;
+      .input-id {
         width: 40vw;
         height: 8vw;
-        background-image: url('../assets/card/search-id-bg.png');
+        background-image: url("../assets/card/search-id-bg.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
-   
-       }
-       .search-btn{
+      }
+      .search-btn {
         width: 8vw;
         height: 8vw;
-        background-image: url('../assets/card/search-btn.png');
+        background-image: url("../assets/card/search-btn.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
-   
-        
-       }
+      }
     }
 
-    .found-users{
+    .found-users {
       display: flex;
       flex-direction: column;
-      // border: 1px solid;
       width: 91%;
-      overflow-y: auto;
-      height: 50vw;
+      gap: 3vw;
+      margin-top: 3vw;
     }
-    .eligibility-text{
-    font-size: 3vw;
-    position: relative;
-    top: -39vw;
-left: -5vw;
+    .eligibility-text {
+      font-size: 3vw;
+      position: relative;
+      left: -5vw;
+      text-align: center;
     }
 
     .single-radio {
       display: flex;
       align-items: center;
-      width: 50vw;
+      width: 85%;
       margin: 0 auto;
       justify-content: space-around;
+      border: 1px solid;
+      background-color: #3d1e17;
+      border-radius: 2vw;
+      padding: 2vw;
+      position: relative;
+      left: 4vw;
     }
     .circle {
       width: 20px;
@@ -229,91 +259,96 @@ left: -5vw;
       width: 0px;
       position: absolute;
       z-index: -2147483648;
-      content: url("../assets/card/card-1.gif")
-        url("../assets/card/card-2.gif")
+      content: url("../assets/card/card-1.gif") url("../assets/card/card-2.gif")
         url("../assets/card/card-3.gif");
-       
+
       visibility: hidden;
       top: 0px;
     }
   }
 
-  .recv-card-popup{
+  .recv-card-popup {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding-top: 8vw;
 
-    p{
+    p {
       font-size: 3vw;
       width: 90%;
     }
-}
-
-.buy-card-popup{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding-top: 8vw;
-
-  p{
-    font-size: 3vw;
-    width: 90%;
   }
-}
 
-.info-table{
-  border: 1px solid;
-  position: relative;
-  border-collapse: collapse;
-
-  left: 9vw;
-  top: 4vw;
-  min-width: 63vw;
-
-
-  tr td{
-    border: 1px solid;
-    padding: 2vw;
-    font-size: 2.7vw;
-    text-align: center;
-  }
-  thead th{
-    border: 1px solid;
-    font-size: 3vw;
-    text-align: center;
-    padding:2vw ;
-  }
-}
-
-.join-team-popup{
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  height: 80%;
-  text-align: center;
-  font-size: 3vw;
-  text-align: center;
-  width: 86%;
-  margin: 0 auto;
-}
-
-.reward-hist-popup{
-
-margin-top: 9vw !important;
- 
- 
-  height: 71vw;
-  overflow-y: auto;
-  gap: 1vw;
-  width: 88%;
-  margin: 0 auto;
-  .rewards-hist-title{
+  .buy-card-popup {
     display: flex;
-    justify-content: space-around;
-    font-size: 4vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 8vw;
+
+    p {
+      font-size: 3vw;
+      width: 90%;
+    }
+  }
+
+  .info-table {
+    border: 1px solid;
+    position: relative;
+    border-collapse: collapse;
+
+    left: 5vw;
+    top: 4vw;
+    min-width: 63vw;
+
+    tr td {
+      border: 1px solid;
+      padding: 2vw;
+      font-size: 2vw;
+      text-align: center;
+    }
+    .beans-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    thead th {
+      border: 1px solid;
+      font-size: 2vw;
+      text-align: center;
+      padding: 2vw;
+    }
+  }
+
+  .join-team-popup {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 80%;
+    text-align: center;
+    font-size: 3vw;
+    text-align: center;
+    width: 86%;
+    margin: 0 auto;
+  }
+
+  .reward-hist-popup {
+    margin-top: 9vw !important;
+
+    height: 56vw;
+    overflow-y: auto;
+    gap: 1vw;
+    width: 88%;
+    margin: 0 auto;
+    .rewards-hist-title {
+      display: flex;
+      justify-content: space-around;
+      font-size: 4vw;
+
+      .rewards-t {
+        margin-right: 9vw;
       }
-}
+    }
+  }
 }
