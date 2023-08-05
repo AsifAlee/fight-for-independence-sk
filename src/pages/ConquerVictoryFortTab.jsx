@@ -48,13 +48,58 @@ const ConquerVictoryFortTab = () => {
   const [infoPopup, setInfoPopup] = useState(false);
   const [joinTeamPopup, setJoinTeamPopup] = useState(false);
   const [joinTeamMsg, setJoinTeamMsg] = useState("");
-  // const [dyingSoldiers, setDyingSoldiers] = useState(0);
   const [isNotEnoughSoldiers, setIsNotEnoughSoldier] = useState(false);
 
-  // useEffect(() => {
-  //   setDyingSoldiers(info.dailyCurrentSoldier);
-  // }, [info.dailyCurrentSoldier]);
+  const sortLeaderBoard = () => {
+    let teamId = info?.teamTotalSoldiersInfoList?.sort(
+      (a, b) => b?.totalSoldiers - a?.totalSoldiers
+    )[0]?.teamId;
 
+    return teamId;
+  };
+
+  const [selectedTeamId, setSelectedTeamId] = useState(sortLeaderBoard);
+  useEffect(() => {
+    setSelectedTeam(sortLeaderBoard());
+  }, []);
+
+  const [selectedRank, setSelectedRank] = useState({
+    warriors: true,
+    coquerers: false,
+    champions: false,
+  });
+
+  const toggleSelectedRank = (rankId) => {
+    switch (rankId) {
+      case 1:
+        setSelectedRank({
+          warriors: true,
+          coquerers: false,
+          champions: false,
+        });
+        setSelectedTeamId(1);
+
+        break;
+      case 2:
+        setSelectedRank({
+          warriors: false,
+          coquerers: true,
+          champions: false,
+        });
+        setSelectedTeamId(2);
+
+        break;
+      case 3:
+        setSelectedRank({
+          warriors: false,
+          coquerers: false,
+          champions: true,
+        });
+        setSelectedTeamId(3);
+
+        break;
+    }
+  };
   useEffect(() => {
     setCurrentLevel(info.fortState);
   }, []);
@@ -88,12 +133,15 @@ const ConquerVictoryFortTab = () => {
     switch (name) {
       case "warriors":
         setTeamTabs({ conquerers: false, champions: false, warriors: true });
+        setSelectedTeam(1);
         break;
       case "conquerers":
         setTeamTabs({ conquerers: true, champions: false, warriors: false });
+        setSelectedTeam(2);
         break;
       case "champions":
         setTeamTabs({ conquerers: false, champions: true, warriors: false });
+        setSelectedTeam(3);
         break;
     }
   };
@@ -102,7 +150,6 @@ const ConquerVictoryFortTab = () => {
       setJoinTeamPopup(true);
       return;
     }
-    setJoinTeamPopup(true);
 
     fetch(
       `${baseUrl}api/activity/fightForIndependence/joinTeam?teamId=${
@@ -123,8 +170,11 @@ const ConquerVictoryFortTab = () => {
       .then((response) => response.json())
       .then((response) => {
         getInfo();
-        setJoinTeamMsg(response?.msg);
-        setErrorCode(response?.errorCode);
+        if (response?.errorCode === 0) {
+          setJoinTeamMsg(response?.msg);
+          setErrorCode(response?.errorCode);
+          setJoinTeamPopup(true);
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -176,9 +226,6 @@ const ConquerVictoryFortTab = () => {
       });
   };
 
-  const handleTeamChange = (option) => {
-    setSelectedTeam(option);
-  };
   return (
     <div className="conquer-fort">
       <Marquee className="marquee">
@@ -236,7 +283,7 @@ const ConquerVictoryFortTab = () => {
       <div className="fort-wrapper">
         <div className="fort">
           <div className="collect-soldiers">
-            <span>Soldiers Collected:{info?.dailyCurrentSoldier}</span>
+            <span>Soldiers Collected Today:{info?.dailyCurrentSoldier}</span>
           </div>
           <div className="info-icon" onClick={toggleInfoPopup}></div>
 
@@ -265,12 +312,12 @@ const ConquerVictoryFortTab = () => {
           <img src={title} className="title" />
           <img src={beanspot} className="beanspot-img" />
           <div className="beans-count">
-            <span>1234567</span>
+            <span>{info.conquerFortTodayPot}</span>
           </div>
         </div>
       </div>
       <div className="collect-soldiers">
-        <span>Soldiers collected today:{info?.dailyTotalSoldier}</span>
+        <span>Soldiers collected:{info?.dailyTotalSoldier}</span>
       </div>
       <div className="join-team-wrap">
         {info?.teamId === 0 && (
@@ -322,18 +369,22 @@ const ConquerVictoryFortTab = () => {
                     soldiers={team?.totalSoldiers}
                     key={index}
                     index={index}
+                    toggleSelectedRank={toggleSelectedRank}
+                    selectedRank={selectedRank}
+                    selectedTeamId={selectedTeamId}
+                    isToday={isSliderOn === false}
                   />
                 ))}
             </div>
 
-            {info?.teamId === 1 ? (
+            {selectedTeamId === 1 ? (
               <WarriorLeaderboard isSliderOn={isSliderOn} />
-            ) : info?.teamId === 2 ? (
+            ) : selectedTeamId === 2 ? (
               <ConquererLeaderboard isSliderOn={isSliderOn} />
-            ) : info?.teamId === 3 ? (
+            ) : selectedTeamId === 3 ? (
               <ChampionsLeaderboard isSliderOn={isSliderOn} />
             ) : (
-              <></>
+              <>Nothing to show</>
             )}
           </div>
         ) : (
@@ -354,7 +405,15 @@ const ConquerVictoryFortTab = () => {
           rewards={rewards}
           rewardsContent={rewardsContent}
           isCollSold={true}
-          title={errorCode === 0 ? congTag : oops}
+          title={
+            info?.dailyCurrentSoldier === 0
+              ? oops
+              : errorCode === 0
+              ? congTag
+              : currentLevel === 4
+              ? yay
+              : oops
+          }
           currentLevel={currentLevel}
           errMsg={errMsg}
           // dyingSoldiers={dyingSoldiers}

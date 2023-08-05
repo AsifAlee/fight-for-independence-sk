@@ -5,30 +5,30 @@ import RewardsSlider from "../../components/RewardsSlider";
 const FanFollwerUserRewards = () => {
   const rewards = [
     {
-      rank: "top 1st",
+      rank: "Top 1st",
       desc: "beansbag",
       text: "40,000 beans",
     },
     {
-      rank: "top 2nd",
+      rank: "Top 2nd",
 
       desc: "beansbag",
       text: "15,000 beans",
     },
     {
-      rank: "top 3rd",
+      rank: "Top 3rd",
 
       desc: "beansbag",
       text: "10,000 beans",
     },
     {
-      rank: "top 4th",
+      rank: "Top 4th",
 
       desc: "beansbag",
       text: "10,000 beans",
     },
     {
-      rank: "top 5th",
+      rank: "Top 5th",
 
       desc: "beansbag",
       text: "5,000 beans",

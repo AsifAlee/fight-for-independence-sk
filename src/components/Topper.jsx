@@ -31,7 +31,7 @@ const Topper = ({ user }) => {
             bottom: "1vw",
           }}
         >
-          <LeaderBoardSlider rewards={currentReward} />
+          <LeaderBoardSlider rewards={currentReward} isTopper={true} />
         </div>
       </div>
     </div>

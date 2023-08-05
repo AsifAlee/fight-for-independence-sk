@@ -5,30 +5,30 @@ import RewardsSlider from "../../components/RewardsSlider";
 const FanFollowerTalentRewards = () => {
   const rewards = [
     {
-      rank: "top 1st",
+      rank: "Top 1st",
       desc: "gems",
       text: "50,000 Gems + 3 days profile frame (new)",
     },
     {
-      rank: "top 2nd",
+      rank: "Top 2nd",
 
       desc: "gems",
       text: "20,000 Gems",
     },
     {
-      rank: "top 3rd",
+      rank: "Top 3rd",
 
       desc: "gems",
       text: "10,000 Gems",
     },
     {
-      rank: "top 4th",
+      rank: "Top 4th",
 
       desc: "gems",
       text: "10,000 Gems",
     },
     {
-      rank: "top 5th",
+      rank: "Top 5th",
 
       desc: "gems",
       text: "10,000 Gems",

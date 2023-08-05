@@ -10,22 +10,31 @@ const TalentRewards = () => {
 
   const talentOveralRews = [
     {
+      rank: "Top 1st",
       desc: "beansbag",
       text: "40% of beans pot",
     },
     {
+      rank: "Top 2nd",
+
       desc: "beansbag",
       text: "30% of beans pot",
     },
     {
+      rank: "Top 3rd",
+
       desc: "beansbag",
       text: "15% of beans pot",
     },
     {
+      rank: "Top 4rd",
+
       desc: "beansbag",
       text: "10% of beans pot",
     },
     {
+      rank: "Top 5th",
+
       desc: "beansbag",
       text: "5% of beans pot",
     },
@@ -77,6 +86,7 @@ const TalentRewards = () => {
         <div className="slider-container">
           <RewardsSlider
             rewards={isSliderOn ? talentOveralRews : talentDailyRews}
+            showRanks={isSliderOn ? true : false}
           />
         </div>
       </div>

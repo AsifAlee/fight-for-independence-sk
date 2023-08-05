@@ -26,7 +26,7 @@ const RewardHistoryPopup = ({ popUpHandler }) => {
           soldiersRecords?.map((item) => {
             return (
               <RewardsHistoryItem
-                time={item?.time.split("T")[0]}
+                time={item?.time}
                 rewards={item?.rewardDTOList}
               />
             );

@@ -11,60 +11,39 @@ const UserRewards = () => {
 
   const userOveralRews = [
     {
+      rank: "Top 1st",
       desc: "beansbag",
       text: "40% of beans pot",
     },
     {
+      rank: "Top 2nd",
+
       desc: "beansbag",
       text: "30% of beans pot",
     },
     {
+      rank: "Top 3rd",
+
       desc: "beansbag",
       text: "15% of beans pot",
     },
     {
+      rank: "Top 4th",
+
       desc: "beansbag",
       text: "10% of beans pot",
     },
+
     {
+      rank: "Top 5th",
+
       desc: "beansbag",
       text: "5% of beans pot",
     },
   ];
-  // const userDailyRews = [
-  //   {
-  //     desc: "beansbag",
-  //     text: "40% of beans pot",
-  //   },
-  //   {
-  //     desc: "beansbag",
-  //     text: "30% of beans pot",
-  //   },
-  //   {
-  //     desc: "beansbag",
-  //     text: "10% of beans pot",
-  //   },
-  //   {
-  //     desc: "beansbag",
-  //     text: "10% of beans pot",
-  //   },
-  //   {
-  //     desc: "beansbag",
-  //     text: "10% of beans pot",
-  //   },
-  // ];
-  // function handleSliderToggle(isOn) {
-  //   setIsSliderOn(isOn);
-  // }
 
   return (
     <div>
-      {/* <SwitchButton
-        onToggle={handleSliderToggle}
-        btn={isSliderOn ? overallBtn : dailyBtn}
-        bg={switchBg}
-      /> */}
-
       <div className="rewards-container">
         <div
           style={{
@@ -76,10 +55,7 @@ const UserRewards = () => {
           <img src={rewardsTag} className="rewards-tag" />
         </div>
         <div className="slider-container">
-          <RewardsSlider
-            // rewards={isSliderOn ? userOveralRews : userDailyRews}
-            rewards={userOveralRews}
-          />
+          <RewardsSlider rewards={userOveralRews} showRanks={true} />
         </div>
       </div>
     </div>

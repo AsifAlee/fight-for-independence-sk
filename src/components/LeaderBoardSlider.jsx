@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../styles/leaderboard-slider.scss";
 import LeaderboardSliderItem from "./LeaderboardSliderItem";
 
-const LeaderBoardSlider = ({ rewards }) => {
+const LeaderBoardSlider = ({ rewards, isTopper }) => {
   // debugger;
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
@@ -41,7 +41,7 @@ const LeaderBoardSlider = ({ rewards }) => {
           transition: "transform 0.5s ease",
           display: "flex",
           position: "relative",
-          right: "-5vw",
+          right: isTopper ? "-2vw" : "-12vw",
           top: "1vw",
         }}
       >

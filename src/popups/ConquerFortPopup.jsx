@@ -40,7 +40,7 @@ const ConquerFortPopup = ({
       ) : errorCode === 0 && currentLevel === 4 ? (
         <div className="collect-sold-popup">
           You have successfully defeated enemies and won this VICTORY FORT. As a
-          result, you have won 110,000{" "}
+          result, you have won 130,000{" "}
           <img src={beanIcon} style={{ width: "3vw" }} />. Keep Playing to earn
           more!
         </div>

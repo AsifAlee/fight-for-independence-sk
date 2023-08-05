@@ -26,7 +26,10 @@ const RewardsHistoryItem = ({ time, rewards }) => {
   };
   return (
     <div className="reward-history-item">
-      <span className="time">{time}</span>
+      <div className="d-flex j-center al-center f-column time">
+        <span>{time.split("T")[0]}</span>
+        <span>{time.split("T")[1].split(".")[0]}</span>
+      </div>
       <div className="reward">
         {rewards?.map((rew) => (
           <RewardItem

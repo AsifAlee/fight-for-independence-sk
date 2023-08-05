@@ -49,6 +49,8 @@ const PopUp = (props) => {
               ? "85%"
               : isMilestone
               ? "98%"
+              : isRewardHist
+              ? "97vw"
               : ""
           }`,
           overflowY: isOverflow ? "auto" : "",

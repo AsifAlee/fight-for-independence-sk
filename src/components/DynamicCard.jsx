@@ -4,25 +4,41 @@ import { AppContext } from "../AppContext";
 import conq from "../assets/card/conquerers.png";
 import champs from "../assets/card/champions.png";
 import warrs from "../assets/card/warriors-text.png";
-
-const DynamicCard = ({ id, soldiers, index }) => {
+import myTeam from "../assets/Conquer-tab/my-team.gif";
+import { testUserId } from "../utils/api";
+const DynamicCard = ({
+  id,
+  soldiers,
+  index,
+  toggleSelectedRank,
+  selectedRank,
+  selectedTeamId,
+  isToday,
+}) => {
   const { info } = useContext(AppContext);
   return (
     <div
       className={`dynamic-card ${
-        index === 0 ? "active-card" : "unactive-card"
+        selectedTeamId === id ? "active-card" : "unactive-card"
       }`}
-      // style={{ backgroundColor: info?.teamId === id ? "red" : "yellow" }}
+      onClick={() => toggleSelectedRank(id)}
     >
-      {/* <p className="title">
-        {id === 1 ? "WARRIORS" : id === 2 ? "CONQUERERS" : "CHAMPIONS"}
-      </p> */}
-
       <img
         className="title"
         src={id === 1 ? warrs : id === 2 ? conq : champs}
       />
-      <p className="soldiers">Soldiers Collected:{soldiers}</p>
+
+      {info.teamId === id && (
+        <img
+          src={myTeam}
+          style={{
+            width: "14vw",
+          }}
+        />
+      )}
+      {isToday === true && (
+        <p className="soldiers">Soldiers Collected:{soldiers}</p>
+      )}
     </div>
   );
 };

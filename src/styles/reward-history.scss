@@ -1,35 +1,43 @@
 .reward-history-item{
  
     // height: 20vw;
-    background-color: #3d1e17;
+    background-color:brown;
     font-size: 2vw;
-    width: 69vw;
+    width: 85vw;
     border-radius: 3vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 2vw;
-    border-radius: 2vw;
+    border-radius: 6vw;
+    padding: 2vw;
 
 
 
     .time{
-    
+     flex-grow:  0 1 20%;
+    //  border: 1px solid;
+     width: 25%;
     }
     .reward{
         width: 50%;
         display: flex;
         flex-wrap: wrap;
         // height: 20vw;
-        justify-content: center;
+        // justify-content: center;
+        justify-content: space-around;
         align-items: center;
+    //  flex-grow:  0 1 80%;
+    //  border: 1px solid;
+     width: 75%;
+
     }
 
     .hidden-text{
-        height: 5vw;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    text-align: center;
+    //     height: 5vw;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-align: center;
     }
 }
