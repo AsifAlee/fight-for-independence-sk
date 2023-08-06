@@ -15,12 +15,13 @@ const Talent = () => {
   let { fanFollowerTalent } = leaderboardsData;
   const [toastMsg, setToastMsg] = useState("");
   const [showToastMsg, setShowToastMsg] = useState(false);
-  const [filteredData, setFilteredData] = useState([]);
-  useEffect(() => {
-    setFilteredData(
-      fanFollowerTalent?.filter((item) => item?.userId !== user.userId)
-    );
-  }, [fanFollowerTalent]);
+  // const [filteredData, setFilteredData] = useState([]);
+
+  // useEffect(() => {
+  //   setFilteredData(
+  //     fanFollowerTalent?.filter((item) => item?.userId !== user.userId)
+  //   );
+  // }, [fanFollowerTalent]);
 
   const toggleToastPopup = () => {
     setShowToastMsg((prevState) => !prevState);
@@ -62,10 +63,10 @@ const Talent = () => {
         <Toast message={toastMsg} closeToast={toggleToastPopup} />
       )}
 
-      {filteredData && filteredData[0] && (
+      {fanFollowerTalent && fanFollowerTalent[0] && (
         <div className="top1">
           <FanFollwerTopper
-            user={filteredData[0]}
+            theUser={fanFollowerTalent[0]}
             isUser={false}
             followTalent={followTalent}
           />
@@ -76,9 +77,9 @@ const Talent = () => {
         className="restWinners"
         style={{ overflowY: !seeMore ? "auto" : "" }}
       >
-        {filteredData?.slice(1, seeMore ? 10 : 20).map((user, index) => (
+        {fanFollowerTalent?.slice(1, seeMore ? 10 : 20).map((user, index) => (
           <FanFollowerLbItem
-            user={user}
+            theUser={user}
             rewards={[]}
             key={index}
             index={index + 2}
@@ -89,7 +90,7 @@ const Talent = () => {
         ))}
       </div>
 
-      {filteredData?.length > 10 ? (
+      {fanFollowerTalent?.length > 10 ? (
         <button
           className={`${seeMore ? "see-more" : "see-less"}`}
           onClick={() => setSeeMore((prevState) => !prevState)}

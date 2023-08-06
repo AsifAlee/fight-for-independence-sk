@@ -15,7 +15,7 @@ const User = () => {
       <img src={titleTag} className="title" />
       {fanFollowerUser[0] && (
         <div className="top1">
-          <FanFollwerTopper user={fanFollowerUser[0]} isUser={true} />
+          <FanFollwerTopper theUser={fanFollowerUser[0]} isUser={true} />
         </div>
       )}
 
@@ -25,7 +25,7 @@ const User = () => {
       >
         {fanFollowerUser?.slice(1, seeMore ? 10 : 20).map((user, index) => (
           <FanFollowerLbItem
-            user={user}
+            theUser={user}
             rewards={[]}
             key={index}
             index={index + 2}
