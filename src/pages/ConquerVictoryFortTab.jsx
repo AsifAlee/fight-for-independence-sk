@@ -33,7 +33,7 @@ import beanIcon from "../assets/event-gifting/bean-icon.png";
 import { gotoProfile } from "../utils/functions";
 
 const ConquerVictoryFortTab = () => {
-  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [selectedTeam, setSelectedTeam] = useState(0);
   const [isSliderOn, setIsSliderOn] = useState(false);
   const { info, getInfo, user, marqueeData } = useContext(AppContext);
 
@@ -58,9 +58,10 @@ const ConquerVictoryFortTab = () => {
     return teamId;
   };
 
-  const [selectedTeamId, setSelectedTeamId] = useState(sortLeaderBoard);
+  const [selectedTeamId, setSelectedTeamId] = useState(null);
   useEffect(() => {
-    setSelectedTeam(sortLeaderBoard());
+    // setSelectedTeam(sortLeaderBoard());
+    setSelectedTeamId(info?.teamId);
   }, []);
 
   const [selectedRank, setSelectedRank] = useState({
@@ -146,39 +147,41 @@ const ConquerVictoryFortTab = () => {
     }
   };
   const joinTheTeam = () => {
-    if (selectedTeam === null) {
+    if (selectedTeam === 0) {
       setJoinTeamPopup(true);
-      return;
-    }
+    } else {
+      fetch(
+        `${baseUrl}api/activity/fightForIndependence/joinTeam?teamId=${
+          teamTabs.warriors ? 1 : teamTabs.conquerers ? 2 : 3
+        }`,
+        {
+          method: "POST",
+          headers: {
+            // userId: testUserId,
+            // token: testToken,
 
-    fetch(
-      `${baseUrl}api/activity/fightForIndependence/joinTeam?teamId=${
-        teamTabs.warriors ? 1 : teamTabs.conquerers ? 2 : 3
-      }`,
-      {
-        method: "POST",
-        headers: {
-          // userId: testUserId,
-          // token: testToken,
-
-          userId: user.userId,
-          token: user.token,
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        getInfo();
-        if (response?.errorCode === 0) {
-          setJoinTeamMsg(response?.msg);
-          setErrorCode(response?.errorCode);
-          setJoinTeamPopup(true);
+            userId: user.userId,
+            token: user.token,
+            "Content-Type": "application/json",
+          },
         }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          if (response?.errorCode === 0) {
+            setJoinTeamMsg(response?.msg);
+            setErrorCode(response?.errorCode);
+            setJoinTeamPopup(true);
+            getInfo();
+            setSelectedTeamId(
+              teamTabs.warriors ? 1 : teamTabs.conquerers ? 2 : 3
+            );
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   const playGame = () => {
@@ -267,7 +270,7 @@ const ConquerVictoryFortTab = () => {
                     .
                   </div>
                 )}
-                &nbsp;Congratulations!
+
                 {/* </div> */}
               </div>
             </div>
@@ -354,7 +357,7 @@ const ConquerVictoryFortTab = () => {
         )}
 
         {info?.teamId ? (
-          <div className="joined-team-sec">
+          <div className="joined-team-sec switch-key">
             <SwitchButton
               bg={switchBg}
               onToggle={handleSliderToggle}
@@ -384,7 +387,7 @@ const ConquerVictoryFortTab = () => {
             ) : selectedTeamId === 3 ? (
               <ChampionsLeaderboard isSliderOn={isSliderOn} />
             ) : (
-              <>Nothing to show</>
+              <></>
             )}
           </div>
         ) : (

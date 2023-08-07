@@ -362,8 +362,8 @@ const EventProvider = ({ children }) => {
     try {
       window.phone.getUserInfo(function (userInfo) {
         setUser({
-          userId: userInfo?.userId > 0 ? userInfo?.userId : 0,
-          token: userInfo?.token != "" ? userInfo?.token : null,
+          userId: userInfo?.userId ? userInfo?.userId : 0,
+          token: userInfo?.token ? userInfo?.token : "",
         });
       });
     } catch (_error) {
@@ -397,6 +397,7 @@ const EventProvider = ({ children }) => {
   useEffect(() => {
     if (user.userId) {
       getInfo();
+      getFanfollowerTalent();
     }
   }, [user.userId]);
 
@@ -417,6 +418,12 @@ const EventProvider = ({ children }) => {
         user,
         marqueeData,
         getSoldierRecords,
+        getWarriorsToday,
+        getWarriorsYest,
+        getChampionsToday,
+        getChampionsYest,
+        getConquerersToday,
+        getConquerersYest,
       }}
     >
       {children}

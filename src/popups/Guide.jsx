@@ -31,9 +31,9 @@ const Guide = ({ toggleGuide }) => {
                     will get a chance.
                   </li>
                   <li>
-                    You have the
+                    You have to use the
                     <span className="highlight"> gun</span>
-                    to use and
+                    to
                     <span className="highlight"> destroy</span> things on the
                     battle ground. After successfully destroying, you can
                     receive rewards. Along with the rewards, you will also be
@@ -77,7 +77,7 @@ const Guide = ({ toggleGuide }) => {
                     chronological order.
                   </li>
                   <li>
-                    To unlock each level,a
+                    To unlock each level, a
                     <span className="highlight"> specific number </span>
                     of Soldiers are required.
                   </li>
@@ -99,7 +99,6 @@ const Guide = ({ toggleGuide }) => {
                     After unlocking each level, you will receive
                     <span className="highlight"> beans reward. </span>
                   </li>
-
                   <table>
                     <thead>
                       <th>Level</th>
@@ -112,7 +111,7 @@ const Guide = ({ toggleGuide }) => {
                       <td>5,000</td>
                       <td>
                         <div className="d-flex j-center al-center">
-                          <span>20000</span>
+                          <span>20,000</span>
                           <img src={beanIcon} style={{ width: "4vw" }} />
                         </div>
                       </td>
@@ -122,7 +121,7 @@ const Guide = ({ toggleGuide }) => {
                       <td>15,000</td>
                       <td>
                         <div className="d-flex j-center al-center">
-                          <span>70000</span>
+                          <span>50,000</span>
                           <img src={beanIcon} style={{ width: "4vw" }} />
                         </div>
                       </td>
@@ -132,7 +131,7 @@ const Guide = ({ toggleGuide }) => {
                       <td>40,000</td>
                       <td>
                         <div className="d-flex j-center al-center">
-                          <span>200,000</span>
+                          <span>130,000</span>
                           <img src={beanIcon} style={{ width: "4vw" }} />
                         </div>
                       </td>
@@ -170,7 +169,7 @@ const Guide = ({ toggleGuide }) => {
                     Step 3:
                   </span>
                   Below the card, there will be a search bar. You can either
-                  search with a talent ID or username; once the talent ID
+                  search with a talent ID or username, once the talent ID
                   appears in the search results, you can select it and tap on
                   send. (You cannot send the card to yourself.)
                 </p>
@@ -300,7 +299,7 @@ const Guide = ({ toggleGuide }) => {
                       <td>5,000</td>
                       <td>
                         <div className="d-flex j-center al-center">
-                          <span>20000</span>
+                          <span>20,000</span>
                           <img src={beanIcon} style={{ width: "4vw" }} />
                         </div>
                       </td>
@@ -310,7 +309,7 @@ const Guide = ({ toggleGuide }) => {
                       <td>15,000</td>
                       <td>
                         <div className="d-flex j-center al-center">
-                          <span>70000</span>
+                          <span>50,000</span>
                           <img src={beanIcon} style={{ width: "4vw" }} />
                         </div>
                       </td>
@@ -320,7 +319,7 @@ const Guide = ({ toggleGuide }) => {
                       <td>40,000</td>
                       <td>
                         <div className="d-flex j-center al-center">
-                          <span>200,000</span>
+                          <span>130,000</span>
                           <img src={beanIcon} style={{ width: "4vw" }} />
                         </div>
                       </td>
@@ -358,7 +357,7 @@ const Guide = ({ toggleGuide }) => {
                     Step 3:
                   </span>
                   Card ke neeche search bar hoga. Aap talent ID ya username ke
-                  saath search kar sakte hai.jab talent ID search results mein
+                  saath search kar sakte hai. Jab talent ID search results mein
                   appear ho, aap use select karke send pe tap kar de. (Aap card
                   khud ko nahi bhej sakte)
                 </p>

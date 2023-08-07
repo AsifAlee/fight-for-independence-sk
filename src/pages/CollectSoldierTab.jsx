@@ -32,6 +32,12 @@ const CollectSoldierTab = () => {
     user,
     marqueeData,
     getSoldierRecords,
+    getConquerersYest,
+    getConquerersToday,
+    getChampionsYest,
+    getChampionsToday,
+    getWarriorsYest,
+    getWarriorsToday,
   } = useContext(AppContext);
   const { collectSoldiers } = leaderboardsData;
   const [seeMore, setSeeMore] = useState(true);
@@ -98,6 +104,13 @@ const CollectSoldierTab = () => {
         if (response?.errorCode === 0) {
           setIsplaying(true);
           setCurrentGif(gameGifs[getRandomNumber() - 1]);
+
+          getChampionsToday();
+          getChampionsYest();
+          getConquerersToday();
+          getConquerersYest();
+          getWarriorsToday();
+          getWarriorsYest();
         }
 
         setTimeout(() => {
@@ -152,10 +165,18 @@ const CollectSoldierTab = () => {
                   &nbsp; has won{" "}
                   {`${
                     item?.userScore === 1
-                      ? "20,000"
+                      ? "750"
                       : item?.userScore === 2
-                      ? "50,000"
-                      : "110,000"
+                      ? "350"
+                      : item?.userScore === 3
+                      ? "500"
+                      : item?.userScore === 4
+                      ? "250"
+                      : item?.userScore === 5
+                      ? "100"
+                      : item?.userScore === 6
+                      ? "1500"
+                      : "1000"
                   }`}
                   <span style={{ marginTop: "1vw" }}>
                     <img src={beanIcon} className="bean-img" />

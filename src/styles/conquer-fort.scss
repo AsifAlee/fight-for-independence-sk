@@ -27,8 +27,8 @@
       position: relative;
       .collect-soldiers {
         // width: 40vw;
-        height: 16vw;
-        background-image: url("../assets//Chance-bg.png");
+        // height: 16vw;
+        background-image: url("../assets/Conquer-tab/soldierscollected-bg.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
         position: absolute;
@@ -40,14 +40,14 @@
         right: 0;
         margin: 0 auto;
         span {
-          margin-top: 3vw;
-          margin-left: 6vw;
+          // margin-top: 3vw;
+          // margin-left: 6vw;
           font-size: 2.5vw;
         }
       }
       .info-icon {
-        width: 5vw;
-        height: 5vw;
+        width: 8vw;
+        height: 8vw;
         background-image: url("../assets/Conquer-tab/info-icon.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
@@ -160,6 +160,8 @@
     align-items: center;
     span{
         font-size: 2.5vw;
+        margin-top: 1vw;
+        margin-left: 4vw;
     }
     
   }

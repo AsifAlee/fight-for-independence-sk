@@ -11,7 +11,7 @@ const BeansPot = ({ potValue, isTalent }) => {
         </div>
         <p className="beanspot-text">
           Overall Beans Pot will be rewarded to top 5{" "}
-          {isTalent ? "talents" : "users"} ranking on the hourly leaderboard
+          {isTalent ? "talents" : "users"} ranking on the overall leaderboard
         </p>
       </div>
     </div>

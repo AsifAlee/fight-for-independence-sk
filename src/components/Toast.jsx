@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../styles/toast.css";
 
-const Toast = ({ message, duration = 5000, closeToast }) => {
+const Toast = ({ message, time }) => {
   const [visible, setVisible] = useState(true);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setVisible(true);
+    time = setTimeout(() => {
       setVisible(false);
-    }, duration);
-    return () => clearTimeout(timer);
-  }, [duration]);
+      clearTimeout(time);
+    }, 2000);
+    // return () => clearTimeout(time);
+  }, [message]);
 
   return (
     <>

@@ -41,8 +41,8 @@ const TalentRewards = () => {
   ];
   const talentDailyRews = [
     {
-      desc: "roomSKIN",
-      text: "1 day Room Skin",
+      desc: "fireBrandAudioTheme",
+      text: "1 day FireBrand Room Skin",
     },
     {
       desc: "royalProfileFrame",
@@ -66,7 +66,7 @@ const TalentRewards = () => {
   }
 
   return (
-    <div>
+    <div className="switch-key">
       <SwitchButton
         onToggle={handleSliderToggle}
         btn={isSliderOn ? overallBtn : dailyBtn}

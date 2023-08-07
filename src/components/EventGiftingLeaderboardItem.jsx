@@ -43,6 +43,7 @@ const EventGiftingLeaderboardItem = ({
               isTalent ? user?.actorLevel : user?.userLevel,
               isTalent
             )}
+            style={{ width: isTalent ? "6vw" : "12vw" }}
           />
         </div>
       </div>

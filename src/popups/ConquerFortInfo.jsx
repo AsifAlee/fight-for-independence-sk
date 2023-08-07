@@ -7,42 +7,6 @@ const ConquerFortInfo = ({ popupHandler }) => {
   return (
     <div>
       <PopUp bg={bg} popUpHandler={popupHandler} isCollSold={true}>
-        {/* <table className="info-table">
-          <thead>
-            <th>Level</th>
-            <th>Extra Soldiers Required</th>
-          </thead>
-          <tr>
-            <td>Level 1</td>
-            <td className="beans-div">
-              5000{" "}
-              <img
-                src={beanIcon}
-                style={{ width: "4vw" }}
-                className="beans-div"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>Level 2</td>
-            <td className="beans-div">
-              15,000
-              <img src={beanIcon} style={{ width: "4vw" }} />
-            </td>
-          </tr>
-          <tr>
-            <td>Level 3</td>
-            <td className="beans-div">
-              40,000
-              <img
-                src={beanIcon}
-                style={{ width: "4vw" }}
-                className="beans-div"
-              />
-            </td>
-          </tr>
-        </table> */}
-
         <table className="info-table">
           <thead>
             <th>Level</th>
@@ -55,7 +19,7 @@ const ConquerFortInfo = ({ popupHandler }) => {
             <td>5,000</td>
             <td>
               <div className="d-flex j-center al-center">
-                <span>20000</span>
+                <span>20,000</span>
                 <img src={beanIcon} style={{ width: "4vw" }} />
               </div>
             </td>
@@ -65,7 +29,7 @@ const ConquerFortInfo = ({ popupHandler }) => {
             <td>15,000</td>
             <td>
               <div className="d-flex j-center al-center">
-                <span>70000</span>
+                <span>50,000</span>
                 <img src={beanIcon} style={{ width: "4vw" }} />
               </div>
             </td>
@@ -75,7 +39,7 @@ const ConquerFortInfo = ({ popupHandler }) => {
             <td>40,000</td>
             <td>
               <div className="d-flex j-center al-center">
-                <span>200,000</span>
+                <span>130,000</span>
                 <img src={beanIcon} style={{ width: "4vw" }} />
               </div>
             </td>

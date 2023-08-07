@@ -140,6 +140,8 @@ export function getRewardsImage(rewDesc) {
     rewImg = baseUrl + "/streamkar/rewards/hummer.png";
   } else if (rewDesc?.includes("Phantom")) {
     rewImg = baseUrl + "/streamkar/rewards/hummer.png";
+  } else if (rewDesc?.includes("fireBrandAudioTheme")) {
+    rewImg = baseUrl + "/streamkar/rewards/fireBrandAudioTheme.png";
   } else {
     rewImg = baseUrl + "/streamkar/rewards/noRew.png";
   }
@@ -224,7 +226,7 @@ export const wishes = [
   },
   {
     id: 5,
-    wish: "Truly, the best way to celebrate your countrys independence is by being a patriotic citizen.",
+    wish: "Truly, the best way to celebrate your country's independence is by being a patriotic citizen.",
     bg: card2,
   },
   {

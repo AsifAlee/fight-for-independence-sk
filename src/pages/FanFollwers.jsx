@@ -96,7 +96,7 @@ const FanFollwers = () => {
           <div className="list-item">
             <img className="bullet" src={bullet} />
             <p className="text">
-              Send independence day wishes to your Fav Talent
+              Send Independence day wishes to your Fav Talent
             </p>
           </div>
 
@@ -174,7 +174,9 @@ const FanFollwers = () => {
           )}
         </div>
       </div>
-      <div className="cards-sent">Total Cards Sent:{info?.sentCards}</div>
+      <div style={{ width: "81%" }}>
+        <div className="cards-sent">Total Cards Sent:{info?.sentCards}</div>
+      </div>
 
       <div className="fan-follower-leaderboard">
         <div className="leaderboard-tabs">

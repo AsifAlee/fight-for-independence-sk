@@ -9,9 +9,12 @@ import unknownUser from "../assets/unknown-user.png";
 import beanIcon from "../assets/event-gifting/bean-icon.png";
 import { getLevelImage, gotoProfile } from "../utils/functions";
 import { AppContext } from "../AppContext";
+import { testUserId } from "../utils/api";
 
 const FanFollowerLbItem = ({ theUser, index, isUser, followTalent }) => {
   const { user } = useContext(AppContext);
+  // debugger;
+
   return (
     <div className="fan-follower-lb-item">
       <div className="left-div" style={{ marginLeft: index > 3 && "-6vw" }}>
@@ -36,11 +39,15 @@ const FanFollowerLbItem = ({ theUser, index, isUser, followTalent }) => {
               isUser ? theUser?.userLevel : theUser?.actorLevel,
               isUser === true ? false : true
             )}
+            style={{ width: isUser ? "12vw" : "7vw" }}
           />
         </div>
-        {isUser === false && user.userId !== theUser.userId && (
+        {isUser === false && (
           <img
-            style={{ width: "7vw" }}
+            style={{
+              width: "7vw",
+              visibility: user?.userId === theUser.userId ? "hidden" : "",
+            }}
             src={theUser?.isFollow === true ? followedBtn : followBtn}
             onClick={() =>
               followTalent(
@@ -53,7 +60,13 @@ const FanFollowerLbItem = ({ theUser, index, isUser, followTalent }) => {
         )}
       </div>
 
-      <div className="middle-div" style={{ visibility: index > 5 && "hidden" }}>
+      <div
+        className="middle-div"
+        style={{
+          visibility: index > 5 && "hidden",
+          display: isUser === false && "none",
+        }}
+      >
         {isUser === true ? (
           <div className="beans-won">
             {index === 2
@@ -68,7 +81,7 @@ const FanFollowerLbItem = ({ theUser, index, isUser, followTalent }) => {
             <img src={bean} />
           </div>
         ) : (
-          ""
+          <div className="beans-won"></div>
         )}
       </div>
 

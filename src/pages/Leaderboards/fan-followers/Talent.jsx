@@ -15,19 +15,14 @@ const Talent = () => {
   let { fanFollowerTalent } = leaderboardsData;
   const [toastMsg, setToastMsg] = useState("");
   const [showToastMsg, setShowToastMsg] = useState(false);
-  // const [filteredData, setFilteredData] = useState([]);
-
-  // useEffect(() => {
-  //   setFilteredData(
-  //     fanFollowerTalent?.filter((item) => item?.userId !== user.userId)
-  //   );
-  // }, [fanFollowerTalent]);
+  const [time] = useState(null);
 
   const toggleToastPopup = () => {
     setShowToastMsg((prevState) => !prevState);
   };
 
   const followTalent = (talentId, talentName, isFollow) => {
+    // clearTimer(time);
     if (isFollow) {
       setToastMsg("Already following this user.");
       setShowToastMsg(true);
@@ -60,7 +55,7 @@ const Talent = () => {
     <div className="main-leaderboard ">
       <img src={titleTag} className="title" />
       {showToastMsg === true && (
-        <Toast message={toastMsg} closeToast={toggleToastPopup} />
+        <Toast message={toastMsg} showToastMsg={showToastMsg} time={time} />
       )}
 
       {fanFollowerTalent && fanFollowerTalent[0] && (

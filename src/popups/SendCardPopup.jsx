@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 import PopUp from "../components/PopUp";
 import bg from "../assets/card/card-popup-bg.png";
-import congTag from "../assets/popup/congratulation.png";
-import wishCard from "../assets/card/card-1.gif";
+
 import { baseUrl, testToken, testUserId } from "../utils/api";
 import User from "../components/User";
 import RadioSelect from "../components/RadioSelect";
@@ -21,9 +20,13 @@ const SendCardPopup = ({ popUpHandler, title }) => {
   const [foundUsers, setFoundUsers] = useState([]);
   const [recvCardPopup, setRecvCardPopup] = useState(false);
   const [isCardSendSuccess, setIsCardSendSuccess] = useState(false);
+  const [errCode, setErrCode] = useState(null);
   const currentBackgroundImg = wishes.find((item) => item.id === info?.wishId);
   const closeRecvCardPopup = () => {
     setRecvCardPopup(false);
+    if (isCardSendSuccess) {
+      popUpHandler();
+    }
   };
 
   const handleRadioCheck = (index) => {
@@ -50,7 +53,6 @@ const SendCardPopup = ({ popUpHandler, title }) => {
       });
   };
   const sendCard = () => {
-    // setIsAccBtnDisabled(true);
     fetch(
       `${baseUrl}api/activity/fightForIndependence/sendCard?receiveId=${foundUsers[radioSelected]?.userId}`,
       {
@@ -68,22 +70,23 @@ const SendCardPopup = ({ popUpHandler, title }) => {
     )
       .then((res) => res.json())
       .then((res) => {
-        if (res.errorCode === 0) {
-          // setCardRecvStatus(res.msg);
+        setErrCode(res.errorCode);
+        if (res.errorCode === 0 || res.errorCode === 1000) {
           setIsCardSendSuccess(true);
           getFanfollowerTalent();
           getFanfollowerUser();
           setRecvCardPopup(true);
-
-          // popUpHandler();
         } else if (res.errorCode === 11000000) {
           setCardRecvStatus("NOT ELIGIBLE FOR THIS CARD");
           setIsCardSendSuccess(false);
-        } else {
+        }
+        // else if( res.errorCode === 1000){
+        //   set
+        // }
+        else {
           setCardRecvStatus(res.msg);
           setIsCardSendSuccess(false);
         }
-        // setIsAccBtnDisabled(false);
 
         setInputValue("");
         setFoundUsers([]);
@@ -91,10 +94,6 @@ const SendCardPopup = ({ popUpHandler, title }) => {
         getInfo();
       })
       .catch((error) => {
-        // setTimeout(() => {
-        //   setIsAccBtnDisabled(false);
-        // }, 5000);
-        // setIsAccBtnDisabled(false);
         console.error(" card send  error:", error);
       });
   };
@@ -127,7 +126,7 @@ const SendCardPopup = ({ popUpHandler, title }) => {
             >
               {currentBackgroundImg?.wish}
               <p style={{ position: "absolute", top: "23vw", fontSize: "4vw" }}>
-                Happy Indepencdenc Day 2023!
+                Happy Independence Day 2023!
               </p>
             </div>
           ) : (
@@ -138,7 +137,7 @@ const SendCardPopup = ({ popUpHandler, title }) => {
                   position: "relative",
                   width: " 40vw",
                   top: "5vw",
-                  left: "14vw",
+                  left: "11vw",
                 }}
               >
                 Happy Independence Day!
@@ -188,7 +187,7 @@ const SendCardPopup = ({ popUpHandler, title }) => {
       {recvCardPopup && (
         <RecvCardPopup
           popUpHandler={closeRecvCardPopup}
-          title={isCardSendSuccess ? wishSent : tryAgain}
+          title={errCode === 0 ? wishSent : tryAgain}
           isCardsFinished={info?.ownedCards > 0 ? false : true}
         />
       )}
