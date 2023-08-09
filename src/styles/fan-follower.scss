@@ -52,16 +52,18 @@
       align-items: center;
     }
     .remaining-cards {
-      height: 19vw;
-      background-image: url("../assets//fanfollowers/remaining-card-text-bg.png");
+      height: 12vw;
+      background-image: url("../assets/fanfollowers/total-card-sent.png");
+
       background-repeat: no-repeat;
       background-size: 100% 100%;
       margin: 0 auto;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 2.5vw;
+      font-size: 2.2vw;
       padding: 3vw;
+      padding-left: 9vw;
     }
   }
 
@@ -130,16 +132,17 @@
     }
   }
   .cards-sent {
-    background-image: url("../assets//Conquer-tab/soldierscollected-bg.png");
+    background-image: url("../assets/fanfollowers//total-card-sent.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    width: 70%;
+    width: 88%;
     margin: 0 auto;
-    height: 16vw;
+    height: 13vw;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3vw;
+    padding-top: 1vw;
   }
 
   .fan-follower-leaderboard {

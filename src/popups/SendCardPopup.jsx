@@ -21,7 +21,9 @@ const SendCardPopup = ({ popUpHandler, title }) => {
   const [recvCardPopup, setRecvCardPopup] = useState(false);
   const [isCardSendSuccess, setIsCardSendSuccess] = useState(false);
   const [errCode, setErrCode] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
   const currentBackgroundImg = wishes.find((item) => item.id === info?.wishId);
+  console.log("curr backg:", currentBackgroundImg);
   const closeRecvCardPopup = () => {
     setRecvCardPopup(false);
     if (isCardSendSuccess) {
@@ -53,6 +55,10 @@ const SendCardPopup = ({ popUpHandler, title }) => {
       });
   };
   const sendCard = () => {
+    if (isDisabled) {
+      return true;
+    }
+    setIsDisabled(true);
     fetch(
       `${baseUrl}api/activity/fightForIndependence/sendCard?receiveId=${foundUsers[radioSelected]?.userId}`,
       {
@@ -72,26 +78,23 @@ const SendCardPopup = ({ popUpHandler, title }) => {
       .then((res) => {
         setErrCode(res.errorCode);
         if (res.errorCode === 0 || res.errorCode === 1000) {
+          debugger;
           setIsCardSendSuccess(true);
           getFanfollowerTalent();
           getFanfollowerUser();
           setRecvCardPopup(true);
+          getInfo();
         } else if (res.errorCode === 11000000) {
           setCardRecvStatus("NOT ELIGIBLE FOR THIS CARD");
           setIsCardSendSuccess(false);
-        }
-        // else if( res.errorCode === 1000){
-        //   set
-        // }
-        else {
+        } else {
           setCardRecvStatus(res.msg);
           setIsCardSendSuccess(false);
         }
 
         setInputValue("");
         setFoundUsers([]);
-
-        getInfo();
+        setIsDisabled(false);
       })
       .catch((error) => {
         console.error(" card send  error:", error);
@@ -125,12 +128,25 @@ const SendCardPopup = ({ popUpHandler, title }) => {
               }`}
             >
               {currentBackgroundImg?.wish}
-              <p style={{ position: "absolute", top: "23vw", fontSize: "4vw" }}>
+              <p
+                style={{
+                  position: "absolute",
+                  top: "23vw",
+                  fontSize: "4vw",
+                  fontFamily: "Montserrat-Bold",
+                }}
+              >
                 Happy Independence Day 2023!
               </p>
             </div>
           ) : (
-            <div className="wish-card-text">
+            <div
+              className={
+                currentBackgroundImg?.redBg
+                  ? "redBg-wish-card-text"
+                  : "yellowBg-wish-card-text"
+              }
+            >
               {currentBackgroundImg?.wish}
               <div
                 style={{
@@ -138,6 +154,8 @@ const SendCardPopup = ({ popUpHandler, title }) => {
                   width: " 40vw",
                   top: "5vw",
                   left: "11vw",
+                  fontFamily: "Montserrat-Bold",
+                  color: currentBackgroundImg?.redBg ? "white" : "#351206",
                 }}
               >
                 Happy Independence Day!
@@ -177,8 +195,11 @@ const SendCardPopup = ({ popUpHandler, title }) => {
             <button
               className="send-btn"
               onClick={sendCard}
-              disabled={radioSelected === null}
-              style={{ filter: radioSelected === null && "grayScale(1)" }}
+              disabled={radioSelected === null || isDisabled}
+              style={{
+                filter:
+                  radioSelected === null || isDisabled ? "grayScale(1)" : "",
+              }}
             />
           )}
         </div>

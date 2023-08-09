@@ -31,13 +31,13 @@ import Marquee from "react-fast-marquee";
 import unknowUser from "../assets/unknown-user.png";
 import beanIcon from "../assets/event-gifting/bean-icon.png";
 import { gotoProfile } from "../utils/functions";
+import allTogether from "../assets/Conquer-tab/all_togather.gif";
 
 const ConquerVictoryFortTab = () => {
   const [selectedTeam, setSelectedTeam] = useState(0);
   const [isSliderOn, setIsSliderOn] = useState(false);
   const { info, getInfo, user, marqueeData } = useContext(AppContext);
 
-  const [showLevels, setShowLevels] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [showGame, setShowGame] = useState(false);
   const [rewards, setRewards] = useState([]);
@@ -48,7 +48,9 @@ const ConquerVictoryFortTab = () => {
   const [infoPopup, setInfoPopup] = useState(false);
   const [joinTeamPopup, setJoinTeamPopup] = useState(false);
   const [joinTeamMsg, setJoinTeamMsg] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isNotEnoughSoldiers, setIsNotEnoughSoldier] = useState(false);
+  const [firstTeam, setFirstTeam] = useState(0);
 
   const sortLeaderBoard = () => {
     let teamId = info?.teamTotalSoldiersInfoList?.sort(
@@ -57,6 +59,14 @@ const ConquerVictoryFortTab = () => {
 
     return teamId;
   };
+
+  useEffect(() => {
+    if (isSliderOn === true) {
+      setFirstTeam(info?.yesterdayWonTeamId);
+    } else {
+      setFirstTeam(sortLeaderBoard);
+    }
+  }, [info.teamTotalSoldiersInfoList, isSliderOn]);
 
   const [selectedTeamId, setSelectedTeamId] = useState(null);
   useEffect(() => {
@@ -122,7 +132,7 @@ const ConquerVictoryFortTab = () => {
       getInfo();
     }
     setShowGame(false);
-    getInfo();
+    // getInfo();
   };
   const [teamTabs, setTeamTabs] = useState({
     warriors: false,
@@ -168,14 +178,15 @@ const ConquerVictoryFortTab = () => {
       )
         .then((response) => response.json())
         .then((response) => {
+          setJoinTeamMsg(response?.msg);
+          setErrorCode(response?.errorCode);
+
+          setJoinTeamPopup(true);
           if (response?.errorCode === 0) {
-            setJoinTeamMsg(response?.msg);
-            setErrorCode(response?.errorCode);
-            setJoinTeamPopup(true);
-            getInfo();
             setSelectedTeamId(
               teamTabs.warriors ? 1 : teamTabs.conquerers ? 2 : 3
             );
+            getInfo();
           }
         })
         .catch((error) => {
@@ -185,11 +196,15 @@ const ConquerVictoryFortTab = () => {
   };
 
   const playGame = () => {
-    if (info.dailyCurrentSoldier === 0) {
-      setShowGame(true);
+    if (isDisabled === true) {
       return;
     }
     setIsDisabled(true);
+    if (info.dailyCurrentSoldier === 0) {
+      setShowGame(true);
+      setIsDisabled(false);
+      return;
+    }
     fetch(`${baseUrl}api/activity/fightForIndependence/conquerFort`, {
       method: "POST",
       headers: {
@@ -204,7 +219,6 @@ const ConquerVictoryFortTab = () => {
       .then((response) => {
         setIsDisabled(false);
         setShowGame(true);
-        // soldiers not enougt
 
         setErrorCode(response?.errorCode);
         setRewardsContent(response?.data?.rewardContent);
@@ -228,9 +242,9 @@ const ConquerVictoryFortTab = () => {
         setShowGame(false);
       });
   };
-
   return (
     <div className="conquer-fort">
+      <div id="levelGifs"></div>
       <Marquee className="marquee">
         {marqueeData?.conquerFort?.map((item) => {
           return (
@@ -245,7 +259,7 @@ const ConquerVictoryFortTab = () => {
                 {/* <div> */}
                 {item?.userScore === 3 ? (
                   <div className="d-flex j-center al-center">
-                    &nbsp; has just freed the VICTORY FORT & won 110,000
+                    &nbsp; has just freed the VICTORY FORT & won 130,000
                     <span style={{ marginTop: "1vw" }}>
                       <img src={beanIcon} className="bean-img" />
                     </span>
@@ -284,9 +298,14 @@ const ConquerVictoryFortTab = () => {
         </p>
       </div>
       <div className="fort-wrapper">
-        <div className="fort">
+        <div
+          className="fort"
+          style={{
+            backgroundImage: `url(${allTogether})`,
+          }}
+        >
           <div className="collect-soldiers">
-            <span>Soldiers Collected Today:{info?.dailyCurrentSoldier}</span>
+            <span>Soldiers Collected:{info?.dailyCurrentSoldier}</span>
           </div>
           <div className="info-icon" onClick={toggleInfoPopup}></div>
 
@@ -299,14 +318,12 @@ const ConquerVictoryFortTab = () => {
               className="level2"
               style={{ visibility: info?.fortState >= 3 && "hidden" }}
             ></div>
-            <div
-              className="level3"
-              // style={{ visibility: info?.fortState > 3 && "hidden" }}
-            ></div>
+            <div className="level3"></div>
           </div>
           <button
             className={`playBtn ${isDisabled && "blackNWhite"}`}
             onClick={playGame}
+            disabled={isDisabled}
           />
         </div>
       </div>
@@ -317,10 +334,14 @@ const ConquerVictoryFortTab = () => {
           <div className="beans-count">
             <span>{info.conquerFortTodayPot}</span>
           </div>
+          <p className="beans-pot-desc">
+            The top 5 users with the most soldiers in a day from the winning
+            team will receive beans from this beans pot at the end of the day.
+          </p>
         </div>
       </div>
       <div className="collect-soldiers">
-        <span>Soldiers collected:{info?.dailyTotalSoldier}</span>
+        <span>Soldiers collected Today:{info?.dailyTotalSoldier}</span>
       </div>
       <div className="join-team-wrap">
         {info?.teamId === 0 && (
@@ -381,11 +402,20 @@ const ConquerVictoryFortTab = () => {
             </div>
 
             {selectedTeamId === 1 ? (
-              <WarriorLeaderboard isSliderOn={isSliderOn} />
+              <WarriorLeaderboard
+                isSliderOn={isSliderOn}
+                showEstRewards={firstTeam === 1 ? true : false}
+              />
             ) : selectedTeamId === 2 ? (
-              <ConquererLeaderboard isSliderOn={isSliderOn} />
+              <ConquererLeaderboard
+                isSliderOn={isSliderOn}
+                showEstRewards={firstTeam === 2 ? true : false}
+              />
             ) : selectedTeamId === 3 ? (
-              <ChampionsLeaderboard isSliderOn={isSliderOn} />
+              <ChampionsLeaderboard
+                isSliderOn={isSliderOn}
+                showEstRewards={firstTeam === 3 ? true : false}
+              />
             ) : (
               <></>
             )}

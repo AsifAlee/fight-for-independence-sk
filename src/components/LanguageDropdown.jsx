@@ -4,7 +4,7 @@ import "../styles/language.scss";
 const LanguageDropdown = (props) => {
   const { selectedLanguage, changeLanguage } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const languageOptions = ["English", "Urdu"];
+  const languageOptions = ["English", "Hinglish"];
 
   const handleLanguageChange = (index) => {
     changeLanguage(index);

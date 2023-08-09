@@ -17,10 +17,11 @@
   }
 
   .fort-wrapper {
+    margin-top: 3vw;
     .fort {
       width: 100%;
       height: 60vw;
-      background-image: url("../assets/Conquer-tab/Fort-game-bg.png");
+      // background-image: url("../assets/Conquer-tab/level-3-png.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
       margin: 0 auto;
@@ -102,11 +103,13 @@
         margin: 0 auto;
       }
     }
+
+ 
   }
 
   .beans-pot {
     width: 95%;
-    height: 55vw;
+    height: 64vw;
     background-image: url("../assets/Beans-pot-bg.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -146,10 +149,19 @@
         font-size: 3vw;
       }
     }
+
+    .beans-pot-desc{
+      font-size: 2.5vw;
+    position: absolute;
+    bottom: 6vw;
+    width: 80%;
+    left: 12vw;
+    text-align: center;
+    }
   }
 
   .collect-soldiers{
-    width: 53vw;
+    width: 63vw;
     height: 12vw;
     background-image: url("../assets/Conquer-tab/soldierscollected-bg.png");
     background-repeat: no-repeat;
@@ -316,6 +328,19 @@
        }
     }
   }
+}
+
+#levelGifs{
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  z-index: -2147483648;
+  content: 
+
+  url("../assets/Conquer-tab/all_togather.gif") ;
+
+  visibility: hidden;
+  top: 0px;
 }
 
 }

@@ -67,19 +67,18 @@ const CollectSoldierTab = () => {
     setRewardHistory((prevState) => !prevState);
   };
   const playGame = () => {
+    setIsDisabled(true);
+    // if(isDisabled){
+    //   return
+    // }
     if (!inputValue) {
       setWarn("Enter Some value");
       setShakeText(true);
-      // setShakeText(true);
-      // setTimeout(() => {
-      //   setShakeText(false);
-      //   setWarn("");
-      // }, [2000]);
       return;
     } else {
       setShakeText(false);
     }
-    setIsDisabled(true);
+
     fetch(
       `${baseUrl}api/activity/fightForIndependence/collectSoldiers?playCount=${inputValue}`,
       {

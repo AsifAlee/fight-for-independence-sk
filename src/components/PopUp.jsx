@@ -41,7 +41,7 @@ const PopUp = (props) => {
               ? "90vw"
               : ""
           }`,
-          height: isSendCard && "102vw",
+          height: isSendCard && "117vw",
           width: `${
             isSendCardPopup
               ? "95%"

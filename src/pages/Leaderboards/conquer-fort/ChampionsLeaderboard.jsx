@@ -6,7 +6,7 @@ import ConquerTabTopper from "../../../components/ConquerTabTopper";
 import ConquerVictoryLeaderboardItems from "../../../components/ConquerVictoryLeaderboardItems";
 import { AppContext } from "../../../AppContext";
 import { conquerFortPot } from "../../../beansPot";
-const ChampionsLeaderboard = ({ isSliderOn }) => {
+const ChampionsLeaderboard = ({ isSliderOn, showEstRewards }) => {
   const [seeMore, setSeeMore] = useState(true);
   const { leaderboardsData, info } = useContext(AppContext);
 
@@ -23,7 +23,6 @@ const ChampionsLeaderboard = ({ isSliderOn }) => {
       : info?.conquerFortYestPot;
     const percent = conquerFortPot.find((item) => item.rank === index)?.percent;
     const result = totalBeansPot ? (percent / 100) * totalBeansPot : 0;
-    console.log("champs leaderboard:", result);
     return Math.floor(result);
     // return 100;
   };
@@ -46,6 +45,7 @@ const ChampionsLeaderboard = ({ isSliderOn }) => {
                 user={currentData[0]}
                 isToday={isSliderOn === false}
                 calculateEstRewards={calculateEstRewards}
+                showEst={showEstRewards}
               />
             </div>
           )}
@@ -60,7 +60,7 @@ const ChampionsLeaderboard = ({ isSliderOn }) => {
                 rewards={[]}
                 key={index}
                 index={index + 2}
-                showEst={true}
+                showEst={showEstRewards}
                 isToday={isSliderOn === false}
                 calculateEstRewards={calculateEstRewards}
               />

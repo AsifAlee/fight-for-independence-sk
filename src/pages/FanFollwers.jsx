@@ -26,6 +26,7 @@ const FanFollwers = () => {
     talent: false,
   });
   const [errorCode, setErrorCode] = useState(0);
+  const [errMessage, setErrorMsg] = useState("");
 
   const toggleCardPopup = () => {
     setShowCard((prevState) => !prevState);
@@ -83,6 +84,7 @@ const FanFollwers = () => {
       .then((response) => {
         setBuyCardPopup(true);
         setErrorCode(response?.errorCode);
+        setErrorMsg(response?.msg);
         getInfo();
       })
       .catch((error) => {
@@ -96,21 +98,21 @@ const FanFollwers = () => {
           <div className="list-item">
             <img className="bullet" src={bullet} />
             <p className="text">
-              Send Independence day wishes to your Fav Talent
+              Send Independence day wishes to your Fav Talent.
             </p>
           </div>
 
           <div className="list-item">
             <img className="bullet" src={bullet} />
             <p className="text">
-              User with maximum wishes sent will get extra beans rewards
+              User with maximum wishes sent will get extra beans rewards.
             </p>
           </div>
 
           <div className="list-item">
             <img className="bullet" src={bullet} />
             <p className="text">
-              Send the wishes responsibly.You get only 5 free card in a day.
+              Send the wishes responsibly.You get only 5 free cards in a day.
             </p>
           </div>
         </div>
@@ -174,7 +176,7 @@ const FanFollwers = () => {
           )}
         </div>
       </div>
-      <div style={{ width: "81%" }}>
+      <div style={{ width: "81%", margin: "0 auto" }}>
         <div className="cards-sent">Total Cards Sent:{info?.sentCards}</div>
       </div>
 
@@ -205,6 +207,7 @@ const FanFollwers = () => {
           popUpHandler={toggleBuyCard}
           title={errorCode === 0 ? congratulation : tryAgain}
           errorCode={errorCode}
+          errMessage={errMessage}
         />
       )}
     </div>

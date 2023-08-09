@@ -2,7 +2,7 @@ import React from "react";
 import PopUp from "../components/PopUp";
 import bg from "../assets/popup/popup-bg.png";
 import congTag from "../assets/popup/congratulation.png";
-const BuyCard = ({ popUpHandler, title, errorCode }) => {
+const BuyCard = ({ popUpHandler, title, errorCode, errMessage }) => {
   return (
     <PopUp bg={bg} title={title} popUpHandler={popUpHandler} isCollSold={true}>
       <div className="buy-card-popup">
@@ -12,7 +12,7 @@ const BuyCard = ({ popUpHandler, title, errorCode }) => {
             to your account.
           </p>
         ) : (
-          <p>Something went wrong</p>
+          <p>{errMessage}</p>
         )}
       </div>
     </PopUp>

@@ -28,7 +28,7 @@ const ConquerFortPopup = ({
     >
       {zeroSoldiers === true ? (
         <div className="collect-sold-popup">
-          You don't have enough soldiers.Please collect soldiers first.
+          You don't have enough soldiers. Please collect soldiers first.
         </div>
       ) : errorCode === 0 && currentLevel === 2 ? (
         <div className="collect-sold-popup">

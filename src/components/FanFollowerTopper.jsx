@@ -25,7 +25,7 @@ const FanFollwerTopper = ({ theUser, isUser, followTalent }) => {
       </div>
       <div
         className="topper-details"
-        onClick={() => gotoProfile(theUser?.userId)}
+        // onClick={() => gotoProfile(theUser?.userId)}
       >
         <div className="nameLevel">
           <p className="name">{theUser?.nickname}</p>
@@ -36,10 +36,15 @@ const FanFollwerTopper = ({ theUser, isUser, followTalent }) => {
             )}
           />
         </div>
-        {isUser === false && user.userId !== theUser.userId && (
+        {isUser === false && (
           <img
             src={theUser?.isFollow ? followedBtn : followBtn}
-            style={{ width: "7vw", position: "relative", left: "-5vw" }}
+            style={{
+              width: "7vw",
+              position: "relative",
+              left: "-5vw",
+              visibility: user?.userId == theUser.userId ? "hidden" : "",
+            }}
             onClick={() =>
               followTalent(
                 theUser?.userId,

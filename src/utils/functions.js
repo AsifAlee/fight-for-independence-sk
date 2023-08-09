@@ -150,12 +150,8 @@ export function getRewardsImage(rewDesc) {
 }
 
 export const getLevelImage = (level, isTalent) => {
-  // const talentLevelUrl =
-  //   "https://www.streamkarlive.live/streamkar/common/img/tlv";
-  // const userLevelUrl =
-  //   "https://www.streamkarlive.live/streamkar/common/img/ulv";
-  const talentLevelUrl = `${baseUrl}/streamkar/common/img/tlv`;
-  const userLevelUrl = `${baseUrl}/streamkar/common/img/ulv`;
+  const talentLevelUrl = `${baseUrl}streamkar/common/img/tlv`;
+  const userLevelUrl = `${baseUrl}streamkar/common/img/ulv`;
   if (isTalent) {
     return `${talentLevelUrl}/${level}.png`;
   } else {
@@ -205,6 +201,7 @@ export const wishes = [
     id: 1,
     wish: "May this spirit of freedom lead us all to success and glory in life.",
     bg: card3,
+    yellowBg: true,
   },
   {
     id: 2,
@@ -228,30 +225,36 @@ export const wishes = [
     id: 5,
     wish: "Truly, the best way to celebrate your country's independence is by being a patriotic citizen.",
     bg: card2,
+    redBg: true,
   },
   {
     id: 6,
     wish: "May you enjoy this freedom of speech & freedom of choice for the rest of your Life.",
     bg: card2,
+    redBg: true,
   },
   {
     id: 7,
     wish: "May the glory of Independence Day be with us forever.",
     bg: card3,
+    yellowBg: true,
   },
   {
     id: 8,
     wish: "May your Independence Day day be filled with patriotic spirit.",
     bg: card3,
+    yellowBg: true,
   },
   {
     id: 9,
     wish: "Freedom in mind, Faith in our heart, Memories in our souls. Let’s salute the Nation on Independence Day!",
     bg: card2,
+    redBg: true,
   },
   {
     id: 10,
     wish: "Together we can win the world, together we can conquer our fear and together we can be a happy place.",
     bg: card2,
+    redBg: true,
   },
 ];

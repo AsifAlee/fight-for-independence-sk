@@ -26,7 +26,7 @@ const ConquerFortInfo = ({ popupHandler }) => {
           </tr>
           <tr>
             <td>Lvl 2</td>
-            <td>15,000</td>
+            <td>10,000</td>
             <td>
               <div className="d-flex j-center al-center">
                 <span>50,000</span>
@@ -36,7 +36,7 @@ const ConquerFortInfo = ({ popupHandler }) => {
           </tr>
           <tr>
             <td>Lvl 3</td>
-            <td>40,000</td>
+            <td>25,000</td>
             <td>
               <div className="d-flex j-center al-center">
                 <span>130,000</span>

@@ -11,6 +11,7 @@ const ConquerVictoryLeaderboardItems = ({
   index,
   isToday,
   calculateEstRewards,
+  showEst,
 }) => {
   return (
     <div className="conquer-victory-leaderboard-item">
@@ -34,36 +35,40 @@ const ConquerVictoryLeaderboardItems = ({
           <img src={getLevelImage(user?.userLevel, false)} />
         </div>
       </div>
-      {
+      {/* {showEst &&
+      
+      ( */}
+      <div
+        className="middle-div"
+        style={{
+          visibility: index > 5 || showEst === false ? "hidden" : "visible",
+        }}
+      >
+        <span>{isToday === false ? "Rewards Won" : " Est Rewards"}</span>
         <div
-          className="middle-div"
-          style={{ visibility: index > 5 && "hidden" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          <span>{isToday === false ? "Rewards Won" : " Est Rewards"}</span>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <span>
-              {isToday === false
-                ? `${
-                    typeof calculateEstRewards === "function"
-                      ? calculateEstRewards(index, false)
-                      : ""
-                  }`
-                : `${
-                    typeof calculateEstRewards === "function"
-                      ? calculateEstRewards(index, true)
-                      : ""
-                  }`}
-            </span>
-            <img src={beanIcon} style={{ width: "4vw" }} />
-          </div>
+          <span>
+            {isToday === false
+              ? `${
+                  typeof calculateEstRewards === "function"
+                    ? calculateEstRewards(index, false)
+                    : ""
+                }`
+              : `${
+                  typeof calculateEstRewards === "function"
+                    ? calculateEstRewards(index, true)
+                    : ""
+                }`}
+          </span>
+          <img src={beanIcon} style={{ width: "4vw" }} />
         </div>
-      }
+      </div>
+      {/* )} */}
       <div className="right-div">
         <img className="soldier-icon" src={soldierIcon} />
         <span>{user?.userScore}</span>

@@ -8,7 +8,7 @@ import beanIcon from "../assets/event-gifting/bean-icon.png";
 import "../styles/topper.scss";
 import { getLevelImage, gotoProfile } from "../utils/functions";
 
-const ConquerTabTopper = ({ user, isToday, calculateEstRewards }) => {
+const ConquerTabTopper = ({ user, isToday, calculateEstRewards, showEst }) => {
   return (
     <div className="conquertab-topper">
       <div className="topper-images" onClick={() => gotoProfile(user?.userId)}>
@@ -24,7 +24,10 @@ const ConquerTabTopper = ({ user, isToday, calculateEstRewards }) => {
           <img src={getLevelImage(user?.userLevel, false)} />
         </div>
 
-        <div className="d-flex j-center al-center">
+        <div
+          className="d-flex j-center al-center"
+          style={{ visibility: showEst === false ? "hidden" : "visible" }}
+        >
           <div
             style={{
               display: "flex",

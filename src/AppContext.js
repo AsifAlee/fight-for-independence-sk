@@ -17,6 +17,8 @@ const EventProvider = ({ children }) => {
     conquerFortTodayPot: 0,
     conquerFortYestPot: 0,
     wishId: 0,
+    teamTotalSoldiersInfoList: [],
+    yesterdayWonTeamId: 0,
   });
   const [user, setUser] = useState({
     userId: 0,
@@ -64,6 +66,21 @@ const EventProvider = ({ children }) => {
           fortState: response?.data?.fortState,
           teamId: response?.data?.teamId,
           teamTotalSoldiersInfoList: response?.data?.teamTotalSoldiersInfoList,
+          // teamTotalSoldiersInfoList: [
+          //   {
+          //     teamId: 1,
+          //     totalSoldiers: 1,
+          //   },
+          //   {
+          //     teamId: 2,
+          //     totalSoldiers: 2,
+          //   },
+          //   {
+          //     teamId: 3,
+          //     totalSoldiers: 3,
+          //   },
+          // ],
+
           ownedCards: response?.data?.ownedCards,
           sentCards: response?.data?.sendCards,
           eventGftingUserPot: response?.data?.userBeansPot,
@@ -75,6 +92,9 @@ const EventProvider = ({ children }) => {
             (item) => item?.dayIndex === response?.data?.dayIndex - 1
           )?.potValue,
           wishId: response?.data?.wishId,
+          // wishId: 10,
+
+          yesterdayWonTeamId: response?.data?.yesterdayWonTeamId,
         });
       })
       .catch((error) => {
@@ -372,26 +392,28 @@ const EventProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    getInfo();
-    getTalentOverallEventGifting();
-    getUserOverallEventGifting();
-    getUserSendCardFanFollower();
-    getTalentSendCardFanFollower();
-    getWarriorsToday();
-    getWarriorsYest();
-    getChampionsToday();
-    getChampionsYest();
-    getChampionsToday();
-    getConquerersYest();
-    getEventGiftingDailyToday();
-    getEventGiftingDailyYest();
-    getConquerersToday();
-    getCollectSoldiers();
-    getFanfollowerUser();
-    getFanfollowerTalent();
-    getSoldierRecords();
-    getMarqueeData(1);
-    getMarqueeData(3);
+    if (info?.dayIndex > 0) {
+      getInfo();
+      getTalentOverallEventGifting();
+      getUserOverallEventGifting();
+      getUserSendCardFanFollower();
+      getTalentSendCardFanFollower();
+      getWarriorsToday();
+      getWarriorsYest();
+      getChampionsToday();
+      getChampionsYest();
+      getChampionsToday();
+      getConquerersYest();
+      getEventGiftingDailyToday();
+      getEventGiftingDailyYest();
+      getConquerersToday();
+      getCollectSoldiers();
+      getFanfollowerUser();
+      getFanfollowerTalent();
+      getSoldierRecords();
+      getMarqueeData(1);
+      getMarqueeData(3);
+    }
   }, [info?.dayIndex]);
 
   useEffect(() => {
@@ -400,6 +422,10 @@ const EventProvider = ({ children }) => {
       getFanfollowerTalent();
     }
   }, [user.userId]);
+
+  useEffect(() => {
+    getInfo();
+  }, []);
 
   return (
     <AppContext.Provider

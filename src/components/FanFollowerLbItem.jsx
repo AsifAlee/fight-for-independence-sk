@@ -46,7 +46,8 @@ const FanFollowerLbItem = ({ theUser, index, isUser, followTalent }) => {
           <img
             style={{
               width: "7vw",
-              visibility: user?.userId === theUser.userId ? "hidden" : "",
+              visibility: user?.userId == theUser.userId ? "hidden" : "",
+              // border: user?.userId == theUser.userId && "2px solid red",
             }}
             src={theUser?.isFollow === true ? followedBtn : followBtn}
             onClick={() =>
@@ -64,7 +65,6 @@ const FanFollowerLbItem = ({ theUser, index, isUser, followTalent }) => {
         className="middle-div"
         style={{
           visibility: index > 5 && "hidden",
-          display: isUser === false && "none",
         }}
       >
         {isUser === true ? (
@@ -77,7 +77,7 @@ const FanFollowerLbItem = ({ theUser, index, isUser, followTalent }) => {
               ? "Win 10,000"
               : index === 5
               ? "Win 5,000"
-              : ""}
+              : "Win 15,000"}
             <img src={bean} />
           </div>
         ) : (

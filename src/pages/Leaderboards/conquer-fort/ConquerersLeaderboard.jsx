@@ -6,7 +6,7 @@ import ConquerTabTopper from "../../../components/ConquerTabTopper";
 import ConquerVictoryLeaderboardItems from "../../../components/ConquerVictoryLeaderboardItems";
 import { AppContext } from "../../../AppContext";
 import { conquerFortPot } from "../../../beansPot";
-const ConquererLeaderboard = ({ isSliderOn }) => {
+const ConquererLeaderboard = ({ isSliderOn, showEstRewards }) => {
   const [seeMore, setSeeMore] = useState(true);
   const { leaderboardsData, info } = useContext(AppContext);
 
@@ -43,6 +43,7 @@ const ConquererLeaderboard = ({ isSliderOn }) => {
                 user={currentData[0]}
                 isToday={isSliderOn === false}
                 calculateEstRewards={calculateEstRewards}
+                showEst={showEstRewards}
               />
             </div>
           )}
@@ -57,7 +58,7 @@ const ConquererLeaderboard = ({ isSliderOn }) => {
                 rewards={[]}
                 key={index}
                 index={index + 2}
-                showEst={true}
+                showEst={showEstRewards}
                 isToday={isSliderOn === false}
                 calculateEstRewards={calculateEstRewards}
               />

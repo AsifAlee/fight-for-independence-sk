@@ -67,7 +67,7 @@ const EventGiftingLeaderboardItem = ({
         </div>
       }
 
-      <div className="right-div" style={{ left: "21vw" }}>
+      <div className="right-div" style={{ left: "19vw" }}>
         <span>{`${user?.userScore}`}</span>
         <img src={isTalent ? gem : beansIcon} className="bean-icon" />
       </div>

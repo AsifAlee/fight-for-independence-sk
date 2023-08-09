@@ -52,7 +52,7 @@
 
   .guide-popup {
     margin-top: 5vw;
-    line-height: 4vw;
+    line-height: 5vw;
 
     .highlight {
       background-color: yellow;
@@ -157,6 +157,9 @@
     width: 96%;
     margin: 0 auto;
 
+
+    
+
     .wish-card {
       width: 76%;
       height: 76vw;
@@ -173,17 +176,26 @@
 
       .portrait-wish-text {
         font-size: 3.5vw;
-        width: 56%;
+        width: 58%;
         position: relative;
         left: 17vw;
-        top: -14vw;
-        color: #6e1f03;
+        top: -11vw;
         font-weight: bold;
+        font-family: 'Montserrat-Bold';
       }
-      .wish-card-text{
+   
+      .redBg-wish-card-text{
          font-size: 4vw;
          width: 90%;
+         color: white;
+         font-family: Montserrat-Bold;
       }
+      .yellowBg-wish-card-text{
+        font-size: 4vw;
+        width: 90%;
+        color: #351206;
+        font-family: Montserrat-Bold;
+     }
     }
 
     .card {
@@ -268,6 +280,31 @@
     }
   }
 
+ .send-card-popup::-webkit-scrollbar {
+    width: 1vw;
+    background-color: gray
+  }
+  
+  /* Track */
+  .send-card-popup::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 1vw;
+   
+  }
+   
+  /* Handle */
+  .send-card-popup::-webkit-scrollbar-thumb {
+    background: white; 
+    border-radius: 2vw;
+  }
+  
+  /* Handle on hover */
+  .send-card-popup::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+  }
+
+ 
+
   .recv-card-popup {
     display: flex;
     justify-content: center;
@@ -286,7 +323,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 8vw;
+    padding-top: 18vw;
 
     p {
       font-size: 3vw;

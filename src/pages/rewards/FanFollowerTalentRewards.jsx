@@ -7,7 +7,8 @@ const FanFollowerTalentRewards = () => {
     {
       rank: "Top 1st",
       desc: "gems",
-      text: "50,000 Gems + 3 days profile frame (new)",
+      text: "50,000 Gems + 3 days Fighter profile frame (new)",
+      isMuliImages: true,
     },
     {
       rank: "Top 2nd",

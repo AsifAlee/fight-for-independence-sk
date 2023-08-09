@@ -27,7 +27,7 @@ const TalentRewards = () => {
       text: "15% of beans pot",
     },
     {
-      rank: "Top 4rd",
+      rank: "Top 4th",
 
       desc: "beansbag",
       text: "10% of beans pot",

@@ -4,6 +4,7 @@ import leftArrow from "../assets/event-gifting/left-arrow.png";
 import rightArrow from "../assets/event-gifting/right-arrow.png";
 import SliderDot from "./SliderDot";
 import { getRewardsImage } from "../utils/functions";
+import { baseUrl } from "../utils/api";
 
 const RewardsSlider = ({ rewards, showRanks }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -35,6 +36,9 @@ const RewardsSlider = ({ rewards, showRanks }) => {
         )}
         <div className="images">
           <img src={getRewardsImage(rewards[currentIndex]?.desc)} />
+          {rewards[currentIndex]?.isMuliImages === true && (
+            <img src={`${baseUrl}streamkar/rewards/wipFrame.png`} />
+          )}
         </div>
         <p
           style={{

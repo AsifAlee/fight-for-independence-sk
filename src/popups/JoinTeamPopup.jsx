@@ -4,7 +4,6 @@ import PopUp from "../components/PopUp";
 import successfullyJoined from "../assets/popup/successfully-joined.png";
 import oops from "../assets/popup/oops.png";
 const JoinTeamPopup = ({ popUpHandler, teamId, errorCode, msg, teamName }) => {
-  console.log("team pop up:", teamId);
   return (
     <PopUp
       popUpHandler={popUpHandler}
